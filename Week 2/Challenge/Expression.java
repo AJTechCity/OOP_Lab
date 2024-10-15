@@ -16,10 +16,10 @@ public class Expression{
     }
 
     public void ruleTwo(){
-        String c = this.content[0];
+        String c = this.content.substring(0,1);
         String z = this.content.substring(1);
         this.content = c + z + z;
     }
 
-    
+
 }
