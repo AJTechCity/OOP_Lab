@@ -23,5 +23,17 @@ public class Derivations{
         System.out.println(derivation2);
 
         /* Solution is to apply rules in the order 2,3,1,2,4 */
+
+        /* Problem 3, Derive MUIIU from MI */
+        Expression derivation3 = new Expression("MI");
+        derivation3.ruleTwo();
+        derivation3.ruleTwo();
+        derivation3.ruleThree();
+        derivation3.ruleOne();
+        derivation3.ruleTwo();
+        derivation3.ruleFour();
+        System.out.println(derivation3);
+
+        /* Solution is to apply rule 2 to get the same expression as Derivation 2, then appply the same rules from derivation 2 (2,2,3,1,2,4) */
     }
 }
