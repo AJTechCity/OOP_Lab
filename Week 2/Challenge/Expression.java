@@ -21,5 +21,7 @@ public class Expression{
         this.content = c + z + z;
     }
 
-
+    public void ruleThree(){
+        this.content = this.content.replaceAll("III", "U");
+    }
 }

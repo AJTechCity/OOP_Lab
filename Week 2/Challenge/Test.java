@@ -14,8 +14,14 @@ public class Test{
 
         /*Tests to test Rule 2*/
         Expression test3 = new Expression("MIU");
-        System.out.println(test3); //Should output MUU
+        System.out.println(test3); //Should output MIU
         test3.ruleTwo();
-        System.out.println(test3); //Should output MUU
+        System.out.println(test3); //Should output MIUIU
+
+        /*Tests to test Rule 3*/
+        Expression test4 = new Expression("MUIIIU");
+        System.out.println(test4); //Should output MUIIIU
+        test4.ruleThree();
+        System.out.println(test4); //Should output MUUU
     }
 }
