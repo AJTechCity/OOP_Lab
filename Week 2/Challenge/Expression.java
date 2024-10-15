@@ -24,4 +24,8 @@ public class Expression{
     public void ruleThree(){
         this.content = this.content.replaceAll("III", "U");
     }
+
+    public void ruleFour(){
+        this.content = this.content.replaceAll("UU", "");
+    }
 }
