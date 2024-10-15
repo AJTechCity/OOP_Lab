@@ -35,5 +35,15 @@ public class Derivations{
         System.out.println(derivation3);
 
         /* Solution is to apply rule 2 to get the same expression as Derivation 2, then appply the same rules from derivation 2 (2,2,3,1,2,4) */
+
+        /* Problem 4, Derive MIU from MUIIU */
+        Expression derivation4 = new Expression("MUIIU");
+        derivation4.ruleTwo();
+        derivation4.ruleFour();
+        derivation4.ruleThree();
+        derivation4.ruleFour();
+        System.out.println(derivation4);
+
+        /* Solution is to apply rules in the order 2,4,3,4 */
     }
 }
