@@ -45,5 +45,21 @@ public class Derivations{
         System.out.println(derivation4);
 
         /* Solution is to apply rules in the order 2,4,3,4 */
+
+        /* Problem 5, Derive MU from MI */
+        Expression derivation5 = new Expression("MI");
+        derivation5.ruleTwo();
+        derivation5.ruleTwo();
+        derivation5.ruleThree();
+        derivation5.ruleOne();
+        derivation5.ruleTwo();
+        derivation5.ruleFour();
+        derivation5.ruleTwo();
+        derivation5.ruleFour();
+        derivation5.ruleThree();
+        derivation5.ruleFour();
+        System.out.println(derivation5);
+
+        /* This derivation is not possible as you always end up with MIU which is impossible to convert to MU */
     }
 }
