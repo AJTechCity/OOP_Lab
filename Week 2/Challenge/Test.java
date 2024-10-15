@@ -23,5 +23,11 @@ public class Test{
         System.out.println(test4); //Should output MUIIIU
         test4.ruleThree();
         System.out.println(test4); //Should output MUUU
+
+        /*Tests to test Rule 4*/
+        Expression test5 = new Expression("MUUU");
+        System.out.println(test5); //Should output MUUU
+        test5.ruleFour();
+        System.out.println(test5); //Should output Mu
     }
 }
