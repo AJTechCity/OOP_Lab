@@ -13,6 +13,9 @@ public class Test{
         System.out.println(test2); //Should output MUU
 
         /*Tests to test Rule 2*/
-
+        Expression test3 = new Expression("MIU");
+        System.out.println(test3); //Should output MUU
+        test3.ruleTwo();
+        System.out.println(test3); //Should output MUU
     }
 }
