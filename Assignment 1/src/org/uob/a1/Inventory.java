@@ -3,23 +3,23 @@ package org.uob.a1;
 public class Inventory {
 
     final int MAX_ITEMS = 10;
-    int current_items = 0;
-    String[] items;
+    private int currentItems = 0;
+    private String[] items;
 
     public Inventory(){
         items = new String[MAX_ITEMS];
     }
 
     public void addItem(String item){
-        if(this.current_items<MAX_ITEMS){
-            items[current_items++] = item;
+        if(this.currentItems<MAX_ITEMS){
+            items[currentItems++] = item;
         }
     }
 
     public int hasItem(String item){
         int index=-1;
 
-        for(int i=0;i<this.current_items;i++){
+        for(int i=0;i<this.currentItems;i++){
             if(this.items[i] == item){
                 index=i;
             }
@@ -29,24 +29,24 @@ public class Inventory {
     }
 
     public void removeItem(String item){
-        String[] new_items_array = new String[this.current_items-1];
-        int new_items_count = 0;
+        String[] newItemsArray = new String[this.currentItems-1];
+        int newItemsCount = 0;
 
-        for(int i=0;i<this.current_items;i++){
+        for(int i=0;i<this.currentItems;i++){
             if(this.items[i] != item){
-                new_items_array[new_items_count++] = item;
+                newItemsArray[newItemsCount++] = item;
             }
         }
 
-        this.items = new_items_array;
-        this.current_items = new_items_count;
+        this.items = newItemsArray;
+        this.currentItems = newItemsCount;
     }
 
     public String displayInventory(){
         String inventory="";
-        for(int i=0;i<this.current_items;i++){
+        for(int i=0;i<this.currentItems;i++){
             inventory += this.items[i];
-            if(i<this.current_items-1){
+            if(i<this.currentItems-1){
                 inventory += " ";
             }
         }
