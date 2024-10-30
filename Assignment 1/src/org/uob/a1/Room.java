@@ -25,4 +25,8 @@ public class Room {
     public Position getPosition(){
         return this.position;
     }
+
+    public String getDescription(){
+        return this.description;
+    }
 }

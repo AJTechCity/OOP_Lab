@@ -11,16 +11,16 @@ public class Map {
         this.height = height;
 
         mapArray = new char[width][height];
-    }
-
-    public void placeRoom(Position pos, char symbol){
-        //Get position x and y (public ints) and then set that co-ordinate within the 2D array equal to the symbol provided
-        mapArray[pos.x][pos.y] = symbol;
         for(int i=0;i<height;i++){
             for(int j=0;j<width;j++){
                 mapArray[i][j] = this.EMPTY;
             }
         }
+    }
+
+    public void placeRoom(Position pos, char symbol){
+        //Get position x and y (public ints) and then set that co-ordinate within the 2D array equal to the symbol provided
+        mapArray[pos.y][pos.x] = symbol;
     }
 
     public String display(){
@@ -32,7 +32,6 @@ public class Map {
             }
             mapString += "\n"; //Append a new line so the next row is on the next line
         }
-
         return mapString;
     }
 

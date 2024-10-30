@@ -2,17 +2,20 @@ package org.uob.a1;
 
 public class Score {
 
-    private int final PUZZLE_VALUE=10;
+    private final int PUZZLE_VALUE=10;
 
     private int startingScore=0;
-    private double currentScore=0;
+    private int currentScore=0;
     private int roomsVisited=0;
     private int puzzlesSolved=0;
 
     //All methods updating variables should update the currentScore variable
 
     public Score(int startingScore){
+        //Should set starting score and call updateScore method
+
         this.startingScore = startingScore;
+        this.updateScore();
     }
 
     public void visitRoom(){

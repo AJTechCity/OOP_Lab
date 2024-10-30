@@ -34,7 +34,8 @@ public class Inventory {
 
         for(int i=0;i<this.currentItems;i++){
             if(this.items[i] != item){
-                newItemsArray[newItemsCount++] = item;
+                newItemsArray[newItemsCount] = this.items[i];
+                newItemsCount++;
             }
         }
 
@@ -45,10 +46,7 @@ public class Inventory {
     public String displayInventory(){
         String inventory="";
         for(int i=0;i<this.currentItems;i++){
-            inventory += this.items[i];
-            if(i<this.currentItems-1){
-                inventory += " ";
-            }
+            inventory += this.items[i] + " ";
         }
 
         return inventory;
