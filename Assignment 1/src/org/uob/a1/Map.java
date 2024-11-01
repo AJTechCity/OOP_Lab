@@ -10,7 +10,7 @@ public class Map {
         this.width = width;
         this.height = height;
 
-        mapArray = new char[width][height];
+        mapArray = new char[height][width];
         for(int i=0;i<height;i++){
             for(int j=0;j<width;j++){
                 mapArray[i][j] = this.EMPTY;
@@ -18,9 +18,21 @@ public class Map {
         }
     }
 
+    public int getWidth(){
+        return this.width;
+    }
+
+    public int getHeight(){
+        return this.height;
+    }
+
     public void placeRoom(Position pos, char symbol){
         //Get position x and y (public ints) and then set that co-ordinate within the 2D array equal to the symbol provided
         mapArray[pos.y][pos.x] = symbol;
+    }
+
+    public void placeCharacter(Character c, char symbol){
+        mapArray[c.getPosition().y][c.getPosition().x] = symbol;
     }
 
     public String display(){
@@ -33,6 +45,26 @@ public class Map {
             mapString += "\n"; //Append a new line so the next row is on the next line
         }
         return mapString;
+    }
+
+    public String display(Player p){
+        String mapString;
+        Position pos = p.position;
+
+        if(mapArray[pos.y][pos.x] == EMPTY){
+            mapArray[pos.y][pos.x] = 'p';
+            mapString = this.display();
+            mapArray[pos.y][pos.x] = EMPTY;
+        }else{
+            mapString = this.display();
+        }
+        
+        
+        return mapString;
+    }
+
+    public String toString(){
+        return this.display();
     }
 
 
