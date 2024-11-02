@@ -2,17 +2,17 @@ package org.uob.a1;
 
 public class Character{
 
-    final double MAX_HEALTH = 100;
-    final double MAX_PROTECTION = 100;
+    final int MAX_HEALTH = 100;
+    final int MAX_PROTECTION = 100;
 
     protected String name;
     protected Position position;
-    protected double health;
-    protected double protection;
-    protected double attackPower;
+    protected int health;
+    protected int protection;
+    protected int attackPower;
     private boolean isDead;
 
-    public Character(String name, Position position, double startHealth, double startProtection, double attackPower){
+    public Character(String name, Position position, int startHealth, int startProtection, int attackPower){
         this.name = name;
         this.position = position;
         this.health = startHealth;
@@ -29,15 +29,15 @@ public class Character{
         return this.position;
     }
 
-    public double getHealth(){
+    public int getHealth(){
         return this.health;
     }
 
-    public double getProtection(){
+    public int getProtection(){
         return this.protection;
     }
 
-    public double getAttackPower(){
+    public int getAttackPower(){
         return this.attackPower;
     }
 
@@ -53,7 +53,7 @@ public class Character{
         this.position = p;
     }
 
-    public void addHealth(double amount){
+    public void addHealth(int amount){
         this.health += amount;
         if(this.health > MAX_HEALTH){
             //If current health is above max, then add to protection and set health to max
@@ -62,7 +62,7 @@ public class Character{
         }
     }
 
-    public void addProtection(double amount){
+    public void addProtection(int amount){
         this.protection += amount;
         if(this.protection > MAX_PROTECTION){
             //if current protection is above max, then set to max protection
@@ -70,11 +70,11 @@ public class Character{
         }
     }
 
-    public void setHealth(double health){
+    public void setHealth(int health){
         this.health = health;
     }
 
-    public void setProtection(double protection){
+    public void setProtection(int protection){
         this.protection = protection;
     }
 
@@ -82,12 +82,12 @@ public class Character{
         this.isDead = dead;
     }
 
-    public void takeDamage(Character attacker, double damage){
+    public void takeDamage(Character attacker, int damage){
         //Default function for character to take damage using protection in case the parameter isn't passed
         this.takeDamage(attacker, damage, true);
     }
 
-    public void takeDamage(Character attacker, double damage, boolean useProtection){
+    public void takeDamage(Character attacker, int damage, boolean useProtection){
         if(useProtection){
             this.protection -= damage; //take the protection;
             if(this.protection < 0){

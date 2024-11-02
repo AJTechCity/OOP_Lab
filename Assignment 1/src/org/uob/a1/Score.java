@@ -20,7 +20,6 @@ public class Score {
 
     public void visitRoom(){
         //Should increase the roomsVisited variable by 1, then update the current score
-
         this.roomsVisited++;
         this.updateScore();
     }

@@ -18,6 +18,10 @@ public class Player extends Character{
         return this.inventory;
     }
 
+    public Score getScore(){
+        return this.score;
+    }
+
     public void attackCharacter(Character c){
         if(this.inventory.hasItem("sword")>-1){
             if(this.inventory.hasItem("double damage")>-1){

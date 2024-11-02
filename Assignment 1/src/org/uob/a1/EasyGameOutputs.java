@@ -26,8 +26,15 @@ public class EasyGameOutputs{
         VIEW COMMANDS:
         Type 'view' followed by one of these nouns and information will be printed to the console:
             - 'map'
+            - 'score'
+        ENTER ROOM COMMANDS:
+        Type 'enter room' followed by the character of a room either North, East, South, or West of your current position
         """;
 
         return helpString;
+    }
+
+    public static void printCommandHelpErrorMessage(String command){
+        System.out.println("Invalid " + command + " command. Type 'help' for available commands");
     }
 }

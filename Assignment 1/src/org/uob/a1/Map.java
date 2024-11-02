@@ -18,12 +18,36 @@ public class Map {
         }
     }
 
+    public char getCharAtXY(int x, int y){
+        if(x >=0 && y>=0 && x< this.width && y < this.height){
+            return mapArray[y][x];
+        }else{
+            return EMPTY;
+        }
+    }
+
     public int getWidth(){
         return this.width;
     }
 
     public int getHeight(){
         return this.height;
+    }
+
+    public char[][] getMapArray(){
+        return this.mapArray;
+    }
+
+    public char[] getNESWRadius(Position p){
+        int x = p.x, y=p.y;
+        char[] neswRadius = new char[4];
+        neswRadius[0] = getCharAtXY(p.x, p.y-1); //NORTH Char
+        neswRadius[1] = getCharAtXY(p.x+1, p.y); //EAST Char
+        neswRadius[2] = getCharAtXY(p.x, p.y+1); //SOUTH Char
+        neswRadius[3] = getCharAtXY(p.x-1, p.y); //WEST Char
+
+
+        return neswRadius;
     }
 
     public void placeRoom(Position pos, char symbol){

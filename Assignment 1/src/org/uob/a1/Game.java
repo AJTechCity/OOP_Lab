@@ -12,6 +12,11 @@ public class Game {
     private static Player player;
 
     //ROOMS
+    private static Room RoomA = new Room("Room A", "A dusty, dirty old room", 'A', new Position(1,2));
+    private static Room RoomB = new Room("Room B", "A dusty, dirty old room", 'B', new Position(4,1));
+    private static Room RoomC = new Room("Room C", "A dusty, dirty old room", 'C', new Position(1,3));
+    private static Room RoomD = new Room("Room D", "A dusty, dirty old room", 'D', new Position(4,5));
+    private static Room RoomE = new Room("Room E", "A dusty, dirty old room", 'E', new Position(2,6));
 
     //ENEMIES
 
@@ -29,22 +34,10 @@ public class Game {
             System.out.print("> ");
             command = scanner.nextLine();
             parseCommand(command);
-
-            // player.attackCharacter(weaklingBandit);
-            // player.attackCharacter(theMite);
-            // player.setHealth(10);
-            // player.setProtection(0);
-            // theMite.attackPlayer(player);
-
-
-            // command = "quit";
-
         }while(!command.equals("quit"));
 
         System.out.println("Game over - user quit the experience");
         System.out.println("Final score was: " + playerScore.getScore());
-
-        System.out.println(gameMap.display(player));
     }
 
     private static boolean welcomeScreen(){
@@ -71,14 +64,14 @@ public class Game {
 
     private static void gameInit(){
         Room[] rooms = { //Create array with all rooms within it
-            new Room("Room A", "A dusty, dirty old room", 'A', new Position(1,2)),
-            new Room("Room B", "A dusty, dirty old room", 'B', new Position(4,1)),
-            new Room("Room C", "A dusty, dirty old room", 'C', new Position(1,3)),
-            new Room("Room D", "A dusty, dirty old room", 'D', new Position(4,5)),
-            new Room("Room E", "A dusty, dirty old room", 'E', new Position(2,6)),
+            RoomA,
+            RoomB,
+            RoomC,
+            RoomD,
+            RoomE
         };
 
-        Enemy[] enemies = { //create array with enemies in it
+        Enemy[] enemies = { //Create array with enemies in it
             weaklingBandit,
             theMite,
             e3
@@ -102,16 +95,48 @@ public class Game {
         if(action.equals("help")){
             easyGameOutputs.printCommandHelp();
             return;
+        }else if(commandParts.length == 3 && action.equals("enter")){
+            // commandParts[1] = commandParts[1].toLowerCase();
+            if(commandParts[1].equals("room") && commandParts[2].length() == 1){
+                try{
+                    char roomSymbol = commandParts[2].charAt(0);
+                    char[] neswRadius = gameMap.getNESWRadius(player.getPosition());
+                    boolean found = false;
+                    for(int i=0; i<neswRadius.length; i++){
+                        if(neswRadius[i] == roomSymbol){
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if(found){
+                        //Use logic to 'enter' the room / solve a puzzle
+                        player.getScore().visitRoom();
+                        System.out.println("Entered room " + roomSymbol);
+                    }else{
+                        System.out.println("Room '" + roomSymbol + "' cannot be entered as it isn't North, East, South, or West of your current position.");
+                    }
+                }catch (ArrayIndexOutOfBoundsException e){
+                    System.out.println("Invalid Room Symbol");
+                }
+            }else{
+                System.out.println("Invalid Command");
+            }
+            return;
         }else if(commandParts.length != 2){
             System.out.println("Invalid Command");
             return;
         }
+        commandParts[1] = commandParts[1].toLowerCase();
+
         switch(action.toLowerCase()){
             case "view":
                 if(commandParts[1].equals("map")){
                     System.out.println(gameMap.display(player));
+                }else if(commandParts[1].equals("score")){
+                    System.out.println("Your current score: " + player.getScore().getScore());
                 }else{
-                    System.out.println("Invalid View command. Type 'help' for available commands");
+                    easyGameOutputs.printCommandHelpErrorMessage("view");
                 }
                 break;
             case "move":
@@ -124,7 +149,14 @@ public class Game {
                 }else if(commandParts[1].equals("west")){
                     player.getPosition().moveWest(gameMap);
                 }else{
-                    System.out.println("Invalid Move command. Type 'help' for available commands");
+                    easyGameOutputs.printCommandHelpErrorMessage("move");
+                }
+                break;
+            case "enter":
+                if(commandParts[1].equals("room")){
+
+                }else{
+                    easyGameOutputs.printCommandHelpErrorMessage("enter");
                 }
                 break;
             case "drop":
@@ -135,7 +167,7 @@ public class Game {
                         System.out.println("You do not have the itme '" + commandParts[1] + "'");
                     }
                 }else{
-                    System.out.println("Please specify an item to drop");
+                    easyGameOutputs.printCommandHelpErrorMessage("drop");
                 }
                 break;
             case "quit":

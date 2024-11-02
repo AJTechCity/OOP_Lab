@@ -5,7 +5,7 @@ class Enemy extends Character{
     private String description;
     private boolean penetratesProtection;
 
-    public Enemy(String name, String description, double startHealth, double startProtection, double attackPower, Position position){
+    public Enemy(String name, String description, int startHealth, int startProtection, int attackPower, Position position){
         super(name, position, startHealth, startProtection, attackPower);
         this.description = description;
     }
