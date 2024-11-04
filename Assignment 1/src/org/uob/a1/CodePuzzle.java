@@ -1,6 +1,6 @@
 package org.uob.a1;
 
-class CodePuzzle extends Puzzle{
+class CodePuzzle {
     
     private String codeStr;
     private int codeInt;
@@ -8,7 +8,6 @@ class CodePuzzle extends Puzzle{
     public CodePuzzle(String code){
         this.codeStr = code;
         for(int i=0; i<code.length(); i++){
-            this.
         }
     }
 

@@ -6,12 +6,14 @@ class Puzzle{
     private String description;
     private String prizeItem;
     private Player puzzleSolver;
+    private Room puzzleRoom;
     
-    public Puzzle(String name, String description, String prizeItem, Player puzzleSolver){
+    public Puzzle(String name, String description, String prizeItem, Player puzzleSolver, Room puzzleRoom){
         this.name = name;
         this.description = description;
         this.prizeItem = prizeItem;
         this.puzzleSolver = puzzleSolver;
+        this.puzzleRoom = puzzleRoom; //Used so we can mark the puzzle room as solved (make it disappear off the map)
     }
 
     public String getName(){
@@ -26,15 +28,22 @@ class Puzzle{
         return this.prizeItem;
     }
 
-    
+    public Player getPuzzleSolver(){
+        return this.puzzleSolver;
+    }
+
+    public Room getPuzzleRoom(){
+        return this.puzzleRoom;
+    }
 
 
     public void startPuzzle(){
         System.out.println("Puzzle logic not defined");
     }
 
-    public puzzleSolved(){
-        System.out.println("Congratultions " + player.getName() + "! You have solved the " + this.name + " puzzle. ")
-
+    public void puzzleSolved(){
+        puzzleSolver.getScore().solvePuzzle();
+        puzzleSolver.getInventory().addItem(this.prizeItem);
+        System.out.println("Congratultions " + puzzleSolver.getName() + "! You have solved the " + this.name + " puzzle. You score has been updated and your prize of '" + this.prizeItem + "' has been added to your inventory. Use the 'view inventory' command to view it. \n\nTeleporting you out of the room...");
     }
 }

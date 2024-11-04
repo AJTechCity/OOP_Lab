@@ -146,14 +146,13 @@ public class Game {
                     easyGameOutputs.printCommandHelpErrorMessage("look");
                 }
                 break;
-            case "inventory":
-                System.out.println("Inventory of " + player.getName() + ": " + player.getInventory().displayInventory());
-                break;
             case "view":
                 if(commandParts[1].equals("map")){
                     System.out.println(gameMap.display(player));
                 }else if(commandParts[1].equals("score")){
                     System.out.println("Your current score: " + player.getScore().getScore());
+                }else if(commandParts[1].equals("inventory")){
+                    System.out.println("Inventory of " + player.getName() + ": " + player.getInventory().displayInventory());
                 }else{
                     easyGameOutputs.printCommandHelpErrorMessage("view");
                 }
