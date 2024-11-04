@@ -11,18 +11,18 @@ public class Map {
         this.height = height;
 
         mapArray = new char[height][width];
-        for(int i=0;i<height;i++){
-            for(int j=0;j<width;j++){
-                mapArray[i][j] = this.EMPTY;
-            }
-        }
+        // for(int i=0;i<height;i++){
+        //     for(int j=0;j<width;j++){
+        //         mapArray[i][j] = this.EMPTY;
+        //     }
+        // }
     }
 
     public char getCharAtXY(int x, int y){
         if(x >=0 && y>=0 && x< this.width && y < this.height){
             return mapArray[y][x];
         }else{
-            return EMPTY;
+            return this.EMPTY;
         }
     }
 
@@ -64,21 +64,25 @@ public class Map {
         String mapString=""; //String to be returned at the end of the method
         for(int i = 0; i<this.height; i++){
             for(int j=0;j<this.width;j++){
-                mapString += mapArray[i][j]; //Add chars to current line of the mapString variable
+                if(mapArray[i][j] == '\0'){
+                    mapString += this.EMPTY;
+                }else{
+                    mapString += mapArray[i][j]; //Add chars to current line of the mapString variable
+                }
             }
             mapString += "\n"; //Append a new line so the next row is on the next line
         }
         return mapString;
     }
 
-    public String display(Player p){
+    public String display(Player p){ //Displays map with players current position
         String mapString;
-        Position pos = p.position;
+        Position pos = p.getPosition();
 
-        if(mapArray[pos.y][pos.x] == EMPTY){
+        if(mapArray[pos.y][pos.x] == '\0'){
             mapArray[pos.y][pos.x] = 'p';
             mapString = this.display();
-            mapArray[pos.y][pos.x] = EMPTY;
+            mapArray[pos.y][pos.x] = '\0';
         }else{
             mapString = this.display();
         }

@@ -18,6 +18,10 @@ public class Room {
         return this.name;
     }
 
+    public void setName(String name){
+        this.name = name;
+    }
+
     public char getSymbol(){
         return this.symbol;
     }
@@ -26,7 +30,15 @@ public class Room {
         return this.position;
     }
 
+    public void setPosition(Position position){
+        this.position = position;
+    }
+
     public String getDescription(){
         return this.description;
+    }
+
+    public void enterRoom(Player p){
+
     }
 }

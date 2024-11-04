@@ -8,7 +8,7 @@ public class Player extends Character{
     public Player(String name, Position startPosition){
         super(name, startPosition, 100, 0, 10);
         this.inventory = new Inventory();
-        this.inventory.addItem("health potion");
+        this.inventory.addItem("health_potion");
         this.inventory.addItem("sword");
         this.score = new Score(0);
         this.damageMultiplier = 1;
@@ -24,9 +24,9 @@ public class Player extends Character{
 
     public void attackCharacter(Character c){
         if(this.inventory.hasItem("sword")>-1){
-            if(this.inventory.hasItem("double damage")>-1){
+            if(this.inventory.hasItem("double_damage")>-1){
                 //Use the damage multiplier for this current attack
-                this.inventory.removeItem("double damage");
+                this.inventory.removeItem("double_damage");
                 damageMultiplier = 2;
             }else{
                 //Make sure to reset damage multiplier to 1 in case it isn't reset

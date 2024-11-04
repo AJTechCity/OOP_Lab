@@ -4,7 +4,7 @@ public class Inventory {
 
     final int MAX_ITEMS = 10;
     private int currentItems = 0;
-    private String[] items;
+    public String[] items;
 
     public Inventory(){
         items = new String[MAX_ITEMS];
@@ -20,8 +20,9 @@ public class Inventory {
         int index=-1;
 
         for(int i=0;i<this.currentItems;i++){
-            if(this.items[i] == item){
+            if(this.items[i].equals(item)){
                 index=i;
+                break;
             }
         }
 
@@ -33,7 +34,7 @@ public class Inventory {
         int newItemsCount = 0;
 
         for(int i=0;i<this.currentItems;i++){
-            if(this.items[i] != item){
+            if(!this.items[i].equals(item)){
                 newItemsArray[newItemsCount] = this.items[i];
                 newItemsCount++;
             }

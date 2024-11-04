@@ -123,13 +123,32 @@ public class Game {
                 System.out.println("Invalid Command");
             }
             return;
-        }else if(commandParts.length != 2){
-            System.out.println("Invalid Command");
-            return;
+        }else if(commandParts.length > 1){
+            commandParts[1] = commandParts[1].toLowerCase();
         }
-        commandParts[1] = commandParts[1].toLowerCase();
+        
 
         switch(action.toLowerCase()){
+            case "score":
+                System.out.println("Please use the ''view score' command to view your score. Use the 'help' command for more information on game commands");
+                break;
+            case "look":
+                if(commandParts.length == 2){
+                    String itemName = commandParts[1];
+                    boolean found = false;
+                    // for(int i=0; i<items.length;i++){
+                    //     if(items[i].euqals(itemName)){
+                    //         // System.out.println(itemName);
+                    //         break;
+                    //     }
+                    // }
+                }else{
+                    easyGameOutputs.printCommandHelpErrorMessage("look");
+                }
+                break;
+            case "inventory":
+                System.out.println("Inventory of " + player.getName() + ": " + player.getInventory().displayInventory());
+                break;
             case "view":
                 if(commandParts[1].equals("map")){
                     System.out.println(gameMap.display(player));
@@ -140,15 +159,10 @@ public class Game {
                 }
                 break;
             case "move":
-                if(commandParts[1].equals("north")){
-                    player.getPosition().moveNorth(gameMap);
-                }else if(commandParts[1].equals("south")){
-                    player.getPosition().moveSouth(gameMap);
-                }else if(commandParts[1].equals("east")){
-                    player.getPosition().moveEast(gameMap);
-                }else if(commandParts[1].equals("west")){
-                    player.getPosition().moveWest(gameMap);
+                if(commandParts.length == 2){
+                    player.getPosition().move(commandParts[1].charAt(0), gameMap); //Use the new move method to dynamically move charater without the need for 4 methods (1 for each direction)
                 }else{
+                    // System.out.println("Invalid Move command. Please specify a direction");
                     easyGameOutputs.printCommandHelpErrorMessage("move");
                 }
                 break;
@@ -163,15 +177,15 @@ public class Game {
                 if(commandParts[1].length() > 1){
                     if(player.getInventory().hasItem(commandParts[1]) > -1){
                         player.getInventory().removeItem(commandParts[1]);
+                        System.out.println("You have dropped your " + commandParts[1]);
                     }else{
-                        System.out.println("You do not have the itme '" + commandParts[1] + "'");
+                        System.out.println("You do not have the item '" + commandParts[1] + "'");
                     }
                 }else{
                     easyGameOutputs.printCommandHelpErrorMessage("drop");
                 }
                 break;
             case "quit":
-                System.out.println("quit Command");
                 break;
             default:
                 System.out.println("Unknown Command");
