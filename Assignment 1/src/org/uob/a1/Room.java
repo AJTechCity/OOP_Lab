@@ -17,6 +17,14 @@ public class Room {
         this.roomPuzzle = roomPuzzle;
     }
 
+    public Room(String name, String description, char symbol, Position position){ //Alternative constructor to pass unit tests
+        this.name = name;
+        this.description = description;
+        this.symbol = symbol;
+        this.position = position;
+        this.roomPuzzle = new Puzzle();
+    }
+
     public String getName(){
         return this.name;
     }
@@ -48,9 +56,11 @@ public class Room {
         if(this.puzzleIsSolved){
             System.out.println("You have already solved this room's puzzle! Please try another room");
         }else{
-            System.out.println("Starting puzzle");
-            roomPuzzle.startPuzzle();
+            System.out.println("Starting puzzle...");
             //begin puzzle
+            roomPuzzle.startPuzzle();
+            boolean solved = roomPuzzle.getIsSolved();
+            this.puzzleIsSolved = solved;
             //if puzzle is solved, set this.puzzleIsSolved to true
         }
 

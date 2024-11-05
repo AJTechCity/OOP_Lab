@@ -89,7 +89,7 @@ public class Game {
 
     public static void parseCommand(String c){
         String[] commandParts = command.split(" ");
-        String action = commandParts[0];
+        String action = commandParts[0].toLowerCase();
 
         if(action.equals("help")){
             easyGameOutputs.printCommandHelp();
@@ -158,7 +158,12 @@ public class Game {
                 }
                 break;
             case "move":
-                if(commandParts.length == 2){
+                if(commandParts.length == 2 && (
+                    commandParts[1].equals("north") ||
+                    commandParts[1].equals("east") ||
+                    commandParts[1].equals("south") ||
+                    commandParts[1].equals("west")
+                )){
                     player.getPosition().move(commandParts[1].charAt(0), gameMap); //Use the new move method to dynamically move charater without the need for 4 methods (1 for each direction)
                 }else{
                     // System.out.println("Invalid Move command. Please specify a direction");
