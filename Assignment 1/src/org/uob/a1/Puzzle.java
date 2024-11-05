@@ -6,14 +6,12 @@ class Puzzle{
     private String description;
     private String prizeItem;
     private Player puzzleSolver;
-    private Room puzzleRoom;
     
-    public Puzzle(String name, String description, String prizeItem, Player puzzleSolver, Room puzzleRoom){
+    public Puzzle(String name, String description, String prizeItem, Player puzzleSolver){
         this.name = name;
         this.description = description;
         this.prizeItem = prizeItem;
         this.puzzleSolver = puzzleSolver;
-        this.puzzleRoom = puzzleRoom; //Used so we can mark the puzzle room as solved (make it disappear off the map)
     }
 
     public String getName(){
@@ -30,10 +28,6 @@ class Puzzle{
 
     public Player getPuzzleSolver(){
         return this.puzzleSolver;
-    }
-
-    public Room getPuzzleRoom(){
-        return this.puzzleRoom;
     }
 
 

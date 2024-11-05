@@ -8,21 +8,24 @@ public class Game {
     private static EasyGameOutputs easyGameOutputs = new EasyGameOutputs();;
     private static Scanner scanner = new Scanner(System.in);
     private static String command = "";
-    private static Score playerScore = new Score(0);
     private static Player player;
 
+
+    private static Puzzle testPuzzle = new CodePuzzle("prize", player, "435467");
     //ROOMS
-    private static Room RoomA = new Room("Room A", "A dusty, dirty old room", 'A', new Position(1,2));
-    private static Room RoomB = new Room("Room B", "A dusty, dirty old room", 'B', new Position(4,1));
-    private static Room RoomC = new Room("Room C", "A dusty, dirty old room", 'C', new Position(1,3));
-    private static Room RoomD = new Room("Room D", "A dusty, dirty old room", 'D', new Position(4,5));
-    private static Room RoomE = new Room("Room E", "A dusty, dirty old room", 'E', new Position(2,6));
+    private static Room RoomA = new Room("Room A", "A dusty, dirty old room", 'A', new Position(1,2), testPuzzle);
+    private static Room RoomB = new Room("Room B", "A dusty, dirty old room", 'B', new Position(4,1), testPuzzle);
+    private static Room RoomC = new Room("Room C", "A dusty, dirty old room", 'C', new Position(1,3), testPuzzle);
+    private static Room RoomD = new Room("Room D", "A dusty, dirty old room", 'D', new Position(4,5), testPuzzle);
+    private static Room RoomE = new Room("Room E", "A dusty, dirty old room", 'E', new Position(2,6), testPuzzle);
+    private static Room[] rooms;
 
     //ENEMIES
 
     private static Enemy weaklingBandit = new Enemy("Weakling Bandit", "Beware the weakling bandit, a grandson of the Brutal Ogre. He serves as a knight to the Ogre and defends itself with an attack. He has 40 health, no protection, and a broken wooden sword. A weak enemy. Defeating him provides you with a protection potion to increase your protection", 40, 0, 7, new Position(0,4));
     private static Enemy theMite = new Enemy("The Mite", "Beware The Mite, a grandson of the Brutal Ogre. He mystically mutated and gained protection spells and a metal sword. He has 35 health, 20 protection, and will attack when provoked. Upon defeating him, his protection spell oozes out and becoms available to you", 35, 20, 15, new Position(17,1));
     private static Enemy e3 = new Enemy("Enemy 3", "dirty enemy 3", 10, 0, 10, new Position(11,7));
+    private static Enemy[] enemies;
     //PUZZLES
     
     public static void main(String[] args) {
@@ -37,18 +40,17 @@ public class Game {
         }while(!command.equals("quit"));
 
         System.out.println("Game over - user quit the experience");
-        System.out.println("Final score was: " + playerScore.getScore());
+        System.out.println("Final score was: " + player.getScore().getScore());
     }
 
-    private static boolean welcomeScreen(){
+    private static void welcomeScreen(){
         easyGameOutputs.printTitle("      THE MAP      ");
         System.out.println("Welcome to 'THE MAP' - a thrilling text-based adventure game.");
         System.out.print("Press Enter to continue to user information setup...");
         scanner.nextLine();
-        return true;
     }
 
-    private static boolean userInfoSetup(){
+    private static void userInfoSetup(){
         easyGameOutputs.printTitle("USER INFORMATION SETUP");
         System.out.print("Please enter your name: ");
         String nameInput = scanner.nextLine();
@@ -57,13 +59,10 @@ public class Game {
         System.out.println("Welcome to the game " + player.getName());
         System.out.println("Type 'help' at any time to view the list of available commands");
         System.out.println("Type 'quit' at any time to exit the game");
-
-        return true;
-
     }
 
     private static void gameInit(){
-        Room[] rooms = { //Create array with all rooms within it
+        rooms = new Room[] { //Create array with all rooms within it
             RoomA,
             RoomB,
             RoomC,
@@ -71,7 +70,7 @@ public class Game {
             RoomE
         };
 
-        Enemy[] enemies = { //Create array with enemies in it
+        enemies = new Enemy[] { //Create array with enemies in it
             weaklingBandit,
             theMite,
             e3
@@ -99,7 +98,7 @@ public class Game {
             // commandParts[1] = commandParts[1].toLowerCase();
             if(commandParts[1].equals("room") && commandParts[2].length() == 1){
                 try{
-                    char roomSymbol = commandParts[2].charAt(0);
+                    char roomSymbol = commandParts[2].toUpperCase().charAt(0);
                     char[] neswRadius = gameMap.getNESWRadius(player.getPosition());
                     boolean found = false;
                     for(int i=0; i<neswRadius.length; i++){
@@ -111,8 +110,9 @@ public class Game {
 
                     if(found){
                         //Use logic to 'enter' the room / solve a puzzle
-                        player.getScore().visitRoom();
-                        System.out.println("Entered room " + roomSymbol);
+                        int roomIndex = roomSymbol - 'A'; //If we subtract the room symnol of A from the inputted symbol, we will end up with an index so we can get the room from our rooms array
+                        rooms[roomIndex].enterRoom(player); //Call the "Enter Room" method
+                        // System.out.println("Entered room " + roomSymbol);
                     }else{
                         System.out.println("Room '" + roomSymbol + "' cannot be entered as it isn't North, East, South, or West of your current position.");
                     }

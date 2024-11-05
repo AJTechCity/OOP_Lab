@@ -6,12 +6,15 @@ public class Room {
     private String description;
     private char symbol;
     private Position position;
+    private Puzzle roomPuzzle;
+    private boolean puzzleIsSolved = false;
 
-    public Room(String name, String description, char symbol, Position position){
+    public Room(String name, String description, char symbol, Position position, Puzzle roomPuzzle){
         this.name = name;
         this.description = description;
         this.symbol = symbol;
         this.position = position;
+        this.roomPuzzle = roomPuzzle;
     }
 
     public String getName(){
@@ -39,6 +42,18 @@ public class Room {
     }
 
     public void enterRoom(Player p){
+        //add room entrance to player score
+        System.out.println("You have entered room " + this.symbol);
+        p.getScore().visitRoom();
+        if(this.puzzleIsSolved){
+            System.out.println("You have already solved this room's puzzle! Please try another room");
+        }else{
+            System.out.println("Starting puzzle");
+            roomPuzzle.startPuzzle();
+            //begin puzzle
+            //if puzzle is solved, set this.puzzleIsSolved to true
+        }
 
+        System.out.println("Exiting room");
     }
 }
