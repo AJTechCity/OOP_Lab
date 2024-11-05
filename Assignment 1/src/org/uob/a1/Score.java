@@ -2,6 +2,8 @@ package org.uob.a1;
 
 public class Score {
 
+    //The basic Score class based off of tasks provided within the Assignment specification
+
     private final int PUZZLE_VALUE=10;
 
     private int startingScore=0;
@@ -39,6 +41,7 @@ public class Score {
     }
 
     private void updateScore(){
+        //Run every time a variable is changed so that the score is always correct
         this.currentScore = this.startingScore - this.roomsVisited + (this.puzzlesSolved * this.PUZZLE_VALUE);
     }
 }

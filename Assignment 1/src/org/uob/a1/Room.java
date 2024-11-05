@@ -17,7 +17,11 @@ public class Room {
         this.roomPuzzle = roomPuzzle;
     }
 
-    public Room(String name, String description, char symbol, Position position){ //Alternative constructor to pass unit tests
+    public Room(String name, String description, char symbol, Position position){
+        /*
+            Alternative constructor to pass unit tests as they don't
+            pass a 'Puzzle' parameter
+        */
         this.name = name;
         this.description = description;
         this.symbol = symbol;
@@ -49,7 +53,12 @@ public class Room {
     }
 
     public void enterRoom(Player p){
-        //add room entrance to player score
+
+        //Run when user types the 'enter room' command
+        //Increases their score's room visit count
+        //Tells them whether the puzzle is available to be solved or not
+        //Automatically 'exits' the room after certain exit flags are given
+
         System.out.println("You have entered room " + this.symbol);
         p.getScore().visitRoom();
         if(this.roomPuzzle != null){

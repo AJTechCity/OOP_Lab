@@ -1,6 +1,13 @@
 package org.uob.a1;
 
 public class EasyGameOutputs{
+
+    /*
+        A custom class created to reduce the number of times
+        the same code is written throughout the program. Also 
+        provides for easy updates on regularly used strings
+    */
+
     public static void printTitle(String title){
         System.out.println("-".repeat(20));
         System.out.println(title);
@@ -39,6 +46,7 @@ public class EasyGameOutputs{
     }
 
     public static void printCommandHelpErrorMessage(String command){
+        //Used when the user types an invalid command in the main game loop
         System.out.println("Invalid " + command + " command. Type 'help' for available commands");
     }
 }

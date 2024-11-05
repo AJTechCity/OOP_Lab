@@ -1,7 +1,7 @@
 package org.uob.a1;
 
 class Puzzle{
-    //Generic class for puzzles - not used extensively right now
+    //Generic class for puzzles - includes the basic logic of the class, required variables and methods
     private String name;
     private String description;
     private String prizeItem;
@@ -30,20 +30,28 @@ class Puzzle{
         return this.prizeItem;
     }
 
-    public Player getPuzzleSolver(){
+    public Player getPuzzleSolver(){ //Gets the person Object - used to update scores or give items
         return this.puzzleSolver;
     }
 
-    public boolean getIsSolved(){
+    public boolean getIsSolved(){ //Used to check if user can solve the puzzle when entering a room
         return this.isSolved;
     }
 
 
     public void startPuzzle(){
+        /*
+            Used in debugging to signal no valid puzzle class
+            extension has been used and, hence, no valid game logic
+            is available
+        */
         System.out.println("Puzzle logic not defined");
     }
 
     public void puzzleSolved(){
+        //Run once puzzle is solved
+        //Used to update required variables, give items to user
+        //and output a success message
         this.isSolved = true;
         this.puzzleSolver.getScore().solvePuzzle();
         this.puzzleSolver.getInventory().addItem(this.prizeItem);

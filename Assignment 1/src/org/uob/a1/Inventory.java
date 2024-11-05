@@ -17,6 +17,7 @@ public class Inventory {
     }
 
     public int hasItem(String item){
+        //returns index of an item if the user has it, -1 otherwise
         int index=-1;
 
         for(int i=0;i<this.currentItems;i++){
@@ -30,6 +31,8 @@ public class Inventory {
     }
 
     public void removeItem(String item){
+        //removes an item if 
+
         String[] newItemsArray = new String[this.currentItems-1];
         int newItemsCount = 0;
 

@@ -2,6 +2,15 @@ package org.uob.a1;
 
 public class Character{
 
+    //A Base class made for the Player and Enemy Objects
+    
+    /*
+        Provides the basic variables and methods that are shared between
+        the two object types. This is not currently fully used within the
+        game logic but can be expanded so the user can intereact with NPC's
+        and 'attack' them for points and prizes
+    */
+
     final int MAX_HEALTH = 100;
     final int MAX_PROTECTION = 100;
 

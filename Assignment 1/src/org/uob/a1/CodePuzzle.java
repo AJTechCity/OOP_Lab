@@ -3,6 +3,14 @@ package org.uob.a1;
 import java.util.Scanner;
 
 class CodePuzzle extends Puzzle{
+
+    //Extension of the puzzle class
+
+    /*
+        Used by certain roooms - Provides a
+        re-usable puzzle that dynamically creates hints for the
+        user based off of pre-set formulae.
+    */
     
     final private int MAX_GUESSES=10;
 
@@ -23,7 +31,7 @@ class CodePuzzle extends Puzzle{
             "Can you crack the code? Guess the correct 6-digit combination to unlock the prize. Use hints wisely to discover the digits and their positions", //puzzle description
             prizeItem, //prize item
             puzzleSolver //Player Object
-        );
+        ); //Calls the super() method to initialise the base class
 
         this.code = new int[code.length()];
         for(int i=0; i<code.length(); i++){
@@ -34,16 +42,19 @@ class CodePuzzle extends Puzzle{
     }
 
     private void generateHints(){
+        //Generates a default set of hints for the user
         this.startHints = new String[code.length];
         this.hints = new String[code.length];
 
-        for (int i=0; i<code.length; i++){
+        for (int i=0; i<code.length; i++){ //These are starting hints provided to the user at the start
             if(code[i]%2==0){
                 this.startHints[i] = "The digit at position " + (i+1) + " is even";
             }else{
                 startHints[i] = "The digit at position " + (i+1) + " is odd";
             }
         }
+
+        //Below hints are the ones the user can request so that the puzzle is made easier
 
         hints[0] = "The first digit is " + code[0];
         hints[1] = "Digit 5 + Digit 6 = " + (code[4]+code[5]);
@@ -65,7 +76,9 @@ class CodePuzzle extends Puzzle{
         System.out.println("\nType 'hint' for another hint");
     }
 
-    public void startPuzzle(){
+    public void startPuzzle(){ 
+        //Override of the startPuzzle() method in the Puzzle class so that the program can see there is a game logic and not the default error message
+        
         //Reset the variables in case the user in trying again
         guesses = 0;
         userInput="";
@@ -80,19 +93,21 @@ class CodePuzzle extends Puzzle{
         System.out.println("5) Type 'exit' at any time to exit the puzzle and go back to the map");
         System.out.println("Good Luck!");
         System.out.println("\nPress enter to receive your starting hints... ");
-        scanner.nextLine();
+        scanner.nextLine(); //Used for aesthetics so user can advance when they have read everything
 
-        this.outputStartHints();
+        this.outputStartHints(); //Used as a separate function to reduce size of current method and so it can be re-used later
 
         do{
+            //Basic do-while loop for command input
 
             System.out.print("Code Puzzle > ");
             userInput = scanner.nextLine();
             this.parseUserInput(userInput);
 
-        }while(!userInput.equals("exit") && this.guesses < this.MAX_GUESSES && !this.getIsSolved());
+        }while(!userInput.equals("exit") && this.guesses < this.MAX_GUESSES && !this.getIsSolved()); //Only breaks if the puzzle is solved, if player makes too many guesses, or if they ask to exit the puzzle
 
-        if(this.guesses >= this.MAX_GUESSES){
+        if(this.guesses >= this.MAX_GUESSES){ 
+            //Once loop is broken, if the reason was due to maximum guesses, then alert the user about the reason
             System.out.println("Maximum attempts used! Exiting the room...");
         }
 

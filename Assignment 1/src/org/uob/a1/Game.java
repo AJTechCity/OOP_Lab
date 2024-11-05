@@ -94,8 +94,13 @@ public class Game {
     }
 
     public static void parseCommand(String c){
+        /*
+            Contains all logic to read in a command from the user,
+            run the required validations, and execute the commands
+        */
+
         String[] commandParts = command.split(" ");
-        String action = commandParts[0].toLowerCase();
+        String action = commandParts[0].toLowerCase(); //So no formatting issues arise when checking the command
 
         if(action.equals("help")){
             easyGameOutputs.printCommandHelp();

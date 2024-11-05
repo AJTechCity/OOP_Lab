@@ -2,6 +2,12 @@ package org.uob.a1;
 
 class Enemy extends Character{
 
+    /*
+        An extension of the Character class
+        that will interact with user's and fight them
+        so the player can possibly win a prize item
+    */
+
     private String description;
     private boolean penetratesProtection;
 

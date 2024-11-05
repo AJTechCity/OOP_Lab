@@ -11,6 +11,9 @@ public class Map {
         this.height = height;
 
         mapArray = new char[height][width];
+
+        //Code Below was removed because there is no need to store the Empty Character in the array and take up processing time
+
         // for(int i=0;i<height;i++){
         //     for(int j=0;j<width;j++){
         //         mapArray[i][j] = this.EMPTY;
@@ -19,6 +22,9 @@ public class Map {
     }
 
     public char getCharAtXY(int x, int y){
+        //Find the character at the specified co-ordinate
+        //Used to see if there is a room in the way when moving a user
+        //Also used to see if there are rooms around the user available to enter
         if(x >=0 && y>=0 && x< this.width && y < this.height){
             return mapArray[y][x];
         }else{
@@ -39,6 +45,7 @@ public class Map {
     }
 
     public char[] getNESWRadius(Position p){
+        //Used to see what symbols are around the user and indicate if there is a room they can enter
         int x = p.x, y=p.y;
         char[] neswRadius = new char[4];
         neswRadius[0] = getCharAtXY(p.x, p.y-1); //NORTH Char
@@ -56,6 +63,7 @@ public class Map {
     }
 
     public void placeCharacter(Character c, char symbol){
+        //Places the character within the mapArray
         mapArray[c.getPosition().y][c.getPosition().x] = symbol;
     }
 
