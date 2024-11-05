@@ -114,13 +114,16 @@ class CodePuzzle extends Puzzle{
     }
 
     private void parseUserInput(String command){
+
+        //Another command-passig method which handles incoming user input and executes the required methods
+
         String[] commandParts = command.split(" ");
-        String action = commandParts[0].toLowerCase();
+        String action = commandParts[0].toLowerCase(); //Used for formatting issues
         switch(action){
             case "guess":
-                if(commandParts.length == 2){
+                if(commandParts.length == 2){ //Check the command has the valid number of parts
                     String guess = commandParts[1];
-                    if(guess.length() != codeStr.length()){
+                    if(guess.length() != codeStr.length()){ //If the length is wrong, don't bother checking as that'll count as an attempt
                         System.out.println("Incorrect length - The code is " + code.length + " digits long");
                     }else{ //Attempt to verify the user's guess
                         boolean correctGuess = this.checkGuess(commandParts[1]);
@@ -149,6 +152,7 @@ class CodePuzzle extends Puzzle{
     }
     
     private void giveHint(){
+        //Called when the user types 'hint'
         if(++currentHintIndex >= hints.length){
             System.out.println("No more hints are available!");
         }else{
@@ -157,9 +161,9 @@ class CodePuzzle extends Puzzle{
     }
 
     private boolean checkGuess(String input){
-        guesses++;
+        guesses++; //Mark a guess as being used
         boolean correct=true;
-        int correctPlaces = 0;
+        int correctPlaces = 0; //Only to show user how many values they have in the correct place
 
         if(input.length() != codeStr.length()){
             correct=false; //Incorrect length
@@ -175,6 +179,6 @@ class CodePuzzle extends Puzzle{
 
         System.out.println("There are " + correctPlaces + " digits in the correct place");
 
-        return correct;
+        return correct; //Let's program know if user's guess was correct or not
     }
 }
