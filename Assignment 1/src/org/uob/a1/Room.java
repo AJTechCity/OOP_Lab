@@ -59,7 +59,8 @@ public class Room {
         //Tells them whether the puzzle is available to be solved or not
         //Automatically 'exits' the room after certain exit flags are given
 
-        System.out.println("You have entered room " + this.symbol);
+        System.out.println("You have entered room " + this.symbol + " - The " + this.name);
+        System.out.println("\nRoom Description: " + this.getDescription() + "\n");
         p.getScore().visitRoom();
         if(this.roomPuzzle != null){
             if(this.puzzleIsSolved){

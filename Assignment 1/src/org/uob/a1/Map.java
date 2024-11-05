@@ -72,11 +72,13 @@ public class Map {
         String mapString=""; //String to be returned at the end of the method
         for(int i = 0; i<this.height; i++){
             for(int j=0;j<this.width;j++){
+                mapString += " ";
                 if(mapArray[i][j] == '\0'){
                     mapString += this.EMPTY;
                 }else{
                     mapString += mapArray[i][j]; //Add chars to current line of the mapString variable
                 }
+                mapString += " ";;
             }
             mapString += "\n"; //Append a new line so the next row is on the next line
         }

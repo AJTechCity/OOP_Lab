@@ -29,7 +29,10 @@ public class EasyGameOutputs{
             - 'east'
             - 'south'
             - 'west'
-
+        LOOK COMMANDS:
+        Type 'look' followed by one of the items in your inventory, it's description will be displayed:
+            - 'sword'
+            - 'keyA'
         VIEW COMMANDS:
         Type 'view' followed by one of these nouns and information will be printed to the console:
             - 'map' -> Used to view the current map status
