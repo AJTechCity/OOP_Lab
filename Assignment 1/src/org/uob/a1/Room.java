@@ -52,7 +52,7 @@ public class Room {
         //add room entrance to player score
         System.out.println("You have entered room " + this.symbol);
         p.getScore().visitRoom();
-        if(this.roomPuzzle == null){
+        if(this.roomPuzzle != null){
             if(this.puzzleIsSolved){
                 System.out.println("You have already solved this room's puzzle! Please try another room");
             }else{

@@ -10,26 +10,30 @@ public class Position {
         this.y = y;
     }
 
-    public void move(char direction, Map m){
-        int newX=this.x, newY=this.y;
-        String strDirection = "";
+    public void move(String direction, Map m){
 
-        switch(direction){
-            case 'n':
-                strDirection = "north";
+        //This method works as a combination of the moveNorth, moveSouth, etc methods so that there is less code to worry about
+
+        int newX=this.x, newY=this.y;
+
+        /*
+            We use the newX and newY variables to update what our new coordinates would be
+            then we verify if they are valid coordinates based on if there is something in the way
+            or if they have reached the end of the map.
+        */
+
+        switch(direction.toLowerCase()){
+            case 'north':
                 newY -= 1;
                 break;
-            case 'e':
-                strDirection = "east";
+            case 'east':
                 newX += 1;
                 break;
-            case 's':
-                strDirection = "south";
+            case 'south':
                 newY += 1;
                 break;
-            case 'w':
-                strDirection = "west";
-                newY -= 1;
+            case 'west':
+                newX -= 1;
                 break;
             default:
                 System.out.println("You are attempting to move in an invalid direction. Please try again");
@@ -45,7 +49,7 @@ public class Position {
         }else{
             this.x = newX;
             this.y = newY;
-            System.out.println("You continue on your journey towards the " + strDirection);
+            System.out.println("You continue on your journey towards the " + direction);
         }
     }
 

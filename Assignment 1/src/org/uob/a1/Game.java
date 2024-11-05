@@ -170,7 +170,7 @@ public class Game {
                     commandParts[1].equals("south") ||
                     commandParts[1].equals("west")
                 )){
-                    player.getPosition().move(commandParts[1].charAt(0), gameMap); //Use the new move method to dynamically move charater without the need for 4 methods (1 for each direction)
+                    player.getPosition().move(commandParts[1], gameMap); //Use the new move method to dynamically move charater without the need for 4 methods (1 for each direction)
                 }else{
                     // System.out.println("Invalid Move command. Please specify a direction");
                     easyGameOutputs.printCommandHelpErrorMessage("move");
