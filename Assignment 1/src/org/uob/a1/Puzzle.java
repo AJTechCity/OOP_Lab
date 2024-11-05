@@ -45,8 +45,8 @@ class Puzzle{
 
     public void puzzleSolved(){
         this.isSolved = true;
-        puzzleSolver.getScore().solvePuzzle();
-        puzzleSolver.getInventory().addItem(this.prizeItem);
-        System.out.println("Congratultions " + puzzleSolver.getName() + "! You have solved the " + this.name + " puzzle. You score has been updated and your prize of '" + this.prizeItem + "' has been added to your inventory. Use the 'view inventory' command to view it. \n\nTeleporting you out of the room...");
+        this.puzzleSolver.getScore().solvePuzzle();
+        this.puzzleSolver.getInventory().addItem(this.prizeItem);
+        System.out.println("Congratultions " + this.puzzleSolver.getName() + "! You have solved the " + this.name + " puzzle. You score has been updated and your prize of '" + this.prizeItem + "' has been added to your inventory. Use the 'view inventory' command to view it. \n\nTeleporting you out of the room...");
     }
 }

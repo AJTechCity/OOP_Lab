@@ -14,20 +14,20 @@ class CodePuzzle extends Puzzle{
     private String[] hints;
 
     private int guesses = 0;
-    private int currentHintIndex=0;
+    private int currentHintIndex=-1;
     private String userInput="";
 
     public CodePuzzle(String prizeItem, Player puzzleSolver, String code){
         super(
             "Code Puzzle", //puzzle name
-            "", //puzzle description
-            "", //prize item
+            "Can you crack the code? Guess the correct 6-digit combination to unlock the prize. Use hints wisely to discover the digits and their positions", //puzzle description
+            prizeItem, //prize item
             puzzleSolver //Player Object
         );
 
         this.code = new int[code.length()];
         for(int i=0; i<code.length(); i++){
-        //     // this.code[i] = (int) code.charAt(i);
+            this.code[i] = code.charAt(i) - '0';
         }
         this.codeStr = code;
         this.generateHints();
@@ -38,15 +38,19 @@ class CodePuzzle extends Puzzle{
         this.hints = new String[code.length];
 
         for (int i=0; i<code.length; i++){
-            if(i%2==0){
+            if(code[i]%2==0){
                 this.startHints[i] = "The digit at position " + (i+1) + " is even";
             }else{
                 startHints[i] = "The digit at position " + (i+1) + " is odd";
             }
         }
 
-        hints[0] = "The first number is " + code[0];
-        hints[1] = "The number " + code[4] + " is in an odd position";
+        hints[0] = "The first digit is " + code[0];
+        hints[1] = "Digit 5 + Digit 6 = " + (code[4]+code[5]);
+        hints[2] = "The sum of the first and second digits is " + (code[0]+code[1]);
+        hints[3] = "The product of the second and fifth digit is " + (code[1] * code[4]);
+        hints[4] = "The sum of all the digits is " + (code[0] + code[1] + code[2] + code[3] + code[4] + code[5]);
+        hints[5] = "The last digit is " + code[5];
     }
 
     public String[] getStartHints(){
@@ -62,6 +66,11 @@ class CodePuzzle extends Puzzle{
     }
 
     public void startPuzzle(){
+        //Reset the variables in case the user in trying again
+        guesses = 0;
+        userInput="";
+
+
         System.out.println("Welcome to the Combination Code Puzzle!");
         System.out.println("The rules are simple: ");
         System.out.println("1) I will give you 6 starting hints which tell you whether each digit is odd or even");
@@ -81,7 +90,12 @@ class CodePuzzle extends Puzzle{
             userInput = scanner.nextLine();
             this.parseUserInput(userInput);
 
-        }while(!userInput.equals("exit"));
+        }while(!userInput.equals("exit") && this.guesses < this.MAX_GUESSES && !this.getIsSolved());
+
+        if(this.guesses >= this.MAX_GUESSES){
+            System.out.println("Maximum attempts used! Exiting the room...");
+        }
+
     }
 
     private void parseUserInput(String command){
@@ -89,8 +103,25 @@ class CodePuzzle extends Puzzle{
         String action = commandParts[0].toLowerCase();
         switch(action){
             case "guess":
+                if(commandParts.length == 2){
+                    String guess = commandParts[1];
+                    if(guess.length() != codeStr.length()){
+                        System.out.println("Incorrect length - The code is " + code.length + " digits long");
+                    }else{ //Attempt to verify the user's guess
+                        boolean correctGuess = this.checkGuess(commandParts[1]);
+                        if(correctGuess){
+                            System.out.println("Correct Guess!");
+                            this.puzzleSolved(); //Call puzzleSolved method to update user scores, etc
+                        }else{
+                            System.out.println("Incorrect! You have used " + guesses + " out of " + MAX_GUESSES + " guesses!");
+                        }
+                    }
+                }else{
+                    System.out.println("To use guess command, type 'guess <your_guess>' where your_guess is a 6 digit number");
+                }
                 break;
             case "exit":
+                this.userInput = "exit"; //cause puzzle to exi the do while loop
                 break;
             case "hint":
                 this.giveHint();
@@ -115,7 +146,7 @@ class CodePuzzle extends Puzzle{
         boolean correct=true;
         int correctPlaces = 0;
 
-        if(input.length() != code.length){
+        if(input.length() != codeStr.length()){
             correct=false; //Incorrect length
         }else{
             for(int i=0; i<input.length();i++){

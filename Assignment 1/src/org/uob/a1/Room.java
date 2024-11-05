@@ -6,7 +6,7 @@ public class Room {
     private String description;
     private char symbol;
     private Position position;
-    private Puzzle roomPuzzle;
+    private Puzzle roomPuzzle=null;
     private boolean puzzleIsSolved = false;
 
     public Room(String name, String description, char symbol, Position position, Puzzle roomPuzzle){
@@ -22,7 +22,6 @@ public class Room {
         this.description = description;
         this.symbol = symbol;
         this.position = position;
-        this.roomPuzzle = new Puzzle();
     }
 
     public String getName(){
@@ -53,15 +52,20 @@ public class Room {
         //add room entrance to player score
         System.out.println("You have entered room " + this.symbol);
         p.getScore().visitRoom();
-        if(this.puzzleIsSolved){
-            System.out.println("You have already solved this room's puzzle! Please try another room");
+        if(this.roomPuzzle == null){
+            if(this.puzzleIsSolved){
+                System.out.println("You have already solved this room's puzzle! Please try another room");
+            }else{
+                System.out.println("Starting puzzle...");
+                //begin puzzle
+                roomPuzzle.startPuzzle();
+                boolean solved = roomPuzzle.getIsSolved();
+                this.puzzleIsSolved = solved;
+                //if puzzle is solved, set this.puzzleIsSolved to true
+            }
         }else{
-            System.out.println("Starting puzzle...");
-            //begin puzzle
-            roomPuzzle.startPuzzle();
-            boolean solved = roomPuzzle.getIsSolved();
-            this.puzzleIsSolved = solved;
-            //if puzzle is solved, set this.puzzleIsSolved to true
+            System.out.println("This room currently doesn't have a puzzle and is still under development");
+            System.out.println("\nRoom Description: " + this.description + "\n");
         }
 
         System.out.println("Exiting room");

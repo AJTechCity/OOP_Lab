@@ -8,16 +8,21 @@ public class Game {
     private static EasyGameOutputs easyGameOutputs = new EasyGameOutputs();;
     private static Scanner scanner = new Scanner(System.in);
     private static String command = "";
-    private static Player player;
+    private static Player player = new Player("", new Position(0,0));
 
 
-    private static Puzzle testPuzzle = new CodePuzzle("prize", player, "435467");
+    private static Puzzle testPuzzle = new CodePuzzle("prize", player, "865478");
     //ROOMS
     private static Room RoomA = new Room("Room A", "A dusty, dirty old room", 'A', new Position(1,2), testPuzzle);
-    private static Room RoomB = new Room("Room B", "A dusty, dirty old room", 'B', new Position(4,1), testPuzzle);
+    private static Room RoomB = new Room("Room B", "A dusty, dirty old room", 'B', new Position(4,1));
     private static Room RoomC = new Room("Room C", "A dusty, dirty old room", 'C', new Position(1,3), testPuzzle);
     private static Room RoomD = new Room("Room D", "A dusty, dirty old room", 'D', new Position(4,5), testPuzzle);
     private static Room RoomE = new Room("Room E", "A dusty, dirty old room", 'E', new Position(2,6), testPuzzle);
+    private static Room RoomF = new Room("Room F", "A dusty, dirty old room", 'E', new Position(2,6), testPuzzle);
+    private static Room RoomG = new Room("Room G", "A dusty, dirty old room", 'E', new Position(2,6), testPuzzle);
+    private static Room RoomH = new Room("Room H", "A dusty, dirty old room", 'E', new Position(2,6), testPuzzle);
+    private static Room RoomI = new Room("Room I", "A dusty, dirty old room", 'E', new Position(2,6), testPuzzle);
+    private static Room RoomJ = new Room("Room J", "A dusty, dirty old room", 'E', new Position(2,6), testPuzzle);
     private static Room[] rooms;
 
     //ENEMIES
@@ -54,7 +59,8 @@ public class Game {
         easyGameOutputs.printTitle("USER INFORMATION SETUP");
         System.out.print("Please enter your name: ");
         String nameInput = scanner.nextLine();
-        player = new Player(nameInput, new Position(0,0));
+        // player = new Player(nameInput, new Position(0,0));
+        player.setName(nameInput);
 
         System.out.println("Welcome to the game " + player.getName());
         System.out.println("Type 'help' at any time to view the list of available commands");
@@ -130,7 +136,7 @@ public class Game {
 
         switch(action.toLowerCase()){
             case "score":
-                System.out.println("Please use the ''view score' command to view your score. Use the 'help' command for more information on game commands");
+                System.out.println("Please use the 'view score' command to view your score. Use the 'help' command for more information on game commands");
                 break;
             case "look":
                 if(commandParts.length == 2){
