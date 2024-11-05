@@ -169,12 +169,7 @@ public class Game {
                 }
                 break;
             case "move":
-                if(commandParts.length == 2 && (
-                    commandParts[1].equals("north") ||
-                    commandParts[1].equals("east") ||
-                    commandParts[1].equals("south") ||
-                    commandParts[1].equals("west")
-                )){
+                if(commandParts.length == 2){
                     player.getPosition().move(commandParts[1], gameMap); //Use the new move method to dynamically move charater without the need for 4 methods (1 for each direction)
                 }else{
                     // System.out.println("Invalid Move command. Please specify a direction");

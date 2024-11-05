@@ -23,16 +23,16 @@ public class Position {
         */
 
         switch(direction.toLowerCase()){
-            case 'north':
+            case "north":
                 newY -= 1;
                 break;
-            case 'east':
+            case "east":
                 newX += 1;
                 break;
-            case 'south':
+            case "south":
                 newY += 1;
                 break;
-            case 'west':
+            case "west":
                 newX -= 1;
                 break;
             default:
