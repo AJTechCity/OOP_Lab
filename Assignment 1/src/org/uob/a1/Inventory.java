@@ -33,7 +33,7 @@ public class Inventory {
     public void removeItem(String item){
         //removes an item if 
 
-        String[] newItemsArray = new String[this.currentItems-1];
+        String[] newItemsArray = new String[MAX_ITEMS];
         int newItemsCount = 0;
 
         for(int i=0;i<this.currentItems;i++){
