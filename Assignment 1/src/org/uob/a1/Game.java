@@ -11,6 +11,7 @@ public class Game {
     private static Player player = new Player("", new Position(0,0));
 
     //PUZZLES
+    //Future iterations of the code puzzle will use randomly generated 6 digit numbers
     private static Puzzle codePuzzle1 = new CodePuzzle("key_B", player, "987851"); //Done
     private static Puzzle codePuzzle2 = new CodePuzzle("key_E", player, "651227"); //Done
     private static Puzzle codePuzzle3 = new CodePuzzle("sword", player, "123456"); //Done
@@ -21,25 +22,66 @@ public class Game {
     private static Puzzle keyPuzzle3 = new KeyPuzzle("key_H", "health_potion", "Your prize item ('health_potion') is used to increase you health by 30 points when it is low", player); //Done
     private static Puzzle keyPuzzle4 = new KeyPuzzle("key_K", "trophy", "Your prize item ('trophy') is given to show you have completed the game! Congratulatons!", player); //Done
 
+    //Future iterations of the Math Puzzle will use equation generators (custom-made) to handle auto question creation and reduce the amount of code being written
     private static Puzzle mathPuzzle1 = new MathPuzzle(
-        new String[] {"quest 1", "quest 2"},
-        new int[] {1, 2},
-        "prize",
-        "prize description",
+        new String[] {
+            "What is 5+5",
+            "What is 5 * 5",
+            "What is 250 / 50",
+            "What is 4 + 5 * 2 - 3",
+            "What is 8 + 5 * 3"
+        },
+        new int[] {
+            10, 25, 5, 11, 23
+        },
+        "math_prize_1",
+        "This serves as a medal to show your accomplish within the first math puzzle of the game!",
+        player
+    );
+
+    private static Puzzle mathPuzzle2= new MathPuzzle(
+        new String[] {
+            "What is 30% of 10",
+            "What is 10% of 50",
+            "How many minutes are there between 9:30AM and 2:45PM",
+            "What is 15 * 4 - (36 / 3) + 8",
+            "What is the sum of the first 3 square numbers (excluding 0)"
+        },
+        new int[] {
+            3, 5, 315, 56, 14
+        },
+        "math_prize_2",
+        "This serves as a medal to show your accomplish within the second math puzzle of the game!",
+        player
+    );
+
+    private static Puzzle mathPuzzle3 = new MathPuzzle(
+        new String[] {
+            "What is the poduct of all the numbers on a phone keypad",
+            "If a train travels 120km 3 hours, how many km's does it travel in 7 hours at the same speed",
+            "What is the sum of the first 6 positive consecutive odd numbers",
+            "What is ",
+            "What is "
+        },
+        new int[] {
+            0, 280, 36, 0, 0
+        },
+        "math_prize_3",
+        "This serves as a medal to show your accomplish within the third math puzzle of the game!",
         player
     );
 
 
     //ROOMS
-    private static Room RoomA = new Room("The Beginning Combination", "A dusty, dirty old room", 'A', new Position(2,1), codePuzzle1);
+    private static Room RoomA = new Room("The Beginning Combination", "A rusty padlock blocks you from entering, you will need to crack this to gain your prize", 'A', new Position(2,1), codePuzzle1);
     private static Room RoomB = new Room("The Lone Chest", "A chest lay in the corner of the room. You will need to complete the key puzzle to unlock it...", 'B', new Position(0,3), keyPuzzle1);
-    private static Room RoomC = new Room("Room C", "A dusty, dirty old room", 'C', new Position(2,4), codePuzzle2);
+    private static Room RoomC = new Room("Room C", "A metal lock bounces off a small chest containing a key. Crack it to claim your prize.", 'C', new Position(2,4), codePuzzle2);
     private static Room RoomD = new Room("Room D", "A dusty, dirty old room", 'D', new Position(3,8), mathPuzzle1);
-    private static Room RoomE = new Room("Room E", "A dusty, dirty old room", 'E', new Position(0,6), keyPuzzle2);
+    private static Room RoomE = new Room("Room E", "A dusty safe is in the middle of the room. It requires a key to be opened and reveal a prize.", 'E', new Position(0,6), keyPuzzle2);
     private static Room RoomF = new Room("Room F", "A dusty, dirty old room", 'F', new Position(4,1), codePuzzle3);
-    private static Room RoomG = new Room("Room G", "A dusty, dirty old room", 'G', new Position(7,11));
+    private static Room RoomG = new Room("Room G", "A dusty, dirty old room", 'G', new Position(7,11), mathPuzzle2);
     private static Room RoomH = new Room("Room H", "A dusty, dirty old room", 'H', new Position(6,3), keyPuzzle3);
-    private static Room RoomI = new Room("Room I", "A dusty, dirty old room", 'I', new Position(5,7));
+    private static Room RoomI = new Room("Room I", "A dusty, dirty old room", 'I', new Position(5,7), mathPuzzle3);
     private static Room RoomJ = new Room("Room J", "A dusty, dirty old room", 'J', new Position(3,13), codePuzzle4);
     private static Room RoomK = new Room("Room K", "A dusty, dirty old room", 'K', new Position(8,17), keyPuzzle4);
     private static Room[] rooms;

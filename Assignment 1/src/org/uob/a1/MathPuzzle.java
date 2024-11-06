@@ -48,7 +48,7 @@ class MathPuzzle extends Puzzle{
         if(this.getPuzzleSolver().getInventory().hasItem("knowledge") > -1){ //Check if the player has the 'knowledge' item required to solve math puzzles
             System.out.println("Welcome to the Maths Puzzle!");
             System.out.println("The rules are extremely simple: ");
-            System.out.println("1) I will ask you a set of 7 questions");
+            System.out.println("1) I will ask you a set of " + this.questions.length + " questions");
             System.out.println("2) You must then give me the answer");
             System.out.println("3) If you get any wrong, you will be removed from the room and have to restart!");
             System.out.println("4) You can type 'exit' at any time to leave the puzzle");
