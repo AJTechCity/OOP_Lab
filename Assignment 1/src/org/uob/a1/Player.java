@@ -8,8 +8,7 @@ public class Player extends Character{
     public Player(String name, Position startPosition){
         super(name, startPosition, 100, 0, 10);
         this.inventory = new Inventory();
-        this.inventory.addItem("health_potion");
-        this.inventory.addItem("sword");
+        this.inventory.addItem("");
         this.score = new Score(0);
         this.damageMultiplier = 1;
     }

@@ -11,27 +11,29 @@ public class Game {
     private static Player player = new Player("", new Position(0,0));
 
     //PUZZLES
-    private static Puzzle codePuzzle1 = new CodePuzzle("key_B", player, "987851");
-    private static Puzzle codePuzzle2 = new CodePuzzle("key_E", player, "651227");
-    private static Puzzle codePuzzle3 = new CodePuzzle("prize", player, "123456");
-    private static Puzzle codePuzzle4 = new CodePuzzle("prize", player, "325648");
+    private static Puzzle codePuzzle1 = new CodePuzzle("key_B", player, "987851"); //Done
+    private static Puzzle codePuzzle2 = new CodePuzzle("key_E", player, "651227"); //Done
+    private static Puzzle codePuzzle3 = new CodePuzzle("sword", player, "123456"); //Done
+    private static Puzzle codePuzzle4 = new CodePuzzle("key_K", player, "325648"); //Done
 
-    private static Puzzle keyPuzzle1 = new KeyPuzzle("key_B", "knowledge", "Your prize item ('knowledge') is required to solve any of the math-based puzzles - Don't drop it!", player);
-    private static Puzzle keyPuzzle2 = new KeyPuzzle("key_E", "", "", player);
+    private static Puzzle keyPuzzle1 = new KeyPuzzle("key_B", "knowledge", "Your prize item ('knowledge') is required to solve any of the math-based puzzles - Don't drop it!", player); //Done
+    private static Puzzle keyPuzzle2 = new KeyPuzzle("key_E", "shield", "Your prize item ('shield') is used to lower the damage taken when attacked by enemies", player); //Done
+    private static Puzzle keyPuzzle3 = new KeyPuzzle("key_H", "health_potion", "Your prize item ('health_potion') is used to increase you health by 30 points when it is low", player); //Done
+    private static Puzzle keyPuzzle4 = new KeyPuzzle("key_K", "trophy", "Your prize item ('trophy') is given to show you have completed the game! Congratulatons!", player); //Done
 
 
     //ROOMS
     private static Room RoomA = new Room("First Step to Success Room", "A dusty, dirty old room", 'A', new Position(2,1), codePuzzle1);
     private static Room RoomB = new Room("Room B", "A dusty, dirty old room", 'B', new Position(0,3), keyPuzzle1);
     private static Room RoomC = new Room("Room C", "A dusty, dirty old room", 'C', new Position(2,4), codePuzzle2);
-    private static Room RoomD = new Room("Room D", "A dusty, dirty old room", 'D', new Position(2,6), codePuzzle1);
-    private static Room RoomE = new Room("Room E", "A dusty, dirty old room", 'E', new Position(0,6));
+    private static Room RoomD = new Room("Room D", "A dusty, dirty old room", 'D', new Position(2,6));
+    private static Room RoomE = new Room("Room E", "A dusty, dirty old room", 'E', new Position(0,6), keyPuzzle2);
     private static Room RoomF = new Room("Room F", "A dusty, dirty old room", 'F', new Position(4,1), codePuzzle3);
-    private static Room RoomG = new Room("Room G", "A dusty, dirty old room", 'G', new Position(3,8), codePuzzle1);
-    private static Room RoomH = new Room("Room H", "A dusty, dirty old room", 'H', new Position(6,3), codePuzzle1);
-    private static Room RoomI = new Room("Room I", "A dusty, dirty old room", 'I', new Position(5,7), codePuzzle1);
+    private static Room RoomG = new Room("Room G", "A dusty, dirty old room", 'G', new Position(3,8));
+    private static Room RoomH = new Room("Room H", "A dusty, dirty old room", 'H', new Position(6,3), keyPuzzle3);
+    private static Room RoomI = new Room("Room I", "A dusty, dirty old room", 'I', new Position(5,7));
     private static Room RoomJ = new Room("Room J", "A dusty, dirty old room", 'J', new Position(3,13), codePuzzle4);
-    private static Room RoomK = new Room("Room K", "A dusty, dirty old room", 'K', new Position(8,17), codePuzzle1);
+    private static Room RoomK = new Room("Room K", "A dusty, dirty old room", 'K', new Position(8,17), keyPuzzle4);
     private static Room[] rooms;
 
 
