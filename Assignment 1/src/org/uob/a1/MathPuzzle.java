@@ -42,6 +42,8 @@ class MathPuzzle extends Puzzle{
 
     public void startPuzzle(){ 
         //Override of the startPuzzle() method in the Puzzle class so that the program can see there is a game logic and not the default error message
+        //Reset user variables in case they are playing again
+        userInput=0;
 
         if(this.getPuzzleSolver().getInventory().hasItem("knowledge") > -1){ //Check if the player has the 'knowledge' item required to solve math puzzles
             System.out.println("Welcome to the Maths Puzzle!");
@@ -56,7 +58,7 @@ class MathPuzzle extends Puzzle{
             //TO-DO: Design logic to ask user questions and get their answer input
 
             for(int i=0;i<questions.length;i++){
-                System.out.println((i+1) + " - " + questions[i] + ": ");
+                System.out.print((i+1) + " - " + questions[i] + ": ");
 
                 userInput = scanner.nextInt();
 

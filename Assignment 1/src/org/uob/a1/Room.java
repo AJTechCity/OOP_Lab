@@ -1,5 +1,7 @@
 package org.uob.a1;
 
+import java.util.Scanner;
+
 public class Room {
 
     private String name;
@@ -8,6 +10,8 @@ public class Room {
     private Position position;
     private Puzzle roomPuzzle=null;
     private boolean puzzleIsSolved = false;
+
+    private Scanner scanner = new Scanner(System.in);
 
     public Room(String name, String description, char symbol, Position position, Puzzle roomPuzzle){
         this.name = name;
@@ -61,6 +65,8 @@ public class Room {
 
         System.out.println("You have entered room " + this.symbol + " - The " + this.name);
         System.out.println("\nRoom Description: " + this.getDescription() + "\n");
+        System.out.print("Press enter once you have read the room description... ");
+        scanner.nextLine();
         p.getScore().visitRoom();
         if(this.roomPuzzle != null){
             if(this.puzzleIsSolved){

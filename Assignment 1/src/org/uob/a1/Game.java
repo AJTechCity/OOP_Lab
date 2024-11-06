@@ -31,10 +31,10 @@ public class Game {
 
 
     //ROOMS
-    private static Room RoomA = new Room("First Step to Success Room", "A dusty, dirty old room", 'A', new Position(2,1), codePuzzle1);
-    private static Room RoomB = new Room("Room B", "A dusty, dirty old room", 'B', new Position(0,3), keyPuzzle1);
+    private static Room RoomA = new Room("The Beginning Combination", "A dusty, dirty old room", 'A', new Position(2,1), codePuzzle1);
+    private static Room RoomB = new Room("The Lone Chest", "A chest lay in the corner of the room. You will need to complete the key puzzle to unlock it...", 'B', new Position(0,3), keyPuzzle1);
     private static Room RoomC = new Room("Room C", "A dusty, dirty old room", 'C', new Position(2,4), codePuzzle2);
-    private static Room RoomD = new Room("Room D", "A dusty, dirty old room", 'D', new Position(3,8));
+    private static Room RoomD = new Room("Room D", "A dusty, dirty old room", 'D', new Position(3,8), mathPuzzle1);
     private static Room RoomE = new Room("Room E", "A dusty, dirty old room", 'E', new Position(0,6), keyPuzzle2);
     private static Room RoomF = new Room("Room F", "A dusty, dirty old room", 'F', new Position(4,1), codePuzzle3);
     private static Room RoomG = new Room("Room G", "A dusty, dirty old room", 'G', new Position(7,11));
