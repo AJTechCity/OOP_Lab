@@ -59,12 +59,10 @@ public class Game {
         new String[] {
             "What is the poduct of all the numbers on a phone keypad",
             "If a train travels 120km 3 hours, how many km's does it travel in 7 hours at the same speed",
-            "What is the sum of the first 6 positive consecutive odd numbers",
-            "What is ",
-            "What is "
+            "What is the sum of the first 6 positive consecutive odd numbers"
         },
         new int[] {
-            0, 280, 36, 0, 0
+            0, 280, 36
         },
         "math_prize_3",
         "This serves as a medal to show your accomplish within the third math puzzle of the game!",
@@ -111,6 +109,7 @@ public class Game {
     private static void welcomeScreen(){
         easyGameOutputs.printTitle("      THE MAP      ");
         System.out.println("Welcome to 'THE MAP' - a thrilling text-based adventure game.");
+        System.out.println("\nThis game will test your logical and mathematical skills. You will be required to visit rooms A-K and at each you will be tasked with a puzzle.\nHave caution, however, you may need an item rewarded to you from another room before continuing to the next!\n");
         System.out.print("Press Enter to continue to user information setup...");
         scanner.nextLine();
     }
