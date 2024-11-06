@@ -92,7 +92,7 @@ class CodePuzzle extends Puzzle{
         System.out.println("4) WARNING: You will have a maximum of " + MAX_GUESSES + " guesses!");
         System.out.println("5) Type 'exit' at any time to exit the puzzle and go back to the map");
         System.out.println("Good Luck!");
-        System.out.println("\nPress enter to receive your starting hints... ");
+        System.out.print("\nPress enter to receive your starting hints... ");
         scanner.nextLine(); //Used for aesthetics so user can advance when they have read everything
 
         this.outputStartHints(); //Used as a separate function to reduce size of current method and so it can be re-used later

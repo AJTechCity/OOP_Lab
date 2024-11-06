@@ -65,7 +65,7 @@ public class Room {
 
         System.out.println("You have entered room " + this.symbol + " - The " + this.name);
         System.out.println("\nRoom Description: " + this.getDescription() + "\n");
-        System.out.print("Press enter once you have read the room description... ");
+        System.out.print("Press enter to move onto the puzzle... ");
         scanner.nextLine();
         p.getScore().visitRoom();
         if(this.roomPuzzle != null){
