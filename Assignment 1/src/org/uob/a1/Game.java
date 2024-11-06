@@ -5,24 +5,27 @@ import java.util.Scanner;
 public class Game {
 
     private static Map gameMap = new Map(10,20);
-    private static EasyGameOutputs easyGameOutputs = new EasyGameOutputs();;
+    private static EasyGameOutputs easyGameOutputs = new EasyGameOutputs(); //Custom class to reduce number of lines written when outputting the same messages
     private static Scanner scanner = new Scanner(System.in);
     private static String command = "";
     private static Player player = new Player("", new Position(0,0));
 
     //PUZZLES
-    private static Puzzle codePuzzle1 = new CodePuzzle("prize", player, "987851");
-    private static Puzzle codePuzzle2 = new CodePuzzle("prize", player, "651227");
+    private static Puzzle codePuzzle1 = new CodePuzzle("key_B", player, "987851");
+    private static Puzzle codePuzzle2 = new CodePuzzle("key_E", player, "651227");
     private static Puzzle codePuzzle3 = new CodePuzzle("prize", player, "123456");
     private static Puzzle codePuzzle4 = new CodePuzzle("prize", player, "325648");
+
+    private static Puzzle keyPuzzle1 = new KeyPuzzle("key_B", "knowledge", "Your prize item ('knowledge') is required to solve any of the math-based puzzles - Don't drop it!", player);
+    private static Puzzle keyPuzzle2 = new KeyPuzzle("key_E", "", "", player);
 
 
     //ROOMS
     private static Room RoomA = new Room("First Step to Success Room", "A dusty, dirty old room", 'A', new Position(2,1), codePuzzle1);
-    private static Room RoomB = new Room("Room B", "A dusty, dirty old room", 'B', new Position(0,3));
+    private static Room RoomB = new Room("Room B", "A dusty, dirty old room", 'B', new Position(0,3), keyPuzzle1);
     private static Room RoomC = new Room("Room C", "A dusty, dirty old room", 'C', new Position(2,4), codePuzzle2);
     private static Room RoomD = new Room("Room D", "A dusty, dirty old room", 'D', new Position(2,6), codePuzzle1);
-    private static Room RoomE = new Room("Room E", "A dusty, dirty old room", 'E', new Position(0,6), codePuzzle1);
+    private static Room RoomE = new Room("Room E", "A dusty, dirty old room", 'E', new Position(0,6), );
     private static Room RoomF = new Room("Room F", "A dusty, dirty old room", 'F', new Position(4,1), codePuzzle3);
     private static Room RoomG = new Room("Room G", "A dusty, dirty old room", 'G', new Position(3,8), codePuzzle1);
     private static Room RoomH = new Room("Room H", "A dusty, dirty old room", 'H', new Position(6,3), codePuzzle1);

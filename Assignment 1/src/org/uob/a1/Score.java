@@ -10,6 +10,7 @@ public class Score {
     private int currentScore=0;
     private int roomsVisited=0;
     private int puzzlesSolved=0;
+    private int scoreDeductions=0;
 
     //All methods updating variables should update the currentScore variable
 
@@ -35,6 +36,11 @@ public class Score {
         this.updateScore();
     }
 
+    public void reduceScore(int amount){
+        this.scoreDeductions += amount;
+        this.upodateScore();
+    }
+
     public double getScore(){
         //should get the value of currentScore
         return this.currentScore;
@@ -42,6 +48,6 @@ public class Score {
 
     private void updateScore(){
         //Run every time a variable is changed so that the score is always correct
-        this.currentScore = this.startingScore - this.roomsVisited + (this.puzzlesSolved * this.PUZZLE_VALUE);
+        this.currentScore = this.startingScore - this.roomsVisited + (this.puzzlesSolved * this.PUZZLE_VALUE) - this.scoreDeductions;
     }
 }
