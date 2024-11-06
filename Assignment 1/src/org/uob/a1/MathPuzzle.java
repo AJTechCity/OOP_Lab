@@ -15,9 +15,15 @@ class MathPuzzle extends Puzzle{
 
     private Scanner scanner = new Scanner(System.in);
     private String prizeDescription;
-    private String userInput="";
+    private int userInput;
+    
+    private String[] questions;
+    private int[] answers;
 
-    public MathPuzzle(String prizeItem, String prizeDescription, Player puzzleSolver){
+
+
+
+    public MathPuzzle(String[] questions, int[] answers, String prizeItem, String prizeDescription, Player puzzleSolver){
         super(
             "Math Puzzle", //puzzle name
             "A set of mixed difficulty mathetmatics questions designed to test your knowledge. You will need the 'knowledge' item to complete this puzzle", //puzzle description
@@ -26,20 +32,47 @@ class MathPuzzle extends Puzzle{
         ); //Calls the super() method to initialise the base class
 
         this.prizeDescription = prizeDescription;
+        this.questions = questions;
+        this.answers = answers;
+
+        if(this.answers.length != this.questions.length){
+            throw new Error("Questions and answers arrays are not the same length");
+        }
     }
 
     public void startPuzzle(){ 
         //Override of the startPuzzle() method in the Puzzle class so that the program can see there is a game logic and not the default error message
 
-        System.out.println("Welcome to the Maths Puzzle!");
-        System.out.println("The rules are extremely simple: ");
-        System.out.println("1) I will ask you a set of 7 questions");
-        System.out.println("2) You must then give me the answer");
-        System.out.println("3) If you get any wrong, you will be removed from the room and have to restart!");
-        System.out.println("4) You can type 'exit' at any time to leave the puzzle");
-        System.out.print("\nPress enter when you have understood the rules... ");
-        scanner.nextLine();//Aesthetics
+        if(this.getPuzzleSolver().getInventory().hasItem("knowledge") > -1){ //Check if the player has the 'knowledge' item required to solve math puzzles
+            System.out.println("Welcome to the Maths Puzzle!");
+            System.out.println("The rules are extremely simple: ");
+            System.out.println("1) I will ask you a set of 7 questions");
+            System.out.println("2) You must then give me the answer");
+            System.out.println("3) If you get any wrong, you will be removed from the room and have to restart!");
+            System.out.println("4) You can type 'exit' at any time to leave the puzzle");
+            System.out.print("\nPress enter when you have understood the rules... ");
+            scanner.nextLine();//Aesthetics
 
-        //TO-DO: Design logic to ask user questions and get their answer input
+            //TO-DO: Design logic to ask user questions and get their answer input
+
+            for(int i=0;i<questions.length;i++){
+                System.out.println((i+1) + " - " + questions[i] + ": ");
+
+                userInput = scanner.nextInt();
+
+                if(userInput != answers[i]){
+                    System.out.println("Incorrect! - Puzzle over");
+                    return;
+                }else{
+                    System.out.println("Correct, onto the next question!");
+                }
+            }
+
+            //Can only reach this if all questions are answered correctly
+            System.out.println("Congratulations! You got all the questions correct");
+            this.puzzleSolved();
+        }else{
+            System.out.println("You do not have the required knowledge to complete a math puzzle. Continue playing until you find the 'knowledge' item!");
+        }
     }
 }
