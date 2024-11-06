@@ -33,37 +33,40 @@ class KeyPuzzle extends Puzzle{
         //Override of the startPuzzle() method in the Puzzle class so that the program can see there is a game logic and not the default error message
 
         System.out.println("Welcome to the Key Puzzle!");
-        System.out.printlnt("The rules are extremely simple: ");
-        System.out.printlnt("1) I will ask if you have a key for me");
-        System.out.printlnt("2) You will then type 'Y' for Yes or 'N' for no");
-        System.out.printlnt("3) If you lie to me in any way, I will remove 5 points from your score!");
+        System.out.println("The rules are extremely simple: ");
+        System.out.println("1) I will ask if you have a key for me");
+        System.out.println("2) You will then type 'Y' for Yes or 'N' for no");
+        System.out.println("3) If you lie to me in any way, I will remove 5 points from your score!");
         System.out.println("4) You cannot 'exit' this puzzle before telling the truth!");
         System.out.print("\nPress enter when you have understood the rules... ");
         scanner.nextLine();//Aesthetics
 
-        System.out.println("Do you have the key I am looking for? It is called '" + this.requiredKey + "'.")
+        System.out.println("Do you have the key I am looking for? It is called '" + this.requiredKey + "'.");
 
         do{
-            System.out.println("Type Y/N: ");
-            this.userInput = scanner.nextLine().toUpperCase();
+            System.out.print("Type Y/N: ");
+            this.userInput = scanner.nextLine();
+            this.userInput = this.userInput.toUpperCase();
 
-            if(this.userInput != "N" || this.userInput != "Y"){
+            if(!this.userInput.equals("N") && !this.userInput.equals("Y")){
                 System.out.println("Invalid Answer! Please try again");
             }
-        }while(this.userInput != "N" || this.userInput != "Y");
+        }while(!this.userInput.equals("N") && !this.userInput.equals("Y"));
 
         boolean hasKey = this.playerHasKey();
 
-        if((hasKey && this.userInput == "Y") || (!hasKey && this.userInput == "N")){ //Truth
+        if((hasKey && this.userInput.equals("Y"))){ //Truth about having it
 
             this.getPuzzleSolver().getInventory().removeItem(this.requiredKey);
 
             System.out.println("Congratulations! You have told the truth");
-            System.out.println("I have taken your key, and in exchange have given you a prize of '" + this.prizeItem +"'");
+            System.out.println("I have taken your key, and in exchange have given you a prize of '" + this.getPrizeItem() +"'");
             System.out.println("\nPrize Description: " + this.prizeDescription);
             System.out.print("\nPress enter when you are ready to leave the room... ");
             scanner.nextLine(); //Aesthetics
             this.puzzleSolved(); //Handles adding prize item and exiting the room
+        }else if(!hasKey && this.userInput.equals("N")){
+            System.out.println("You told the truth! No extra points taken");
         }else{
             this.getPuzzleSolver().getScore().reduceScore(5);
             System.out.println("You LIED to me!!");

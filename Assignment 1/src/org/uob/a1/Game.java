@@ -25,7 +25,7 @@ public class Game {
     private static Room RoomB = new Room("Room B", "A dusty, dirty old room", 'B', new Position(0,3), keyPuzzle1);
     private static Room RoomC = new Room("Room C", "A dusty, dirty old room", 'C', new Position(2,4), codePuzzle2);
     private static Room RoomD = new Room("Room D", "A dusty, dirty old room", 'D', new Position(2,6), codePuzzle1);
-    private static Room RoomE = new Room("Room E", "A dusty, dirty old room", 'E', new Position(0,6), );
+    private static Room RoomE = new Room("Room E", "A dusty, dirty old room", 'E', new Position(0,6));
     private static Room RoomF = new Room("Room F", "A dusty, dirty old room", 'F', new Position(4,1), codePuzzle3);
     private static Room RoomG = new Room("Room G", "A dusty, dirty old room", 'G', new Position(3,8), codePuzzle1);
     private static Room RoomH = new Room("Room H", "A dusty, dirty old room", 'H', new Position(6,3), codePuzzle1);
@@ -122,26 +122,22 @@ public class Game {
             return;
         }else if(commandParts.length == 3 && action.equals("enter")){
             if(commandParts[1].equals("room") && commandParts[2].length() == 1){
-                try{
-                    char roomSymbol = commandParts[2].toUpperCase().charAt(0);
-                    char[] neswRadius = gameMap.getNESWRadius(player.getPosition());
-                    boolean found = false;
-                    for(int i=0; i<neswRadius.length; i++){
-                        if(neswRadius[i] == roomSymbol){
-                            found = true;
-                            break;
-                        }
+                char roomSymbol = commandParts[2].toUpperCase().charAt(0);
+                char[] neswRadius = gameMap.getNESWRadius(player.getPosition());
+                boolean found = false;
+                for(int i=0; i<neswRadius.length; i++){
+                    if(neswRadius[i] == roomSymbol){
+                        found = true;
+                        break;
                     }
+                }
 
-                    if(found){
-                        //Use logic to 'enter' the room / solve a puzzle
-                        int roomIndex = roomSymbol - 'A'; //If we subtract the room symnol of A from the inputted symbol, we will end up with an index so we can get the room from our rooms array
-                        rooms[roomIndex].enterRoom(player); //Call the "Enter Room" method
-                    }else{
-                        System.out.println("Room '" + roomSymbol + "' cannot be entered as it isn't North, East, South, or West of your current position.");
-                    }
-                }catch (ArrayIndexOutOfBoundsException e){
-                    System.out.println("Invalid Room Symbol");
+                if(found){
+                    //Use logic to 'enter' the room / solve a puzzle
+                    int roomIndex = roomSymbol - 'A'; //If we subtract the room symnol of A from the inputted symbol, we will end up with an index so we can get the room from our rooms array
+                    rooms[roomIndex].enterRoom(player); //Call the "Enter Room" method
+                }else{
+                    System.out.println("Room '" + roomSymbol + "' cannot be entered as it isn't North, East, South, or West of your current position.");
                 }
             }else{
                 System.out.println("Invalid Command");

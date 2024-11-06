@@ -38,7 +38,7 @@ public class Score {
 
     public void reduceScore(int amount){
         this.scoreDeductions += amount;
-        this.upodateScore();
+        this.updateScore();
     }
 
     public double getScore(){
