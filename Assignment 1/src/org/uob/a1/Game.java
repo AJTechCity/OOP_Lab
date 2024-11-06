@@ -72,7 +72,7 @@ public class Game {
         player.setName(nameInput);
 
         System.out.println("Welcome to the game " + player.getName());
-        System.out.println("Type 'help' at any time to view the list of available commands");
+        System.out.println("Type 'help' at any time to view the list of available commands");  
         System.out.println("Type 'quit' at any time to exit the game");
     }
 

@@ -21,7 +21,7 @@ public class Player extends Character{
         return this.score;
     }
 
-    public void attackCharacter(Character c){
+    public void attackCharacter(Character c){ //Going to be uesd in future game iterations
         if(this.inventory.hasItem("sword")>-1){
             if(this.inventory.hasItem("double_damage")>-1){
                 //Use the damage multiplier for this current attack
