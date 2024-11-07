@@ -51,7 +51,6 @@ class MathPuzzle extends Puzzle{
             System.out.println("1) I will ask you a set of " + this.questions.length + " questions");
             System.out.println("2) You must then give me the answer");
             System.out.println("3) If you get any wrong, you will be removed from the room and have to restart!");
-            System.out.println("4) You can type 'exit' at any time to leave the puzzle");
             System.out.print("\nPress enter when you have understood the rules... ");
             scanner.nextLine();//Aesthetics
 

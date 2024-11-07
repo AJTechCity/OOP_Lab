@@ -175,6 +175,7 @@ public class Game {
             if(commandParts[1].equals("room") && commandParts[2].length() == 1){
                 char roomSymbol = commandParts[2].toUpperCase().charAt(0);
                 char[] neswRadius = gameMap.getNESWRadius(player.getPosition());
+                
                 boolean found = false;
                 for(int i=0; i<neswRadius.length; i++){
                     if(neswRadius[i] == roomSymbol){
@@ -234,13 +235,6 @@ public class Game {
                 }else{
                     // System.out.println("Invalid Move command. Please specify a direction");
                     easyGameOutputs.printCommandHelpErrorMessage("move");
-                }
-                break;
-            case "enter":
-                if(commandParts[1].equals("room")){
-
-                }else{
-                    easyGameOutputs.printCommandHelpErrorMessage("enter");
                 }
                 break;
             case "drop":
