@@ -89,7 +89,7 @@ public class Game {
     // private static Enemy weaklingBandit = new Enemy("Weakling Bandit", "Beware the weakling bandit, a grandson of the Brutal Ogre. He serves as a knight to the Ogre and defends itself with an attack. He has 40 health, no protection, and a broken wooden sword. A weak enemy. Defeating him provides you with a protection potion to increase your protection", 40, 0, 7, new Position(0,4));
     // private static Enemy theMite = new Enemy("The Mite", "Beware The Mite, a grandson of the Brutal Ogre. He mystically mutated and gained protection spells and a metal sword. He has 35 health, 20 protection, and will attack when provoked. Upon defeating him, his protection spell oozes out and becoms available to you", 35, 20, 15, new Position(17,1));
     // private static Enemy e3 = new Enemy("Enemy 3", "dirty enemy 3", 10, 0, 10, new Position(11,7));
-    // private static Enemy[] enemies;s
+    // private static Enemy[] enemies;
     
     public static void main(String[] args) {
         welcomeScreen(); //Runs the welcome screen things and won't advance until user presses enter
