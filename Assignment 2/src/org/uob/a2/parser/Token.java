@@ -12,20 +12,6 @@ public class Token {
 
     private TokenType tokenType;
     private String value;
-//
-//    public Token(TokenType type){
-//        this.tokenType = type;
-//    }
-//
-//    public Token(String tokenString){
-//        if(tokenString.toLowerCase().equals("quit")){
-//            tokenType = TokenType.QUIT;
-//        }
-//    }
-//
-//    public TokenType getTokenType(){
-//        return this.tokenType;
-//    }
 
     public Token(TokenType tokenType, String value){
         this.tokenType = tokenType;
@@ -34,6 +20,7 @@ public class Token {
 
     public Token(TokenType tokenType){
         this.tokenType = tokenType;
+        this.value = null;
     }
 
     public TokenType getTokenType(){
@@ -41,7 +28,7 @@ public class Token {
     }
 
     public String getValue(){
-        //Retrieves value of this token if applicable
+        return this.value;
     }
    
 }

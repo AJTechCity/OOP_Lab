@@ -19,9 +19,13 @@ public class Room extends GameObject {
 
     public Room(String id, String name, String description, boolean hidden){
         super(id, name, description, hidden);
-    }
 
-    public Room(){}
+        //Init ArrayLists
+        this.items = new ArrayList<>();
+        this.equipment = new ArrayList<>();
+        this.features = new ArrayList<>();
+        this.exits = new ArrayList<>();
+    }
 
     @Override
     public void setName(String name){

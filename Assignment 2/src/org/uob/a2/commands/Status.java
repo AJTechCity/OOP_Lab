@@ -16,6 +16,7 @@ public class Status extends Command {
     private String topic;
 
     public Status(String topic){
+        this.commandType = CommandType.STATUS;
         this.topic = topic;
     }
 

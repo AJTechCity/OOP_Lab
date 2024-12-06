@@ -13,11 +13,12 @@ import org.uob.a2.gameobjects.*;
 public class Drop extends Command {
 
     public Drop(String item){
-
+        this.commandType = CommandType.DROP;
+        this.value = item;
     }
 
     public String toString(){
-        return "Drop";
+        return "Drop Command";
     }
 
     public String execute(GameState gameState){

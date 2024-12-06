@@ -11,8 +11,18 @@ package org.uob.a2.gameobjects;
  */
 public class Container extends Feature {
 
+    private String containedItem;
+
     public Container(String id, String name, String description, boolean hidden){
         super(id, name, description, hidden);
+    }
+
+    public void setContainedItem(String item){
+        this.containedItem = item;
+    }
+
+    public String getContainedItem(){
+        return this.containedItem;
     }
 
     /**

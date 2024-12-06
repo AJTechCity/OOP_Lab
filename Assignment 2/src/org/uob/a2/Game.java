@@ -16,14 +16,20 @@ import org.uob.a2.utils.*;
  */
 public class Game {
 
+    private static GameState gameState;
+
     public Game(){}
 
     public static void main(String[] args){
-
+        setup();
     }
 
     public static void setup(){
         //Inits the game state, scanner, parser, and tokeniser. Loads the game data from a file and prepares the initial state
+        System.out.println("Setting up game");
+
+        GameStateFileParser gameStateFileParser = new GameStateFileParser();
+        gameState = gameStateFileParser.parse("data/game.txt");
     }
 
     public static void start(){

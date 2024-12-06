@@ -27,7 +27,7 @@ public class Equipment extends GameObject implements Usable {
     public String use(GameObject target, GameState gameState){
         // TDO
         //Return string describing the result of using the equipment
-        return "STRING";
+        return "Used Equipment";
     }
 
     @Override

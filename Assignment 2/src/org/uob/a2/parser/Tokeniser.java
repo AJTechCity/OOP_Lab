@@ -12,6 +12,8 @@ import java.util.ArrayList;
  */
 public class Tokeniser {
 
+    //Converts a string input into a list of tokens that can be parsed into commands by the game
+
     private ArrayList<Token> tokens;
 
     public Tokeniser(){}
@@ -22,15 +24,54 @@ public class Tokeniser {
 
     public String sanitise(String s){
         //Santiise input string by converting it to lowercase and trimming whitespace
-        return s.toLowerCase().trim();
+        return s.toLowerCase().replaceAll("\\s+", " ");
     }
 
     public void tokenise(String s){
         //Tokenises the input string into a list of Token objects based on predefined keywords and patterns
 
         //Words that do not match keywords are treates as variables and assigned the VAR type
+
+        String[] words = s.split(" ");
+        for(String word : words){
+            word = sanitise(word);
+            Token newToken;
+            switch(word){
+                case "move":
+                    newToken = new Token(TokenType.MOVE);
+                    break;
+                case "get":
+                    newToken = new Token(TokenType.GET);
+                    break;
+                case "drop":
+                    newToken = new Token(TokenType.DROP);
+                    break;
+                case "look":
+                    newToken = new Token(TokenType.LOOK);
+                    break;
+                case "status":
+                    newToken = new Token(TokenType.STATUS);
+                    break;
+                case "help":
+                    newToken = new Token(TokenType.HELP);
+                    break;
+                case "quit":
+                    newToken = new Token(TokenType.QUIT);
+                    break;
+                case "on":
+                    newToken = new Token(TokenType.PREPOSITION);
+                    break;
+                case "with":
+                    newToken = new Token(TokenType.PREPOSITION);
+                case "using":
+                    newToken = new Token(TokenType.PREPOSITION);
+                    break;
+                default:
+                    newToken = new Token(TokenType.VAR, word);
+                    break;
+            }
+            tokens.add(newToken);
+        }
+        tokens.add(new Token(TokenType.EOL));
     }
-
-
-   
 }

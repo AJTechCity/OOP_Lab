@@ -19,7 +19,7 @@ public class GameState {
     }
 
     public GameState(){
-
+        this.map = new Map();
     }
 
     public Map getMap(){

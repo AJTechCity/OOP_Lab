@@ -18,6 +18,10 @@ public class Player {
 
     public Player(String name){
         this.name = name;
+
+        //Init ArrayLists
+        this.inventory = new ArrayList<>();
+        this.equipment = new ArrayList<>();
     }
 
     public Player(){

@@ -16,15 +16,22 @@ import org.uob.a2.utils.*;
  */
 public class Map {
 
-    private char map[][];
+    private int width, height;
+    private char mapArray[][];
     private ArrayList<Room> rooms;
     private String currentRoomId;
 
     public Map(){
+        this.width = 20;
+        this.height = 20;
 
+        mapArray = new char[height][width];
+        this.rooms = new ArrayList<>();
     }
 
-//    public Room getCurrentRoom(){}
+    public Room getCurrentRoom(){
+        return getRoomById(this.currentRoomId);
+    }
 
     public void addRoom(Room room){
         rooms.add(room);
@@ -32,6 +39,15 @@ public class Map {
 
     public void setCurrentRoom(String roomId){
         this.currentRoomId = roomId;
+    }
+
+    public Room getRoomById(String roomId){
+        for(Room room : rooms){
+            if(room.id == roomId){
+                return room;
+            }
+        }
+        return null;
     }
   
     /**

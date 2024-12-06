@@ -12,7 +12,12 @@ import org.uob.a2.gameobjects.*;
  */
 public class Move extends Command {
 
-    public Move(String direction){}
+    private String direction;
+
+    public Move(String direction){
+        this.commandType = CommandType.MOVE;
+        this.direction = direction;
+    }
 
     public String toString(){
         return "Move";

@@ -12,7 +12,9 @@ import org.uob.a2.gameobjects.*;
  */
 public class Quit extends Command {
 
-    public Quit(){}
+    public Quit(){
+        this.commandType = CommandType.QUIT;
+    }
 
     public String execute(GameState gameState){
         return "Execute";

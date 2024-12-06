@@ -16,6 +16,7 @@ public class Use extends Command {
     private String target;
 
     public Use(String equipmentName, String target){
+        this.commandType = CommandType.USE;
         this.equipmentName = equipmentName;
         this.target = target;
     }

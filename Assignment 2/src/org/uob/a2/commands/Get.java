@@ -16,6 +16,7 @@ public class Get extends Command {
     private String item;
 
     public Get(String item){
+        this.commandType = CommandType.GET;
         this.item = item;
     }
 

@@ -12,12 +12,15 @@ import org.uob.a2.gameobjects.*;
  */
 public class Look extends Command {
 
-    public Look(String target){
+    private String target;
 
+    public Look(String target){
+        this.commandType = CommandType.LOOK;
+        this.target = target;
     }
 
     public String toString(){
-        return "Look";
+        return "Look at target";
     }
 
     public String execute(GameState gameState){

@@ -13,12 +13,15 @@ import org.uob.a2.gameobjects.*;
  */
 public class Help extends Command {
 
-    public Help(String topic){
+    private String topic;
 
+    public Help(String topic){
+        this.commandType = CommandType.HELP;
+        this.topic = topic;
     }
 
    public String execute(GameState gameState){
-        return "Execute";
+        return "Execute Help Command";
    }
   
 }
