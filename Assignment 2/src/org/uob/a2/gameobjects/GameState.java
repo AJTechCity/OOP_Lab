@@ -18,9 +18,7 @@ public class GameState {
         this.player = player;
     }
 
-    public GameState(){
-        this.map = new Map();
-    }
+    public GameState(){}
 
     public Map getMap(){
         return this.map;

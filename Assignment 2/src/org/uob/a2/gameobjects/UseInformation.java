@@ -12,10 +12,10 @@ package org.uob.a2.gameobjects;
 public class UseInformation {
 
     private boolean isUsed;
-    private String action;
-    private String target;
-    private String result;
-    private String message;
+    private String action; //What equipment does (open, reveal, combine)
+    private String target; //Equipment to be used on this item (ItemName)
+    private String result; //What item/feature is then shown (ItemName)
+    private String message; //Message to be shown to user
 
     public UseInformation(boolean isUsed, String action, String target, String result, String message){
         this.isUsed = isUsed;

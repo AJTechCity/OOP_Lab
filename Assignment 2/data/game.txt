@@ -8,7 +8,3 @@ map:r1
         exit:e1,north,A door to the north,r2,true
     room:r2,second room, This is the second testing room. It's even more bland.,false
         exit:e2,south,A door to the south,r1,false
-
-container:<id>,<name>,<description>,<hidden>
-item:<id>,<name>,<description>,<hidden>
-exit:<id>,<name>,<description>,<next room>,<hidden>

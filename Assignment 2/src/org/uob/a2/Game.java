@@ -17,11 +17,20 @@ import org.uob.a2.utils.*;
 public class Game {
 
     private static GameState gameState;
+    private Scanner scanner;
 
-    public Game(){}
+    public Game(){
+        this.gameState = new GameState();
+        this.scanner = new Scanner(System.in);
+    }
 
     public static void main(String[] args){
+        System.out.println("Running game setup...");
         setup();
+
+        System.out.println("Starting game...");
+
+        start();
     }
 
     public static void setup(){
@@ -34,10 +43,24 @@ public class Game {
 
     public static void start(){
         //Starts the game loop. Continuously reads input, tokenises it, and processses commands until the user decides to quit
+        System.out.println("----- Welcome to The Map -----");
+
+
     }
 
     public static void turn(Command command){
         //Processes a single turn based on the provided commmand
+        //Run the execute() method of the command
+        if(command.commandType == CommandType.QUIT){
+            System.out.println("Exiting the game...");
+            endGame();
+        }else{
+            command.execute(gameState);
+        }
+    }
+
+    public static void endGame(){
+
     }
 
 }

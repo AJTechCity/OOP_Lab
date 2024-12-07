@@ -24,7 +24,7 @@ public class Tokeniser {
 
     public String sanitise(String s){
         //Santiise input string by converting it to lowercase and trimming whitespace
-        return s.toLowerCase().replaceAll("\\s+", " ");
+        return s.toLowerCase().replaceAll("\\s+", " ").trim();
     }
 
     public void tokenise(String s){

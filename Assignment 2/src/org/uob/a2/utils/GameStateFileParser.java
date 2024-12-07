@@ -92,6 +92,18 @@ public class GameStateFileParser {
 
                     //Add item to current room
                     currentRoom.addItem(newItem);
+                }else if(line.startsWith("exit:")){
+                    String[] exitInfo = line.split(":")[1].trim().split(",");
+                    Exit newExit = new Exit(
+                            exitInfo[0], //(String) ID
+                            exitInfo[1], //(String) Name
+                            exitInfo[2], //(String) Description
+                            exitInfo[3], //(String) Next Room ID
+                            exitInfo[4].equals("false") ? false : true //(Boolean) isHidden
+                    );
+
+                    //Add exit to current room
+                    currentRoom.addExit(newExit);
                 }
             }
         } catch (java.lang.Exception e) {
@@ -100,6 +112,7 @@ public class GameStateFileParser {
 
         System.out.println("Game File parsing complete");
 
+        //Initialise the new GameState object ready to return
         gameState = new GameState(
                 map,
                 player

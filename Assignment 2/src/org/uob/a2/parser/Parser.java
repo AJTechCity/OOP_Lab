@@ -29,7 +29,7 @@ public class Parser {
             return new Quit();
         }else if(commandTypeToken.getTokenType() == TokenType.HELP){
             if(tokens.size() == 2 && tokens.get(1).getTokenType() == TokenType.EOL){ // General Help Command
-                return new Help("all");
+                return new Help(null);
             }else if(tokens.size()==3 && tokens.get(1).getTokenType() == TokenType.VAR && tokens.get(2).getTokenType()==TokenType.EOL){
                 return new Help(tokens.get(1).getValue());
             }

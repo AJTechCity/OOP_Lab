@@ -32,6 +32,7 @@ class UseTest {
         // Execute use command
         Use useCommand = new Use("key", "Old Chest");
         String result = useCommand.execute(gameState);
+        System.out.println(result);
 
         // Validate results
         boolean testPassed = result.contains("You unlock the chest.") &&

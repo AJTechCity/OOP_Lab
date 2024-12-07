@@ -65,7 +65,12 @@ public class Room extends GameObject {
     }
 
     public Feature getFeatureByName(String name){
-        return findGameObjectByName(features, name);
+        for(Feature feature : features){
+            if(feature.getName().equals(name)){
+                return feature;
+            }
+        }
+        return null;
     }
 
     public ArrayList<Equipment> getEquipments(){

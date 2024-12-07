@@ -21,7 +21,13 @@ public class Help extends Command {
     }
 
    public String execute(GameState gameState){
+        //TO DO
         return "Execute Help Command";
+   }
+
+   public String toString(){
+        return "{Command Type: " + this.commandType + "\n" +
+                "topic: " + this.topic + "}";
    }
   
 }

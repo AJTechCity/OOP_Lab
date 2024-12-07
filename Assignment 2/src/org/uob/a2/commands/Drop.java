@@ -22,7 +22,18 @@ public class Drop extends Command {
     }
 
     public String execute(GameState gameState){
-        return null;
+        //Method needs to use GameState Obj to access Player Obj.
+        //Then needs to check if user has the item
+        //If has the item, run the Player.removeItem() method
+        //Once dropped, return string telling user they dropped the item
+        //If doesn't have item, return a string telling the user they do not own the item
+        Player player = gameState.getPlayer();
+        if(player.hasItem(this.value)){
+            player.removeItem(this.value);
+            return "You have dropped the item '" + this.value + "'";
+        }else{
+            return "You do not own the item '" + this.value + "'";
+        }
     }
    
 }

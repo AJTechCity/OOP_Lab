@@ -25,9 +25,19 @@ public class Equipment extends GameObject implements Usable {
     }
 
     public String use(GameObject target, GameState gameState){
-        // TDO
+        // Only called if the target is a valid object
         //Return string describing the result of using the equipment
-        return "Used Equipment";
+        if(this.useInformation.getAction().equals("open")){//If the equipment opens chests, use below logic
+            GameObject itemToReveal = gameState.getMap().getCurrentRoom().getFeature(this.useInformation.getResult());
+            if(itemToReveal.getHidden() == true){
+                itemToReveal.setHidden(false);
+                this.useInformation.setUsed(true);
+            }else{
+                return "Result already visible";
+            }
+        }
+
+        return this.useInformation.getMessage();
     }
 
     @Override

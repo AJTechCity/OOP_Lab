@@ -18,14 +18,18 @@ public class Player {
 
     public Player(String name){
         this.name = name;
-
-        //Init ArrayLists
-        this.inventory = new ArrayList<>();
-        this.equipment = new ArrayList<>();
+        this.init_player();
     }
 
     public Player(){
         this.name = "NO_NAME";
+        this.init_player();
+    }
+
+    private void init_player(){
+        //Init ArrayLists
+        this.inventory = new ArrayList<>();
+        this.equipment = new ArrayList<>();
     }
 
     public String getName(){
@@ -37,12 +41,15 @@ public class Player {
     }
 
     public boolean hasItem(String itemName){
-//        return findGameObjectByName(inventory, name) == null ? false : true;
-        return false;
+        return this.getItem(itemName) == null ? false : true;
     }
 
     public Item getItem(String itemName){
-//        return findGameObjectByName(inventory, name);
+        for(Item item : this.inventory){
+            if(item.getName().equals(itemName)){
+                return item;
+            }
+        }
         return null;
     }
 
@@ -50,17 +57,30 @@ public class Player {
         this.inventory.add(item);
     }
 
+    public void removeItem(String itemName){
+        //Only to be run once the user's inventory has been checked for the item
+        Item itemToRemove = this.getItem(itemName);
+        if(itemToRemove != null){
+            this.inventory.remove(itemToRemove);
+        }else{
+            System.out.println("Player does not own item: '" + itemName + "'");
+        }
+    }
+
     public ArrayList<Equipment> getEquipment(){
         return this.equipment;
     }
 
     public boolean hasEquipment(String equipmentName){
-//        return findGameObjectByName(equipment, equipmentName) == null ? false : true;
-        return false;
+        return this.getEquipment(equipmentName) == null ? false : true;
     }
 
     public Equipment getEquipment(String equipmentName){
-//        return findGameObjectByName(equipment, equipmentName);
+        for(Equipment equipItem : this.equipment){
+            if(equipItem.getName().equals(equipmentName)){
+                return equipItem;
+            }
+        }
         return null;
     }
 
