@@ -1,6 +1,7 @@
 package org.uob.a2.commands;
 
 import org.uob.a2.gameobjects.*;
+import java.util.ArrayList;
 
 /**
  * Represents the status command, allowing the player to retrieve information
@@ -21,13 +22,43 @@ public class Status extends Command {
     }
 
     @Override
-    public String toString(){
-        return "ToString";
+    public String execute(GameState gameState){
+        Player player = gameState.getPlayer();
+        StringBuilder out = new StringBuilder("");
+        if(this.topic.equals("inventory")){
+            out.append("Player Inventory\n");
+            for(GameObject obj : player.getAll()){
+                out.append("- " + obj.getName() + "\n");
+            }
+        }else if(this.topic.equals("player")){
+            out.append(player.toString());
+        }else{
+            //Check if topic matches item name - display description
+            //if not display an error
+            Room currentRoom = gameState.getMap().getCurrentRoom();
+            ArrayList<GameObject> allObjects = new ArrayList<GameObject>();
+            allObjects.addAll(currentRoom.getAll());
+            allObjects.addAll(player.getAll());
+
+            for(GameObject obj : allObjects){
+                if(obj.getName().equals(this.topic)){
+                    out.append(obj.getDescription());
+                }
+            }
+
+            if(out.toString().equals("")){
+                out.append("ERROR: Couldn't find equipment " + this.topic);
+            }
+
+        }
+
+        return out.toString();
     }
 
     @Override
-    public String execute(GameState gameState){
-        return "Execute";
+    public String toString(){
+        return "Status {\n" +
+                "Topic: " + this.topic + "\n}";
     }
   
 }

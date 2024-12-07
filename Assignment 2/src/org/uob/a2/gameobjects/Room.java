@@ -83,7 +83,12 @@ public class Room extends GameObject {
     }
 
     public Equipment getEquipment(String id){
-        return findGameObjectById(equipment, id);
+        for(Equipment equip: this.equipment){
+            if(equip.getId().equals(id)){
+                return equip;
+            }
+        }
+        return null;
     }
 
     public Equipment getEquipmentByName(String name){
@@ -96,7 +101,12 @@ public class Room extends GameObject {
     }
 
     public Exit getExit(String id){
-        return findGameObjectById(exits, id);
+        for(Exit exit: this.exits){
+            if(exit.getId().equals(id)){
+                return exit;
+            }
+        }
+        return null;
     }
 
     public void addEquipment(Equipment equipment){
@@ -149,7 +159,7 @@ public class Room extends GameObject {
     }
 
     public boolean hasEquipment(String name){
-        return findGameObjectByName(items, name) == null ? false : true;
+        return this.getEquipmentByName(name) == null ? false : true;
     }
 
     /**

@@ -19,12 +19,26 @@ public class Move extends Command {
         this.direction = direction;
     }
 
+    public String execute(GameState gameState){
+        StringBuilder out = new StringBuilder("");
+        Room currentRoom = gameState.getMap().getCurrentRoom();
+        Exit exit = currentRoom.getExit(this.direction);
+        //this.direction is the ID of the exit
+        if(exit != null){ //If exit ID is valid and finds an exit object
+            if(exit.getHidden() == false){//If exit is visible to user
+                out.append("Moving towards " + this.direction + "\n");
+                //Use the Map object to advance user to next room
+                gameState.getMap().setCurrentRoom(exit.getNextRoom());
+            }else{
+                out.append("No exit found in that direction.");
+            }
+        }else{
+            out.append("No exit found in that direction.");
+        }
+        return out.toString();
+    }
+
     public String toString(){
         return "Move";
     }
-
-    public String execute(GameState gameState){
-        return "Execute";
-    }
-  
 }

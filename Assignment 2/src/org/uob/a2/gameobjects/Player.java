@@ -63,7 +63,16 @@ public class Player {
         if(itemToRemove != null){
             this.inventory.remove(itemToRemove);
         }else{
-            System.out.println("Player does not own item: '" + itemName + "'");
+            System.out.println("Item not found");
+        }
+    }
+
+    public void removeEquipment(String equipmentName){
+        Equipment equipmentToRemove = this.getEquipment(equipmentName);
+        if(equipmentToRemove != null){
+            this.equipment.remove(equipmentToRemove);
+        }else{
+            System.out.println("Equipment not found");
         }
     }
 
@@ -86,6 +95,13 @@ public class Player {
 
     public void addEquipment(Equipment equipment){
         this.equipment.add(equipment);
+    }
+
+    public ArrayList<GameObject> getAll(){
+        ArrayList<GameObject> allGameObjects = new ArrayList<GameObject>();
+        allGameObjects.addAll(this.inventory);
+        allGameObjects.addAll(this.equipment);
+        return allGameObjects;
     }
 
     /**

@@ -15,17 +15,11 @@ import org.uob.a2.utils.*;
  * </p>
  */
 public class Map {
-
-    private int width, height;
-    private char mapArray[][];
+    
     private ArrayList<Room> rooms;
     private String currentRoomId;
 
     public Map(){
-        this.width = 20;
-        this.height = 20;
-
-        mapArray = new char[height][width];
         this.rooms = new ArrayList<>();
     }
 
