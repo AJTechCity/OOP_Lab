@@ -17,7 +17,7 @@ public class Get extends Command {
 
     public Get(String item){
         this.commandType = CommandType.GET;
-        this.item = item;
+        this.item = item; //Name of item to pick up
     }
 
     public String toString(){
@@ -25,7 +25,29 @@ public class Get extends Command {
     }
 
     public String execute(GameState gameState){
-        return null;
+        Room currentRoom = gameState.getMap().getCurrentRoom();
+        Player player = gameState.getPlayer();
+        Item pickupItem = currentRoom.getItemByName(this.item);
+        Equipment pickupEquipment = currentRoom.getEquipmentByName(this.item);
+        if(pickupItem != null && pickupEquipment == null){
+            if(!player.hasItem(this.item)){
+                player.addItem(pickupItem); //add item to player inventory
+                currentRoom.removeItem(pickupItem); //remove item from current room
+                return "You pick up: " + this.item;
+            }else{
+                return "You already have " + this.item;
+            }
+        }else if(pickupEquipment != null && pickupItem == null){
+            if(!player.hasEquipment(this.item)){
+                player.addEquipment(pickupEquipment); //add item to player inventory
+                currentRoom.removeEquipment(pickupEquipment); //remove item from current room
+                return "You pick up: " + this.item;
+            }else{
+                return "You already have " + this.item;
+            }
+        }else{
+            return "No " + this.item + " to get.";
+        }
     }
    
 }

@@ -61,11 +61,16 @@ public class Room extends GameObject {
     }
 
     public Item getItemByName(String name){
-        return findGameObjectByName(items, name);
+        for(Item item: this.items){
+            if(item.getName().equals(name)){
+                return item;
+            }
+        }
+        return null;
     }
 
     public Feature getFeatureByName(String name){
-        for(Feature feature : features){
+        for(Feature feature : this.features){
             if(feature.getName().equals(name)){
                 return feature;
             }
@@ -81,6 +86,15 @@ public class Room extends GameObject {
         return findGameObjectById(equipment, id);
     }
 
+    public Equipment getEquipmentByName(String name){
+        for(Equipment equip: this.equipment){
+            if(equip.getName().equals(name)){
+                return equip;
+            }
+        }
+        return null;
+    }
+
     public Exit getExit(String id){
         return findGameObjectById(exits, id);
     }
@@ -89,12 +103,27 @@ public class Room extends GameObject {
         this.equipment.add(equipment);
     }
 
-    public Feature getFeature(String id){
-        return findGameObjectByName(features, id);
+    public void removeEquipment(Equipment equipment){
+        this.equipment.remove(equipment);
+    }
+
+    public Feature getFeature(String id) {
+        for (Feature feature : this.features) {
+            if (feature.getId().equals(id)) {
+                return feature;
+            }
+        }
+        return null;
     }
 
     public void addItem(Item item){
         this.items.add(item);
+    }
+
+    public void removeItem(Item item){
+        if(this.hasItem(item.getName())){
+            this.items.remove(item);
+        }
     }
 
     public ArrayList<Feature> getFeatures(){
@@ -116,7 +145,7 @@ public class Room extends GameObject {
     }
 
     public boolean hasItem(String itemName){
-        return findGameObjectByName(items, itemName) == null ? false : true;
+        return this.getItemByName(itemName) == null ? false : true;
     }
 
     public boolean hasEquipment(String name){
