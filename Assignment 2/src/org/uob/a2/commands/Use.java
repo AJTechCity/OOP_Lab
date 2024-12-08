@@ -18,12 +18,7 @@ public class Use extends Command {
     public Use(String equipmentName, String target){
         this.commandType = CommandType.USE;
         this.equipmentName = equipmentName;
-        this.target = target;
-    }
-
-    @Override
-    public String toString(){
-        return "TOSTRING";
+        this.target = target; //Name of target
     }
 
     @Override
@@ -36,23 +31,34 @@ public class Use extends Command {
         Player player = gameState.getPlayer();
         Equipment equipment = player.getEquipment(equipmentName);
         Container targetObj = (Container) gameState.getMap().getCurrentRoom().getFeatureByName(this.target);
-        if(equipment != null){
-            UseInformation equipmentUseInfo = equipment.getUseInformation();
 
-            if(equipmentUseInfo.isUsed() == true){ //Return error if already used equipment
-                return "You have already used " + equipmentName;
-            }
-
-            if(equipmentUseInfo.getTarget().equals(targetObj.getId())){
-                //Get String target as a game object
-                String equipmentAction = equipmentUseInfo.getAction();
-                return equipment.use(targetObj, gameState); //Uses equipment and sets equipment as used
-            }else{
-                return "Invalid use target: " + this.equipmentName + " cannot be used on " + this.target;
-            }
-        }else{
+        if(equipment == null){
             return "You do not have " + this.equipmentName;
         }
+
+        if(targetObj == null){
+            return "Invalid use target: " + this.target;
+        }
+
+        //If above passes, objects are both valid
+        UseInformation equipmentUseInfo = equipment.getUseInformation();
+
+        if(equipmentUseInfo.isUsed() == true){ //Return error if already used equipment
+            return "You have already used " + equipmentName;
+        }
+
+        if(equipmentUseInfo.getTarget().equals(targetObj.getId())){
+            //Get String target as a game object
+            String equipmentAction = equipmentUseInfo.getAction();
+            return equipment.use(targetObj, gameState); //Uses equipment and sets equipment as used
+        }else{
+            return "Invalid use target: " + this.equipmentName + " cannot be used on " + this.target;
+        }
+    }
+
+    @Override
+    public String toString(){
+        return this.equipmentName + " on " + this.target;
     }
   
 }

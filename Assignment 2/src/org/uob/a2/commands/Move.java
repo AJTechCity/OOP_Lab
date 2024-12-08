@@ -39,6 +39,6 @@ public class Move extends Command {
     }
 
     public String toString(){
-        return "Move";
+        return "Move " + this.direction;
     }
 }

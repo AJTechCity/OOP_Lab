@@ -35,21 +35,11 @@ public class Status extends Command {
         }else{
             //Check if topic matches item name - display description
             //if not display an error
-            Room currentRoom = gameState.getMap().getCurrentRoom();
-            ArrayList<GameObject> allObjects = new ArrayList<GameObject>();
-            allObjects.addAll(currentRoom.getAll());
-            allObjects.addAll(player.getAll());
-
-            for(GameObject obj : allObjects){
+            for(GameObject obj : player.getAll()){
                 if(obj.getName().equals(this.topic)){
                     out.append(obj.getDescription());
                 }
             }
-
-            if(out.toString().equals("")){
-                out.append("ERROR: Couldn't find equipment " + this.topic);
-            }
-
         }
 
         return out.toString();

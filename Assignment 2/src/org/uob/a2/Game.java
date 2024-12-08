@@ -1,6 +1,8 @@
 package org.uob.a2;
 
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.io.*;
 
 import org.uob.a2.commands.*;
 import org.uob.a2.gameobjects.*;
@@ -17,19 +19,19 @@ import org.uob.a2.utils.*;
 public class Game {
 
     private static GameState gameState;
-    private Scanner scanner;
-
-    public Game(){
-        this.gameState = new GameState();
-        this.scanner = new Scanner(System.in);
-    }
+    private static Scanner scanner;
+    private static Tokeniser tokeniser;
+    private static Parser parser;
+    private static boolean gameEnded;
 
     public static void main(String[] args){
+
+
         System.out.println("Running game setup...");
         setup();
 
         System.out.println("Starting game...");
-
+        //Maybe implement a function where the user can enter their username to load previous data
         start();
     }
 
@@ -39,13 +41,27 @@ public class Game {
 
         GameStateFileParser gameStateFileParser = new GameStateFileParser();
         gameState = gameStateFileParser.parse("data/game.txt");
+        scanner = new Scanner(System.in);
+        tokeniser = new Tokeniser();
+        parser = new Parser();
+        gameEnded = false;
     }
 
     public static void start(){
         //Starts the game loop. Continuously reads input, tokenises it, and processses commands until the user decides to quit
-        System.out.println("----- Welcome to The Map -----");
+        System.out.println("----- Welcome to The Game -----");
 
-
+        while(!gameEnded){
+            System.out.println(gameEnded);
+            System.out.print("> ");
+            String userInput = scanner.nextLine();
+            tokeniser.tokenise(userInput);
+            try {
+                Command parsedCommand = parser.parse(tokeniser.getTokens());
+            }catch (CommandErrorException e){
+                System.out.println(e);
+            }
+        }
     }
 
     public static void turn(Command command){
@@ -60,7 +76,8 @@ public class Game {
     }
 
     public static void endGame(){
-
+        //Save user data to their own file maybe?
+        gameEnded = true;
     }
 
 }

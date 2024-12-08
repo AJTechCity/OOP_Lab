@@ -37,7 +37,7 @@ public class Map {
 
     public Room getRoomById(String roomId){
         for(Room room : rooms){
-            if(room.id == roomId){
+            if(room.id.equals(roomId)){
                 return room;
             }
         }

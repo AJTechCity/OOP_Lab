@@ -16,7 +16,9 @@ public class Tokeniser {
 
     private ArrayList<Token> tokens;
 
-    public Tokeniser(){}
+    public Tokeniser(){
+        this.tokens = new ArrayList<Token>();
+    }
 
     public ArrayList<Token> getTokens(){
         return this.tokens;
@@ -28,6 +30,8 @@ public class Tokeniser {
     }
 
     public void tokenise(String s){
+        //Reset old variables for when tokeniser is reused
+        this.tokens = new ArrayList<Token>();
         //Tokenises the input string into a list of Token objects based on predefined keywords and patterns
 
         //Words that do not match keywords are treates as variables and assigned the VAR type
@@ -42,6 +46,9 @@ public class Tokeniser {
                     break;
                 case "get":
                     newToken = new Token(TokenType.GET);
+                    break;
+                case "use":
+                    newToken = new Token(TokenType.USE);
                     break;
                 case "drop":
                     newToken = new Token(TokenType.DROP);
@@ -59,12 +66,12 @@ public class Tokeniser {
                     newToken = new Token(TokenType.QUIT);
                     break;
                 case "on":
-                    newToken = new Token(TokenType.PREPOSITION);
+                    newToken = new Token(TokenType.PREPOSITION, word);
                     break;
                 case "with":
-                    newToken = new Token(TokenType.PREPOSITION);
+                    newToken = new Token(TokenType.PREPOSITION, word);
                 case "using":
-                    newToken = new Token(TokenType.PREPOSITION);
+                    newToken = new Token(TokenType.PREPOSITION, word);
                     break;
                 default:
                     newToken = new Token(TokenType.VAR, word);

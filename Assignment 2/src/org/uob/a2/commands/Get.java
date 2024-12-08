@@ -20,10 +20,6 @@ public class Get extends Command {
         this.item = item; //Name of item to pick up
     }
 
-    public String toString(){
-        return "Get";
-    }
-
     public String execute(GameState gameState){
         Room currentRoom = gameState.getMap().getCurrentRoom();
         Player player = gameState.getPlayer();
@@ -48,6 +44,10 @@ public class Get extends Command {
         }else{
             return "No " + this.item + " to get.";
         }
+    }
+
+    public String toString(){
+        return "Get " + this.item;
     }
    
 }

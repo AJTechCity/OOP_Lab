@@ -24,7 +24,6 @@ public class Parser {
         }
 
         Token commandTypeToken = tokens.get(0); //First token is going to be the commnad type
-
         if(commandTypeToken.getTokenType() == TokenType.QUIT && tokens.get(1).getTokenType() == TokenType.EOL) {
             return new Quit();
         }else if(commandTypeToken.getTokenType() == TokenType.HELP){

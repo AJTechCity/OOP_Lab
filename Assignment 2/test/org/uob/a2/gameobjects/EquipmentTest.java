@@ -53,7 +53,6 @@ class EquipmentTest {
 
         // Use equipment
         String result = equipment.use(target, gameState);
-        System.out.println(hiddenItem);
 
         // Validate results
         boolean testPassed = 

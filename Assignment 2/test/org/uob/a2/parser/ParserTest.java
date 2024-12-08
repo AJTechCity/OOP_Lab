@@ -18,6 +18,9 @@ class ParserTest {
         tokens.add(new Token(TokenType.MOVE));
         tokens.add(new Token(TokenType.VAR, "north"));
 
+        //Needed to remain consistent in game logic
+        tokens.add(new Token(TokenType.EOL));
+
         boolean testPassed = false;
 
         try {
@@ -43,6 +46,9 @@ class ParserTest {
         tokens.add(new Token(TokenType.GET));
         tokens.add(new Token(TokenType.VAR, "key"));
 
+        //Needed to remain consistent in game logic
+        tokens.add(new Token(TokenType.EOL));
+
         boolean testPassed = false;
 
         try {
@@ -66,6 +72,9 @@ class ParserTest {
         Parser parser = new Parser();
         ArrayList<Token> tokens = new ArrayList<>();
         tokens.add(new Token(TokenType.GET)); // Missing variable token
+
+        //Needed to remain consistent in game logic
+        tokens.add(new Token(TokenType.EOL));
 
         boolean testPassed = false;
 
@@ -91,6 +100,9 @@ class ParserTest {
         tokens.add(new Token(TokenType.VAR, "key"));
         tokens.add(new Token(TokenType.PREPOSITION, "on"));
         tokens.add(new Token(TokenType.VAR, "chest"));
+
+        //Had to be added due to current game logic
+        tokens.add(new Token(TokenType.EOL));
 
         boolean testPassed = false;
 
