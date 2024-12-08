@@ -51,13 +51,17 @@ public class Game {
         //Starts the game loop. Continuously reads input, tokenises it, and processses commands until the user decides to quit
         System.out.println("----- Welcome to The Game -----");
 
+        //Give first room info
+        Look initialLookCommand = new Look("room");
+        turn(initialLookCommand);
+
         while(!gameEnded){
-            System.out.println(gameEnded);
             System.out.print("> ");
             String userInput = scanner.nextLine();
             tokeniser.tokenise(userInput);
             try {
                 Command parsedCommand = parser.parse(tokeniser.getTokens());
+                turn(parsedCommand);
             }catch (CommandErrorException e){
                 System.out.println(e);
             }
@@ -71,7 +75,8 @@ public class Game {
             System.out.println("Exiting the game...");
             endGame();
         }else{
-            command.execute(gameState);
+            String output = command.execute(gameState);
+            System.out.println(output);
         }
     }
 

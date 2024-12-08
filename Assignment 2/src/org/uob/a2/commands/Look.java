@@ -27,7 +27,7 @@ public class Look extends Command {
         //We attempt to locate the target string in case the user is trying to look at a specific GameObject, if it cannot find one then we return null
         GameObject targetGO = currentRoom.getAll().stream().filter(obj -> obj.getName().equals(this.target)).findFirst().orElse(null);
 
-        if(this.target == "room"){
+        if(this.target.equals("room")){
             //Get room description and descriptions of each visible object in room
             out.append(currentRoom.getDescription() + "\n");
             for(GameObject object : currentRoom.getAll()){ //Loop through room items
@@ -36,7 +36,7 @@ public class Look extends Command {
                 }
             }
             return out.toString();
-        }else if(this.target == "exits"){
+        }else if(this.target.equals("exits")){
             //Retrieve visible exits
             out.append("The available exits are:\n");
             for(Exit exit: currentRoom.getExits()){
@@ -44,7 +44,7 @@ public class Look extends Command {
                     out.append("- " + exit.getDescription() + "\n");
                 }
             }
-        }else if(this.target == "features"){
+        }else if(this.target.equals("features")){
             out.append("You also see:\n");
             for(Feature feature : currentRoom.getFeatures()){
                 if(feature.getHidden() == false){ //If feature isn't hidden, then include it in the outputted list
@@ -55,7 +55,7 @@ public class Look extends Command {
             //Retrieve the GameObject by its name and then we can
             out.append(targetGO.getDescription());
         }else{
-
+            System.out.println("Look.java - Line 60 needs to be completed");
         }
         return out.toString();
     }

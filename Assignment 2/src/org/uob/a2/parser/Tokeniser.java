@@ -39,8 +39,9 @@ public class Tokeniser {
         String[] words = s.split(" ");
         for(String word : words){
             word = sanitise(word);
+            if(word.equals("")) continue; //Continue to next "word" if the current is just empty text
             Token newToken;
-            switch(word){
+            switch(word){ //Need to find a way for command types not to get caught
                 case "move":
                     newToken = new Token(TokenType.MOVE);
                     break;
@@ -70,6 +71,7 @@ public class Tokeniser {
                     break;
                 case "with":
                     newToken = new Token(TokenType.PREPOSITION, word);
+                    break;
                 case "using":
                     newToken = new Token(TokenType.PREPOSITION, word);
                     break;

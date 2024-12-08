@@ -43,6 +43,8 @@ public class Use extends Command {
         //If above passes, objects are both valid
         UseInformation equipmentUseInfo = equipment.getUseInformation();
 
+
+
         if(equipmentUseInfo.isUsed() == true){ //Return error if already used equipment
             return "You have already used " + equipmentName;
         }
