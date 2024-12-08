@@ -65,24 +65,6 @@ public abstract class GameObject {
         return this.description;
     }
 
-    protected <T extends GameObject> T findGameObjectById(ArrayList<T> list, String id){
-        for(T obj : list){
-            if(obj.id.equals(id)){
-                return obj;
-            }
-        }
-        return null;
-    }
-
-    protected <T extends GameObject> T findGameObjectByName(ArrayList<T> list, String id){
-        for(T obj : list){
-            if(obj.getName().equals(id)){
-                return obj;
-            }
-        }
-        return null;
-    }
-
 
     @Override
     public String toString() {

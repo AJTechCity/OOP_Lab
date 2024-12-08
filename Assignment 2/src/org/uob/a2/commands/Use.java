@@ -30,21 +30,25 @@ public class Use extends Command {
         //Otherwise, return an error string
         Player player = gameState.getPlayer();
         Equipment equipment = player.getEquipment(equipmentName);
-        Container targetObj = (Container) gameState.getMap().getCurrentRoom().getFeatureByName(this.target);
+        GameObject targetObj;
+
+        if(this.target == "NONE"){
+            targetObj = gameState.getMap().getCurrentRoom();
+        }else{
+            targetObj = gameState.getMap().getCurrentRoom().getFeatureByName(this.target);
+        }
 
         if(equipment == null){
             return "You do not have " + this.equipmentName;
         }
+
+        UseInformation equipmentUseInfo = equipment.getUseInformation();
 
         if(targetObj == null){
             return "Invalid use target: " + this.target;
         }
 
         //If above passes, objects are both valid
-        UseInformation equipmentUseInfo = equipment.getUseInformation();
-
-
-
         if(equipmentUseInfo.isUsed() == true){ //Return error if already used equipment
             return "You have already used " + equipmentName;
         }

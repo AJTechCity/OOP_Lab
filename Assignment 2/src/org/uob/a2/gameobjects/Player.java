@@ -15,6 +15,7 @@ public class Player {
     private String name;
     private ArrayList<Item> inventory;
     private ArrayList<Equipment> equipment;
+    private Score score;
 
     public Player(String name){
         this.name = name;
@@ -30,6 +31,15 @@ public class Player {
         //Init ArrayLists
         this.inventory = new ArrayList<>();
         this.equipment = new ArrayList<>();
+        this.score = new Score(0);
+    }
+
+    public void setScore(Score s){
+        this.score = s;
+    }
+
+    public Score getScore(){
+        return this.score;
     }
 
     public String getName(){

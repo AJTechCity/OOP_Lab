@@ -12,6 +12,7 @@ public class GameState {
 
     private Map map;
     private Player player;
+    Private Score playerScore;
 
     public GameState(Map map, Player player){
         this.map = map;
@@ -26,6 +27,14 @@ public class GameState {
 
     public Player getPlayer(){
         return this.player;
+    }
+
+    public void setPlayerScore(Score score){
+        this.playerScore = score;
+    }
+
+    public Score getPlayerScore(){
+        return this.playerScore;
     }
 
     /**

@@ -43,6 +43,10 @@ public class Map {
         }
         return null;
     }
+
+    public String renderMap(){
+        return "Rendered Map";
+    }
   
     /**
      * Returns a string representation of the map, including all rooms.

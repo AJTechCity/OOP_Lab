@@ -44,10 +44,10 @@ public class Look extends Command {
                     out.append("- " + exit.getDescription() + "\n");
                 }
             }
-        }else if(this.target.equals("features")){
+        }else if(this.target.equals("features")) {
             out.append("You also see:\n");
-            for(Feature feature : currentRoom.getFeatures()){
-                if(feature.getHidden() == false){ //If feature isn't hidden, then include it in the outputted list
+            for (Feature feature : currentRoom.getFeatures()) {
+                if (feature.getHidden() == false) { //If feature isn't hidden, then include it in the outputted list
                     out.append("- " + feature.getDescription() + "\n");
                 }
             }

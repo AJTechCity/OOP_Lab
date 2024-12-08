@@ -16,6 +16,8 @@ import org.uob.a2.commands.*;
 public class Parser {
 
     public Command oldParse(ArrayList<Token> tokens) throws CommandErrorException{
+        //OLD FUNCTION: Had a high error rate for passing different command types
+
         //Parse a list of tokens into a Command Object
         //THrow error if command is invalid
 
@@ -35,7 +37,6 @@ public class Parser {
             throw new CommandErrorException("Invalid Help Command");
         }else if(tokens.size() != 3 && tokens.size() != 5){ //All other commands are at least 3 tokens in length (including EOL token)
             throw new CommandErrorException("Command is of an incorrect length");
-//            throw new CommandErrorException("Token list should contain 3 or 5 tokens");
         }
 
         Token prepositionToken=null, var1Token=null, var2Token=null, eolToken=null;
@@ -102,28 +103,25 @@ public class Parser {
         switch(commandType){
             case MOVE: //Done
                 return parseMoveCommand(tokenListSize, tokens);
-            case USE:
+            case USE: //Done
                 return parseUseCommand(tokenListSize, tokens);
-            case GET:
-                break;
-            case DROP:
-                break;
-            case LOOK:
-                break;
-            case STATUS:
-                break;
+            case GET: //Done
+                return parseGetCommand(tokenListSize, tokens);
+            case DROP: //Done
+                return parseDropCommand(tokenListSize, tokens);
+            case LOOK: //Done
+                return parseLookCommand(tokenListSize, tokens);
+            case STATUS: //Done
+                return parseStatusCommand(tokenListSize, tokens);
             case HELP: //Done
                 return parseHelpCommand(tokenListSize, tokens);
-            case QUIT:
-                //For quit command, we can just return a new Quit() Object
+            case QUIT: //Done
+                //For quit command, we can just return a new Quit() Object - No need to paarse
                 return new Quit();
             default:
                 //Only to be reached if commandType is unknown (should be impossible)
                 throw new CommandErrorException("Invalid Command Type. Use the 'help' command to learn more.");
         }
-
-        return null;
-
     }
 
     private Command parseMoveCommand(int tokenListSize, ArrayList<Token> tokens) throws CommandErrorException{
@@ -161,19 +159,64 @@ public class Parser {
     }
 
     private Command parseUseCommand(int tokenListSize, ArrayList<Token> tokens) throws CommandErrorException{
-        Token equipmentToken;
+        Token equipmentToken = tokens.get(1); //Should be second token in Token ArrayList
         String target;
+
+        //Check if the equipment token is a valid variable
+        if(equipmentToken.getTokenType() != TokenType.VAR) throw new CommandErrorException("Invalid Use command (Equipment). Use the 'help use' command to learn more");
+
         if(tokenListSize == 3){ //<UseToken><EquipmentVAR><EOLToken>
-            equipmentToken = tokens.get(1);
             target = "NONE";
         }else if(tokenListSize == 5){ //<UseToken><Equipment1VAR><PrepositionToken><Equipment2Var><EOL>
-            equipmentToken = tokens.get(1);
             target = tokens.get(3).getValue();
         }else{
             throw new CommandErrorException("Invalid Use command. Use the 'help use' command to learn more.");
         }
 
         return new Use(equipmentToken.getValue(), target);
+    }
+
+    private Command parseGetCommand(int tokenListSize, ArrayList<Token> tokens) throws CommandErrorException{
+        if(tokenListSize == 3){//<GetToken><ItemTokenVAR><EOLToken>
+            if(tokens.get(1).getTokenType() == TokenType.VAR){
+                return new Get(tokens.get(1).getValue());
+            }else{
+                throw new CommandErrorException("Invalid Get Command (Item). Use the 'help get' command to learn more");
+            }
+        }else{
+            throw new CommandErrorException("Invalid Get Command. Use the 'help get' command to learn more");
+        }
+    }
+
+    private Command parseDropCommand(int tokenListSize, ArrayList<Token> tokens) throws CommandErrorException{
+        if(tokenListSize == 3){ //<DropToken><ItemVAR><EOLToken>
+            Token varToken = tokens.get(1);
+            if(varToken.getTokenType() == TokenType.VAR){
+                return new Drop(varToken.getValue());
+            }else{
+                throw new CommandErrorException("Invalid Drop Command (Item). Use the 'help drop' command to learn more");
+            }
+        }else{
+            throw new CommandErrorException("Invalid Drop Command. Use the 'help drop' command to learn more");
+        }
+    }
+
+    private Command parseLookCommand(int tokenListSize, ArrayList<Token> tokens) throws CommandErrorException{
+        if(tokenListSize == 3){ //<LookToken><WhereVAR><EOLToken>
+            Token varToken = tokens.get(1);
+            if(varToken.getTokenType() == TokenType.VAR){
+                return new Look(varToken.getValue());
+            }else throw new CommandErrorException("Invalid Look Command (VAR). Use the 'help look' command to learn more");
+        }else throw new CommandErrorException("Invalid Look Command. Use the 'help look' command to learn more.");
+    }
+
+    private Command parseStatusCommand(int tokenListSize, ArrayList<Token> tokens) throws CommandErrorException {
+        if(tokenListSize == 3){ //<StatusToken><VARToken><EOLToken>
+            Token varToken = tokens.get(1);
+            if(varToken.getTokenType() == TokenType.VAR){
+                return new Status(varToken.getValue());
+            }else throw new CommandErrorException("Invalid Status Command (VAR). Use the 'help status' command to learn more");
+        }else throw new CommandErrorException("Invalid Status command. Use the 'help status' command to learn more");
     }
  
 }

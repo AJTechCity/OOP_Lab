@@ -22,11 +22,13 @@ public class Move extends Command {
     public String execute(GameState gameState){
         StringBuilder out = new StringBuilder("");
         Room currentRoom = gameState.getMap().getCurrentRoom();
-        Exit exit = currentRoom.getExit(this.direction);
-        //this.direction is the ID of the exit
+        Exit exit = currentRoom.getExitByName(this.direction);
+        //this.direction is the name of the exit
         if(exit != null){ //If exit ID is valid and finds an exit object
             if(exit.getHidden() == false){//If exit is visible to user
                 out.append("Moving towards " + this.direction + "\n");
+                //Custom: Increase the number of rooms visited in the Score Object
+                gameState.getPlayerScore().visitRoom();
                 //Use the Map object to advance user to next room
                 gameState.getMap().setCurrentRoom(exit.getNextRoom());
             }else{

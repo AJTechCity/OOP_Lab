@@ -40,7 +40,7 @@ public class Game {
         System.out.println("Setting up game");
 
         GameStateFileParser gameStateFileParser = new GameStateFileParser();
-        gameState = gameStateFileParser.parse("data/game.txt");
+        gameState = gameStateFileParser.parse("data/game2.txt");
         scanner = new Scanner(System.in);
         tokeniser = new Tokeniser();
         parser = new Parser();

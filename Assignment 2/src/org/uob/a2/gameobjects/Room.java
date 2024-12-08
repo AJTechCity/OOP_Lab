@@ -109,6 +109,10 @@ public class Room extends GameObject {
         return null;
     }
 
+    public Exit getExitByName(String exitName){
+        return this.exits.stream().filter(exit->exit.getName().equals(exitName)).findFirst().orElse(null);
+    }
+
     public void addEquipment(Equipment equipment){
         this.equipment.add(equipment);
     }

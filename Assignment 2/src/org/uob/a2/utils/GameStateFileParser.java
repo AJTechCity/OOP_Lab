@@ -104,6 +104,18 @@ public class GameStateFileParser {
 
                     //Add exit to current room
                     currentRoom.addExit(newExit);
+                }else if(line.startsWith("score:")){
+                    Score playerScore;
+                    String stringScore = line.split(":")[1].trim();
+                    Int startingScore;
+                    try{
+                        startingScore = Integer.parseInt(stringScore);
+                    }catch(NumberFormatException e){
+                        startingScore = 0;
+                    }finally{
+                        playerScore = new Score(startingScore);
+                        gameState.getPlayer().setScore(playerScore);
+                    }
                 }
             }
         } catch (java.lang.Exception e) {

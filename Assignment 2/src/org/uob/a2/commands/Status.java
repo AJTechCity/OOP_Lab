@@ -30,8 +30,10 @@ public class Status extends Command {
             for(GameObject obj : player.getAll()){
                 out.append("- " + obj.getName() + "\n");
             }
-        }else if(this.topic.equals("player")){
+        }else if(this.topic.equals("player")) {
             out.append(player.toString());
+        }else if(this.topic.equals("map")){
+            out.append(gameState.getMap().renderMap());
         }else{
             //Check if topic matches item name - display description
             //if not display an error
