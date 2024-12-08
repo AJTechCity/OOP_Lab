@@ -103,7 +103,7 @@ public class Parser {
             case MOVE: //Done
                 return parseMoveCommand(tokenListSize, tokens);
             case USE:
-                break;
+                return parseUseCommand(tokenListSize, tokens);
             case GET:
                 break;
             case DROP:
@@ -149,6 +149,7 @@ public class Parser {
             return new Help(null);
         }else if(tokenListSize == 3) {//<HelpToken><Topic><EOLToken>
             try{
+                //All help topics actually belong to the CommandType Enum so we can use that to check validity
                 CommandType.valueOf(tokens.get(1).getTokenType().name());
                 return new Help(tokens.get(1).getValue());
             }catch(IllegalArgumentException e){
@@ -157,6 +158,22 @@ public class Parser {
         }else{
             throw new CommandErrorException("Invalid Help Command. Use the 'help' command to learn more.");
         }
+    }
+
+    private Command parseUseCommand(int tokenListSize, ArrayList<Token> tokens) throws CommandErrorException{
+        Token equipmentToken;
+        String target;
+        if(tokenListSize == 3){ //<UseToken><EquipmentVAR><EOLToken>
+            equipmentToken = tokens.get(1);
+            target = "NONE";
+        }else if(tokenListSize == 5){ //<UseToken><Equipment1VAR><PrepositionToken><Equipment2Var><EOL>
+            equipmentToken = tokens.get(1);
+            target = tokens.get(3).getValue();
+        }else{
+            throw new CommandErrorException("Invalid Use command. Use the 'help use' command to learn more.");
+        }
+
+        return new Use(equipmentToken.getValue(), target);
     }
  
 }
