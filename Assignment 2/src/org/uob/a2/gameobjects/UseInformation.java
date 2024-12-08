@@ -65,6 +65,10 @@ public class UseInformation {
         this.message = message;
     }
 
+    public String toYAML(){
+        return this.action + "," + this.target + "," + this.result + "," + this.message + "," + (this.isUsed == false ? "false" : "true");
+    }
+
     /**
      * Returns a string representation of the usage information, including all attributes.
      *

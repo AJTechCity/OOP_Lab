@@ -14,6 +14,7 @@ public class Equipment extends GameObject implements Usable {
     public Equipment(String id, String name, String description, boolean hidden, UseInformation useInformation){
         super(id, name, description, hidden);
         this.useInformation = useInformation;
+        this.gameObjectYAMLType = "equipment";
     }
 
     public void setUseInformation(UseInformation useInformation){
@@ -47,6 +48,13 @@ public class Equipment extends GameObject implements Usable {
         this.useInformation.setUsed(true);
 
         return this.useInformation.getMessage();
+    }
+
+    public String toYAML(){
+        StringBuilder out = new StringBuilder();
+        UseInformation useInfo = this.useInformation;
+        out.append(this.id + "," + this.name + "," + this.description + "," + this.hidden + "," + useInfo.toYAML());
+        return out.toString();
     }
 
     @Override

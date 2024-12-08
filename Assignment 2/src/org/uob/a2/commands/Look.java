@@ -51,11 +51,11 @@ public class Look extends Command {
                     out.append("- " + feature.getDescription() + "\n");
                 }
             }
-        }else if(targetGO != null){//If the above search managed to find the required target GameObject
+        }else if(targetGO != null && targetGO.getHidden() == false){//If the above search managed to find the required target GameObject and it isn't hidden
             //Retrieve the GameObject by its name and then we can
             out.append(targetGO.getDescription());
-        }else{
-            System.out.println("Look.java - Line 60 needs to be completed");
+        }else{ //If it doesn't match any keyword and can't find a suitable object
+
         }
         return out.toString();
     }

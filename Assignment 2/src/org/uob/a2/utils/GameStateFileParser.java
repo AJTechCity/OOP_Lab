@@ -53,8 +53,14 @@ public class GameStateFileParser {
                 }else if(line.startsWith("equipment")){
                     //Split the equipment info into array values - Index 0 is the id, index 1 is name etc
                     String[] equipmentInfo = line.split(":")[1].trim().split(",");
+                    boolean used = false;
+                    try{
+                        used = equipmentInfo[8].equals("true") ? true : false;
+                    }catch(Exception e){
+                        used = false;
+                    }
                     UseInformation equipmentUseInfo = new UseInformation(
-                            false, //isUsed
+                            used, //isUsed
                             equipmentInfo[4], //(String) use Action
                             equipmentInfo[5], //(String) use target
                             equipmentInfo[6], //(String) use Result
@@ -107,13 +113,15 @@ public class GameStateFileParser {
                 }else if(line.startsWith("score:")){
                     Score playerScore;
                     String stringScore = line.split(":")[1].trim();
-                    Int startingScore;
+                    int startingScore=0;
                     try{
                         startingScore = Integer.parseInt(stringScore);
                     }catch(NumberFormatException e){
                         startingScore = 0;
                     }finally{
                         playerScore = new Score(startingScore);
+                        playerScore.setPlayerInventory(gameState.getPlayer().getInventory());
+                        playerScore.setPlayerEquipment(gameState.getPlayer().getEquipment());
                         gameState.getPlayer().setScore(playerScore);
                     }
                 }
@@ -121,8 +129,6 @@ public class GameStateFileParser {
         } catch (java.lang.Exception e) {
             throw new RuntimeException(e);
         }
-
-        System.out.println("Game File parsing complete");
 
         //Initialise the new GameState object ready to return
         gameState = new GameState(

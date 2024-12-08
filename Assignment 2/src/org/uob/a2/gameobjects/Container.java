@@ -15,6 +15,7 @@ public class Container extends Feature {
 
     public Container(String id, String name, String description, boolean hidden){
         super(id, name, description, hidden);
+        this.gameObjectYAMLType = "container";
     }
 
     public void setContainedItem(String item){
@@ -23,6 +24,12 @@ public class Container extends Feature {
 
     public String getContainedItem(){
         return this.containedItem;
+    }
+
+    public String toYAML(){
+        StringBuilder out = new StringBuilder();
+        out.append(this.id + "," + this.name + "," + this.description + "," + this.hidden);
+        return out.toString();
     }
 
     /**

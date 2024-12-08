@@ -25,6 +25,8 @@ public class Room extends GameObject {
         this.equipment = new ArrayList<>();
         this.features = new ArrayList<>();
         this.exits = new ArrayList<>();
+
+        this.gameObjectYAMLType = "room";
     }
 
     @Override
@@ -57,7 +59,7 @@ public class Room extends GameObject {
     }
 
     public Item getItem(String id){
-        return findGameObjectById(items, id);
+        return this.items.stream().filter(item->item.getId().equals(id)).findFirst().orElse(null);
     }
 
     public Item getItemByName(String name){
@@ -164,6 +166,10 @@ public class Room extends GameObject {
 
     public boolean hasEquipment(String name){
         return this.getEquipmentByName(name) == null ? false : true;
+    }
+
+    public String toYAML(){
+        return this.id + "," + this.name + "," + this.description + "," + (this.hidden == false ? "false" : "true");
     }
 
     /**

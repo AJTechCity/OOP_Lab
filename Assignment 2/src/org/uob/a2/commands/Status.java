@@ -34,6 +34,8 @@ public class Status extends Command {
             out.append(player.toString());
         }else if(this.topic.equals("map")){
             out.append(gameState.getMap().renderMap());
+        }else if(this.topic.equals("score")){
+            out.append("Player score: " + player.getScore().getScore());
         }else{
             //Check if topic matches item name - display description
             //if not display an error

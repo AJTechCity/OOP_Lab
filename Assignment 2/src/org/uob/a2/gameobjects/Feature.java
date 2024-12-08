@@ -19,6 +19,11 @@ public class Feature extends GameObject {
 
      public Feature(String id, String name, String description, boolean hidden){
          super(id, name, description, hidden);
+         this.gameObjectYAMLType = "feature";
+     }
+
+     public String toYAML(){
+         return "";
      }
 
     @Override

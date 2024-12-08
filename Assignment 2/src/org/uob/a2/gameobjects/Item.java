@@ -18,6 +18,11 @@ public class Item extends GameObject {
 
      public Item(String id, String name, String description, boolean hidden){
          super(id, name, description, hidden);
+         this.gameObjectYAMLType = "item";
+     }
+
+     public String toYAML(){
+         return this.id + "," + this.name + "," + this.description + "," + (this.hidden == true ? "true" : "false");
      }
 
     @Override

@@ -32,6 +32,8 @@ public class Player {
         this.inventory = new ArrayList<>();
         this.equipment = new ArrayList<>();
         this.score = new Score(0);
+        this.score.setPlayerInventory(inventory);
+        this.score.setPlayerEquipment(equipment);
     }
 
     public void setScore(Score s){
@@ -112,6 +114,10 @@ public class Player {
         allGameObjects.addAll(this.inventory);
         allGameObjects.addAll(this.equipment);
         return allGameObjects;
+    }
+
+    public String toYAML(){
+        return this.name;
     }
 
     /**

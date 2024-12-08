@@ -35,6 +35,10 @@ public class Map {
         this.currentRoomId = roomId;
     }
 
+    public ArrayList<Room> getRooms(){
+        return rooms;
+    }
+
     public Room getRoomById(String roomId){
         for(Room room : rooms){
             if(room.id.equals(roomId)){
@@ -46,6 +50,10 @@ public class Map {
 
     public String renderMap(){
         return "Rendered Map";
+    }
+
+    public String toYAML(){
+        return this.currentRoomId;
     }
   
     /**

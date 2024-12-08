@@ -12,7 +12,7 @@ public class GameState {
 
     private Map map;
     private Player player;
-    Private Score playerScore;
+    private Score playerScore;
 
     public GameState(Map map, Player player){
         this.map = map;

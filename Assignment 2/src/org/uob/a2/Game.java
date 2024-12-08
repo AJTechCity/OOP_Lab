@@ -83,6 +83,8 @@ public class Game {
     public static void endGame(){
         //Save user data to their own file maybe?
         gameEnded = true;
+        GameStateFileSaver gameStateFileSaver = new GameStateFileSaver();
+        gameStateFileSaver.saveGameState(gameState);
     }
 
 }

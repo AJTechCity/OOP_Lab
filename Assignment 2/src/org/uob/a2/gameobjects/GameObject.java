@@ -22,6 +22,7 @@ public abstract class GameObject {
     protected String description;
     public String id;
     protected boolean hidden;
+    public String gameObjectYAMLType;
 
     public GameObject(String id, String name, String description, boolean hidden){
         this.id = id;
@@ -65,6 +66,7 @@ public abstract class GameObject {
         return this.description;
     }
 
+    public abstract String toYAML();
 
     @Override
     public String toString() {

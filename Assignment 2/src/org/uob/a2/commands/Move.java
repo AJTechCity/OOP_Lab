@@ -28,7 +28,7 @@ public class Move extends Command {
             if(exit.getHidden() == false){//If exit is visible to user
                 out.append("Moving towards " + this.direction + "\n");
                 //Custom: Increase the number of rooms visited in the Score Object
-                gameState.getPlayerScore().visitRoom();
+                gameState.getPlayer().getScore().visitRoom();
                 //Use the Map object to advance user to next room
                 gameState.getMap().setCurrentRoom(exit.getNextRoom());
             }else{

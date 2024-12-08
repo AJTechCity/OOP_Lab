@@ -7,7 +7,8 @@ public class Score{
     private int visitedRooms;
     private int containersOpened;
     private int usedEquipmentInInventory;
-    private int itemsInInventory
+    private int unUsedEquipmentInInventory;
+    private int itemsInInventory;
     private int startingScore;
 
     private ArrayList<Item> playerInventory;
@@ -19,6 +20,7 @@ public class Score{
         this.visitedRooms = 0;
         this.containersOpened = 0;
         this.usedEquipmentInInventory = 0;
+        this.unUsedEquipmentInInventory = 0;
     }
 
     public void setPlayerInventory(ArrayList<Item> pInv){
@@ -33,28 +35,38 @@ public class Score{
         this.visitedRooms++;
     }
 
-    private Int getNumItemsInInventory(){
+    private int getNumItemsInInventory(){
         return playerInventory.size();
     }
 
-    private Int getNumUsedEquipmentInInventory(){
-        return playerEquipment.stream().filter(obj->obj.getUseInformation().isUsed() == true).size();
+    private int getNumUsedEquipmentInInventory(){
+        return (int) playerEquipment.stream().filter(obj->obj.getUseInformation().isUsed() == true).count();
+    }
+
+    private int getNumUnusedEquipmentInInventory(){
+        return (int) playerEquipment.stream().filter(obj->obj.getUseInformation().isUsed() == false).count();
     }
 
     public void updateScoreVariables(){
         this.usedEquipmentInInventory = getNumUsedEquipmentInInventory();
         this.itemsInInventory = getNumItemsInInventory();
+        this.unUsedEquipmentInInventory = getNumUnusedEquipmentInInventory();
     }
 
-    public Int getScore(){
+    public int getScore(){
         this.updateScoreVariables();
         int returnScore=0;
 
-        //Score = startScore + 2 * (containersOpened + itemsInInventory - (2 * usedEquipmentInInventory) - visitedRooms)
-        returnScore += containersOpened + itemsInInventory - (2 * usedEquipmentInInventory) - visitedRooms;
+        //Score = startScore + 2 * (containersOpened + itemsInInventory + unUsedEquipmentInInventory - (2 * usedEquipmentInInventory)) - visitedRooms
+        returnScore += containersOpened + itemsInInventory + unUsedEquipmentInInventory - (2 * usedEquipmentInInventory);
         returnScore *= 2;
-        returnScore += startingScore;
+        returnScore += startingScore - visitedRooms;
 
         return returnScore;
+    }
+
+    public String toYAML(){
+        this.updateScoreVariables();
+        return Integer.toString(this.getScore());
     }
 }
