@@ -26,9 +26,13 @@ public class Status extends Command {
         Player player = gameState.getPlayer();
         StringBuilder out = new StringBuilder("");
         if(this.topic.equals("inventory")){
-            out.append("Player Inventory\n");
-            for(GameObject obj : player.getAll()){
+            out.append("You have the following equipment:\n");
+            for(Equipment obj : player.getEquipment()){
                 out.append("- " + obj.getName() + "\n");
+            }
+            out.append("You have the following items:\n");
+            for(Item item: player.getInventory()){
+                out.append("- " + item.getName() + "\n");
             }
         }else if(this.topic.equals("player")) {
             out.append(player.toString());

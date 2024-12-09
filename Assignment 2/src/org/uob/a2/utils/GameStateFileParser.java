@@ -25,6 +25,7 @@ public class GameStateFileParser {
         Player player = null;
         Map map = null;
         Room currentRoom = null;
+        ArrayList<Combination> combinations = new ArrayList<Combination>();
 
         try(BufferedReader reader = new BufferedReader(new FileReader(filename))){
             String line;
@@ -120,13 +121,35 @@ public class GameStateFileParser {
                         startingScore = 0;
                     }finally{
                         playerScore = new Score(startingScore);
-                        playerScore.setPlayerInventory(gameState.getPlayer().getInventory());
-                        playerScore.setPlayerEquipment(gameState.getPlayer().getEquipment());
-                        gameState.getPlayer().setScore(playerScore);
+                        playerScore.setPlayerInventory(player.getInventory());
+                        playerScore.setPlayerEquipment(player.getEquipment());
+                        player.setScore(playerScore);
                     }
+                }else if(line.startsWith("combination:")){
+                    String[] combinationInfo = line.split(":")[1].trim().split(",");
+                    String item1Name = combinationInfo[0].trim();
+                    String item2Name = combinationInfo[1].trim();
+                    UseInformation useInfo = new UseInformation(
+                            false, //Hidden
+                            combinationInfo[6], //Use action
+                            combinationInfo[7], //Use target
+                            combinationInfo[8], //Use result
+                            combinationInfo[9] //Use description
+                    );
+                    Equipment combinedItem = new Equipment(
+                            combinationInfo[2], //ID
+                            combinationInfo[3], //Name
+                            combinationInfo[4], //Description
+                            combinationInfo[5].equals("false") ? false : true, //Hidden
+                            useInfo
+                    );
+
+                    Combination combination = new Combination(item1Name, item2Name, combinedItem);
+                    combinations.add(combination); //Add combination option to ArrayList of Combination Objects
                 }
             }
         } catch (java.lang.Exception e) {
+            e.printStackTrace();
             throw new RuntimeException(e);
         }
 
@@ -135,6 +158,11 @@ public class GameStateFileParser {
                 map,
                 player
         );
+
+        //Add all combinations from the ArrayList to the gameObject
+        for(Combination combination: combinations){
+            gameState.addCombination(combination);
+        }
 
         return gameState;
     }

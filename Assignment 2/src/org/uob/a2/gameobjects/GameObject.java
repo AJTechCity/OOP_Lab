@@ -66,7 +66,9 @@ public abstract class GameObject {
         return this.description;
     }
 
-    public abstract String toYAML();
+    public String toYAML(){
+        return "YAML_STRING";
+    };
 
     @Override
     public String toString() {

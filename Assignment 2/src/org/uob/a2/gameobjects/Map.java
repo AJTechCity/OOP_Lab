@@ -23,6 +23,10 @@ public class Map {
         this.rooms = new ArrayList<>();
     }
 
+    public String getCurrentRoomId(){
+        return this.currentRoomId;
+    }
+
     public Room getCurrentRoom(){
         return getRoomById(this.currentRoomId);
     }
@@ -40,8 +44,9 @@ public class Map {
     }
 
     public Room getRoomById(String roomId){
+        roomId = roomId.trim();
         for(Room room : rooms){
-            if(room.id.equals(roomId)){
+            if(room.getId().equals(roomId)){
                 return room;
             }
         }

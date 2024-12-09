@@ -23,7 +23,7 @@ public class Exit extends GameObject {
     }
 
     public String toYAML(){
-        return this.id + "," + this.name + "," + this.description + "," + (this.hidden==false ? "false" : "true");
+        return this.id + "," + this.name + "," + this.description + "," + this.nextRoom + "," + (this.hidden==false ? "false" : "true");
     }
 
     /**

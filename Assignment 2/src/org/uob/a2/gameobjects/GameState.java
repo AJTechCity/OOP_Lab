@@ -1,5 +1,7 @@
 package org.uob.a2.gameobjects;
 
+import java.util.ArrayList;
+
 /**
  * Represents the current state of the game, including the map and the player.
  * 
@@ -13,10 +15,15 @@ public class GameState {
     private Map map;
     private Player player;
     private Score playerScore;
+    private ArrayList<Combination> combinations;
+
+    public String savedFilename; //If the user already has data stored, we can reuse the old file to store the data again
 
     public GameState(Map map, Player player){
         this.map = map;
         this.player = player;
+        this.savedFilename = null;
+        this.combinations = new ArrayList<Combination>();
     }
 
     public GameState(){}
@@ -35,6 +42,14 @@ public class GameState {
 
     public Score getPlayerScore(){
         return this.playerScore;
+    }
+
+    public ArrayList<Combination> getCombinations(){
+        return this.combinations;
+    }
+
+    public void addCombination(Combination combination){
+        this.combinations.add(combination);
     }
 
     /**

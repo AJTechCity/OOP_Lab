@@ -1,0 +1,34 @@
+player:Player
+map:r1
+	room:r1,Starting Room,This is your starting point.,false
+		item:d1,diamond,An exquisite diamond,false
+		equipment:g1,gemstone,Shiny and mysterious gemstone that can reveal exits,true,reveal,r1,e1,You use the mysterious gemstone to reveal an exit...
+		equipment:k0,key,An old rusty key that may reveal secrets,false,open,c1,g1,You use the key to open the chest. Something shiny falls to the floor...
+		equipment:h1,hammer,An antique hammer that can be used to smash open a container,false,open,c2,i1,You use the hammer to smash the glass. You see a shiny item...
+		container:c1,chest,A weathered wooden chest,false
+		exit:e1,east,An old wooden door leads to the east,r2,true
+	room:r2,Forest Clearing,A quiet clearing surrounded by trees.,false
+	    item:i1,metal,Metal - A useful resource when combined with wood,true
+		container:c2,glass,A small glass covers an item,false
+		exit:e2,east,A worn path leads to the east,r3,false
+	room:r3,Dragon's Den,A tall castle where a ferocious dragon guards a precious item. Use a sword to defeat the dragon, false
+	    container:c3,dragon,A Large Dragon guarding a precious diamond,false
+		exit:e3,south,The path leads back toward the clearing,r2,false
+	room:r4,Ancient Ruins,A forgotten ancient ruin its stone pillars ancient and worn.,false
+		item:r2,ruby,A Red Ruby glinting in the sunlight,false
+		exit:e4,east,Leads towards more exploration, r5,false
+	room:r5,Crystal Lake,A shimmering lake surrounded by crystal clear reflections.,false
+		exit:e5,south,Leads back toward the ruins, r4,false
+	room:r6,Cave Entrance,A dark and foreboding cave faint sounds from within.,false
+		exit:e6,north,Leads into darkness, r7,false
+	room:r7,Dark Cave,A dark cave its depths stretching unnervingly far.,false
+	room:r8,Abandoned Hut,An abandoned wooden hut with broken windows,false
+		container:c3,box,It is a sturdy Cardboard box locked tightly,false
+	room:r9,Hidden Garden,A beautiful garden that feels untouched for centuries.,false
+		item:t1,flower,A rare flower that blooms under moonlight,false
+		item:t2,shard,A glowing shard faintly pulsating,false
+		exit:e7,south,Leads back toward the hut, r8,false
+	room:r10,Lava Pit,An ominous glowing lava pit with molten rocks.,false
+		exit:e8,north,A treacherous path leads toward the other side, r9,false
+combination:metal,wood,s0,sword,A sharp metal sword that can be used to deliver a fatal blow to an enemy,false,open,c3,ITEM_TO_REVEAL,You strike the dragon with your sword and defeat it!
+score:0

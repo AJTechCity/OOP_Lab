@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import java.util.Random;
 
 import org.uob.a2.gameobjects.*;
 import org.uob.a2.commands.*;
@@ -19,7 +20,11 @@ import org.uob.a2.commands.*;
  */
 public class GameStateFileSaver {
 
-    public GameStateFileSaver(){}
+    private static Random random;
+
+    public GameStateFileSaver(){
+        random = new Random();
+    }
 
     public static void saveGameState(GameState gameState){
         StringBuilder savedData = new StringBuilder("");
@@ -50,11 +55,31 @@ public class GameStateFileSaver {
             }
         }
 
-        System.out.println(savedData.toString());
+        //Save any unused combination data
+        for(Combination combination : gameState.getCombinations()){
+            if(combination.isCombinationUsed() == false){ //Only save combinations which haven't been used
+                savedData.append("combination:" + combination.toYAML());
+                savedData.append("\n");
+            }
+        }
+
+        //Finally, we can save the score
+        savedData.append("score:" + player.getScore().getScore());
+
+//        System.out.println(savedData.toString());
 
         try{
-            saveToFile(player.getName() + "_game.txt", savedData.toString());
+            String pw;
+            if(gameState.savedFilename != null){
+                String[] fileNameData = gameState.savedFilename.split("_");
+
+                saveToFileFunc(Path.of("data", gameState.savedFilename), savedData.toString());
+                pw = fileNameData[1].replace(".txt", "");
+            }else{
+                pw = saveToFile(player.getName(), savedData.toString());
+            }
             System.out.println("Successfully Saved Game data to file");
+            System.out.println("Your unique password is: " + pw + "\nYour Username is: " + player.getName() + "\nDO NOT LOSE THIS INFO AS YOUR SAVED DATA WILL BE LOST");
         }catch(IOException e){
             System.out.println("Error saving game data...");
             System.out.println(e);
@@ -62,9 +87,17 @@ public class GameStateFileSaver {
 
     }
 
-    private static void saveToFile(String fileName, String content) throws IOException {
-        Path path = Path.of("data", fileName);
+    private static String saveToFile(String playerName, String content) throws IOException {
+        //Returns the random 6 digit password / number
+        String pw =  Integer.toString(100000 + random.nextInt(900000));
+        Path path = Path.of("data", playerName + "_" + pw + ".txt");
 
+        saveToFileFunc(path, content);
+
+        return pw;
+    }
+
+    private static void saveToFileFunc(Path path, String content) throws IOException {
         Files.writeString(
                 path,
                 content,

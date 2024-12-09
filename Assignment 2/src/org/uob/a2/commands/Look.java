@@ -55,7 +55,7 @@ public class Look extends Command {
             //Retrieve the GameObject by its name and then we can
             out.append(targetGO.getDescription());
         }else{ //If it doesn't match any keyword and can't find a suitable object
-
+//            out.append("Cannot find item " + this.target + " in the room");
         }
         return out.toString();
     }
