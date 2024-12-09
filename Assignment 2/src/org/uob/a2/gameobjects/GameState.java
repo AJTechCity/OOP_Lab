@@ -52,6 +52,15 @@ public class GameState {
         this.combinations.add(combination);
     }
 
+    public Combination findCombination(Item item1, Item item2){
+        for(Combination combination: this.combinations){
+            if(combination.isValidCombinationItems(item1, item2)){
+                return combination;
+            }
+        }
+        return null;
+    }
+
     /**
      * Returns a string representation of the game state, including the map and player details.
      *

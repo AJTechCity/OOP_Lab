@@ -9,6 +9,10 @@ package org.uob.a2.commands;
  */
 public enum CommandType {
     /**
+     * Represents a command to combine two items together to create a new equipment
+     */
+    COMBINE,
+    /**
      * Represents a command to move the player to a different location.
      */
     MOVE,

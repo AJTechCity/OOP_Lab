@@ -101,6 +101,8 @@ public class Parser {
         //At this point, we know the last token is EOL and first is a valid CommandType token specifier
 
         switch(commandType){
+            case COMBINE: //Done
+                return parseCombineCommand(tokenListSize, tokens);
             case MOVE: //Done
                 return parseMoveCommand(tokenListSize, tokens);
             case USE: //Done
@@ -217,6 +219,17 @@ public class Parser {
                 return new Status(varToken.getValue());
             }else throw new CommandErrorException("Invalid Status Command (VAR). Use the 'help status' command to learn more");
         }else throw new CommandErrorException("Invalid Status command. Use the 'help status' command to learn more");
+    }
+
+    private Command parseCombineCommand(int tokenListSize, ArrayList<Token> tokens) throws CommandErrorException{
+        if(tokenListSize == 5){ //<CombineToken><Item1VAR><PrepositionToken><Item2VAR><EOLToken>
+            Token item1Token = tokens.get(1);
+            Token prepositionToken = tokens.get(2);
+            Token item2Token = tokens.get(3);
+            if(prepositionToken.getTokenType() == TokenType.PREPOSITION){
+                return new Combine(item1Token.getValue(), item2Token.getValue());
+            }else throw new CommandErrorException("Invalid Combine Command. Use the 'help combine' command to learn more");
+        }else throw new CommandErrorException("Invalid Combine command. Use the 'help combine' command to learn more");
     }
  
 }

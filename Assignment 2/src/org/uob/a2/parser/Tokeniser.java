@@ -42,6 +42,9 @@ public class Tokeniser {
             if(word.equals("")) continue; //Continue to next "word" if the current is just empty text
             Token newToken;
             switch(word){ //Need to find a way for command types not to get caught
+                case "combine":
+                    newToken = new Token(TokenType.COMBINE);
+                    break;
                 case "move":
                     newToken = new Token(TokenType.MOVE);
                     break;

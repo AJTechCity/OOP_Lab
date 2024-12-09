@@ -10,6 +10,10 @@ package org.uob.a2.parser;
  */
 public enum TokenType {
     /**
+     * Represents the "combine" command.
+     */
+    COMBINE,
+    /**
      * Represents the "use" command.
      */
     USE,

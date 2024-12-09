@@ -29,8 +29,15 @@ public class Combine extends Command {
         return "Drop Command";
     }
 
+    private void loadItemObjects(Player player){
+        item1 = player.getItem(item1Name);
+        item2 = player.getItem(item2Name);
+    }
+
     public String execute(GameState gameState){
         Player player = gameState.getPlayer();
+
+        if(item1Name == null || item2Name == null) return "Invalid Combination";
 
         if(!player.hasItem(this.item1Name)){
             return "You do not own " + this.item1Name;
@@ -40,14 +47,19 @@ public class Combine extends Command {
             return "You do not own " + this.item2Name;
         }
 
-        //Drop item from player and into current room
-        this.item1 = player.getItem(this.item1Name);
-        this.item2 = player.getItem(this.item2Name);
+        loadItemObjects(player); //Load the Item Objects into item1 and item2 variables
 
-        //Need to check if item1 and item2 are a valid combo
-        //if they are, then execute the swap
+        //Locate the combination Object
+        Combination combination = gameState.findCombination(item1, item2);
+        if(combination == null) return "Invalid Combination";
+        if(combination.isCombinationUsed() == true) return "Combination already used";
 
-        return "You drop: " + this.value;
+        //Combination is valid, found, and not used, we can combine the items and give player new equipment
+        player.removeItem(item1Name);
+        player.removeItem(item2Name);
+        combination.use(); //Mark combination as used so it cannot be used again in future
+        player.addEquipment(combination.getCombinedItem());
+        return "You combined " + item1Name + " with " + item2Name + " and create " + combination.getCombinedItem().getName();
     }
 
 }
