@@ -24,9 +24,9 @@ map:r1
 	room:r5,The Dragon Den,A tall castle where a ferocious dragon guards a precious item. The dragon can only be defeated by a sword,false
 	    exit:e8,east,A pegasus awaits you to fly east towards the crystal lake,r4,false
 	    exit:e9,north,A one-way portal leads towards the north. You cannot return from this exit...,r6,false
-	    equipment:eq6,torch,A torch that can be used to shine light in dark areas,true,reveal,c4,eq7,You use the torch to light up the cave and see some items
+	    equipment:eq6,torch,A torch that can be used to shine light in dark areas,true,reveal,r7,e11,You use the torch to light up the cave and see some items
 	    container:c3,dragon,A large dragon guards a precious piece of equipment,false
-	room:r6,The Cave Entrance,The entrance to The Cave. You must own a stone to enter...,false
+	room:r6,The Cave Entrance,The entrance to The Cave,false
 	    exit:e10,east,A steep slide leads towards the east where you will enter the cave,r7,false
 	room:r7,The Cave, A dark cave that stretches on. A torch would be very useful here,false
 	    exit:e11,north,A car awaits to drive you north towards the abandoned house,r8,true

@@ -45,6 +45,7 @@ public class Equipment extends GameObject implements Usable {
 
         //Same Default logic to reveal item and set equipment as used
         itemToReveal.setHidden(false);
+        target.setHidden(true); //Hide target after usage
         this.useInformation.setUsed(true);
 
         return this.useInformation.getMessage();
