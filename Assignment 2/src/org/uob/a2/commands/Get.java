@@ -30,20 +30,14 @@ public class Get extends Command {
                 player.addItem(pickupItem); //add item to player inventory
                 currentRoom.removeItem(pickupItem); //remove item from current room
                 return "You pick up: " + this.item;
-            }else{
-                return "You already have " + this.item;
-            }
+            }else return "You already have " + this.item;
         }else if(pickupEquipment != null && pickupItem == null){
             if(!player.hasEquipment(this.item)){
                 player.addEquipment(pickupEquipment); //add item to player inventory
                 currentRoom.removeEquipment(pickupEquipment); //remove item from current room
                 return "You pick up: " + this.item;
-            }else{
-                return "You already have " + this.item;
-            }
-        }else{
-            return "No " + this.item + " to get.";
-        }
+            }else return "You already have " + this.item;
+        }else return "No " + this.item + " to get.";
     }
 
     public String toString(){

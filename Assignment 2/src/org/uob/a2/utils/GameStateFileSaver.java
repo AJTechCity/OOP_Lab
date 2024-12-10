@@ -72,7 +72,7 @@ public class GameStateFileSaver {
             String pw;
             if(gameState.savedFilename != null){
                 String[] fileNameData = gameState.savedFilename.split("_");
-
+                System.out.println(gameState.savedFilename);
                 saveToFileFunc(Path.of("data", gameState.savedFilename), savedData.toString());
                 pw = fileNameData[1].replace(".txt", "");
             }else{

@@ -51,6 +51,7 @@ public class Combine extends Command {
 
         //Locate the combination Object
         Combination combination = gameState.findCombination(item1, item2);
+
         if(combination == null) return "Invalid Combination";
         if(combination.isCombinationUsed() == true) return "Combination already used";
 

@@ -23,7 +23,7 @@ class UseTest {
                     new UseInformation(false, "open", "c1", "chest2", "You unlock the chest.")
             );
             Container target = new Container("c1", "Old Chest", "An old wooden chest.", false);
-            Container chest2 = new Container("chest2", "Chest 2", "Older wooden chest", true);
+            Container chest2 = new Container("chest2", "Chest 2", "Older wooden chest", true); //Added so that the revealed item of chest2 is found
             Room room = new Room("1", "Room", "A room with a chest.", false);
             room.addFeature(target);
             room.addFeature(chest2);

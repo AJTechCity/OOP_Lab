@@ -44,7 +44,7 @@ public class Help extends Command {
    }
 
    private String moveHelp(){
-        return "move <north|south|east|west";
+        return "move <north|south|east|west>";
    }
 
    private String helpHelp(){

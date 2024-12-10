@@ -29,10 +29,6 @@ public class Game {
 
         System.out.println("Running game setup...");
         setup();
-
-        System.out.println("Starting game...");
-        //Maybe implement a function where the user can enter their username to load previous data
-        start();
     }
 
     public static void setup(){
@@ -43,43 +39,60 @@ public class Game {
         tokeniser = new Tokeniser();
         parser = new Parser();
         gameEnded = false;
-        String fileName = "defaultGame.txt";
+        String fileName = "newDefaultGame.txt";
 
         System.out.println("Setting up game");
 
-        String playedBefore = "";
+        int menuChoice = 0;
         String username = "";
         int pw = 0;
 
-        while(playedBefore.equals("")){
+        while(menuChoice < 1 || menuChoice > 3){
             //Ask for their previous username and password
-            System.out.print("Have you played before and remember your unique username and password (Y/N): ");
-            playedBefore = scanner.nextLine().toLowerCase().trim();
+            System.out.println("Welcome to the Game\nPlease choose a menu option below");
+            System.out.println("1) New Game");
+            System.out.println("2) Load Game");
+            System.out.println("3) Quit");
+            System.out.print("Please enter an option (1-3): ");
+            try {
+                menuChoice = scanner.nextInt();
+            } catch (java.lang.Exception e) {
+                System.out.println("Invalid menu choice");
+            }finally{
+                scanner.nextLine();
+            }
 
+            if(menuChoice == 3){
+                System.out.println("Quitting game");
+                return;
+            }
 
-            if(playedBefore.equals("y")){ //Ask about previous data and load it
+            if(menuChoice == 2){ //Ask about previous data and load it
                 System.out.print("Enter your old username: ");
                 username = scanner.nextLine().trim();
-                while(pw == 0){
+                while(pw == 0) {
                     System.out.print("Enter your 6 digit password: ");
-                    pw = scanner.nextInt();
-                }
-                if(pw / 1000000 > 0 && pw / 1000000 <= 0.0000009){
-                    System.out.println("Password must be 6 digits. Please try again");
-                    pw=0;
+                    try {
+                        pw = scanner.nextInt();
+                    } catch (Exception e) {
+                        System.out.println("Invalid Password. It must be a 6 digit number");
+                    } finally {
+                        scanner.nextLine();
+                    }
+
+                    if (Integer.toString(pw).length() != 6) {
+                        System.out.println("Password must be 6 digits. Please try again");
+                        pw = 0;
+                    }
                 }
 
                 fileName = username + "_" + Integer.toString(pw) + ".txt";
-                System.out.println(fileName);
-            }else if(playedBefore.equals("n")){ //Run the normal start setup
-                System.out.println("Ok. Initialising new game instance...");
+            }else if(menuChoice == 1){ //Run the normal start setup
+                System.out.println("Initialising new game instance...");
                 System.out.print("Please enter a username: ");
                 username = scanner.nextLine().trim();
             }else{
-                System.out.println("Invalid input. Please try again");
-                playedBefore = "";
-                //622 658
-                //arundp
+                System.out.println("Invalid Menu Choice");
             }
 
         }
@@ -87,11 +100,17 @@ public class Game {
         try{
             gameState = gameStateFileParser.parse("data/" + fileName);
             gameState.getPlayer().setName(username);
-            if(!fileName.equals("defaultGame.txt")){
+            if(!fileName.equals("newDefaultGame.txt")){
                 gameState.savedFilename = fileName;
             }
+
+            System.out.println("Starting game...");
+            try {
+                start();
+            }catch(Exception e){
+                System.out.println(e);
+            }
         }catch(Exception e){
-            System.out.println(e);
             System.out.println("Could not find your information. Running setup again...");
             setup();
         }
@@ -107,9 +126,6 @@ public class Game {
         //Give first room info
         Look initialLookCommand = new Look("room");
         turn(initialLookCommand);
-        if(gameState.savedFilename != null){
-            scanner.nextLine(); //Avoid the scanner reading the text that is about to be outputted
-        }
 
         while(!gameEnded){
             System.out.print("> ");
