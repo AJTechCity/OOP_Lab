@@ -126,7 +126,6 @@ public class GameStateFileParser {
                         player.setScore(playerScore);
                     }
                 }else if(line.startsWith("combination:")){
-                    System.out.println("New Combination");
                     String[] combinationInfo = line.split(":")[1].trim().split(",");
                     String item1Name = combinationInfo[0].trim();
                     String item2Name = combinationInfo[1].trim();
@@ -150,7 +149,7 @@ public class GameStateFileParser {
                 }
             }
         } catch (java.lang.Exception e) {
-            System.out.println("Error loading game data");
+            System.out.println("----------Error loading game data----------");
         }
 
         //Initialise the new GameState object ready to return
