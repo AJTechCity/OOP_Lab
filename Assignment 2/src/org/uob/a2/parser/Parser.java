@@ -150,8 +150,7 @@ public class Parser {
         }else if(tokenListSize == 3) {//<HelpToken><Topic><EOLToken>
             try{
                 //All help topics actually belong to the CommandType Enum so we can use that to check validity
-                CommandType.valueOf(tokens.get(1).getTokenType().name());
-                return new Help(tokens.get(1).getValue());
+                return new Help(CommandType.valueOf(tokens.get(1).getTokenType().name()).toString().toLowerCase());
             }catch(IllegalArgumentException e){
                 throw new CommandErrorException("Invalid Help Topic");
             }

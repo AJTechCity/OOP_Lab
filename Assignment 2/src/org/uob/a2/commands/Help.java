@@ -22,6 +22,7 @@ public class Help extends Command {
 
    public String execute(GameState gameState){
         //TO DO
+       System.out.println(topic);
        if(this.topic == null){
            return "Welcome to the game!\n"+
                    "- MOVE\n" + this.moveHelp() + "\n" +
@@ -43,7 +44,7 @@ public class Help extends Command {
            return "HELP Command:\n" +
                    "Use the 'help' command to show this help message and others\n" +
                    this.helpHelp();
-       }else if(this.topic.equals("look") {
+       }else if(this.topic.equals("look")){
            return "LOOK Command:\n" +
                    "Use the 'look' command to look around the current room, an exit, a feature, a specific item, equipment, or feature\n" +
                    this.lookHelp();
@@ -66,15 +67,14 @@ public class Help extends Command {
        }else if(this.topic.equals("combine")) {
            return "COMBINE Command:\n" +
                    "Use the 'combine' command to combine two items into a new equipment piece (e.g. combine metal with wood)\n" +
-                   this,getCombineHelp();
+                   this.combineHelp();
        }else if(this.topic.equals("quit")){
            return "QUIT Command:\n" +
                    "Use the 'quit' command to save and quit the game\n" +
-                   this.getQuitHelp();
+                   this.quitHelp();
        }else{
            return "No help available for the topic: " + this.topic;
        }
-        return "Execute Help Command";
    }
 
    private String moveHelp(){
@@ -82,7 +82,7 @@ public class Help extends Command {
    }
 
    private String lookHelp(){
-        return "look <room|exits|features> | <item name> | <equipment name> | <feature name>"
+        return "look <room|exits|features> | <item name> | <equipment name> | <feature name>";
    }
 
    private String getHelp(){
