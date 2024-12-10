@@ -25,8 +25,6 @@ public class Game {
     private static boolean gameEnded;
 
     public static void main(String[] args){
-
-
         System.out.println("Running game setup...");
         setup();
     }
@@ -38,8 +36,8 @@ public class Game {
         scanner = new Scanner(System.in);
         tokeniser = new Tokeniser();
         parser = new Parser();
-        gameEnded = false;
-        String fileName = "newDefaultGame.txt";
+        gameEnded = false; //Flag variable that tells main game loop to stop taking command inputs and to quit and save game
+        String fileName = "newDefaultGame.txt"; //File where default YAML Game data is stored
 
         System.out.println("Setting up game");
 
@@ -47,7 +45,7 @@ public class Game {
         String username = "";
         int pw = 0;
 
-        while(menuChoice < 1 || menuChoice > 3){
+        while(menuChoice < 1 || menuChoice > 3){ //Keeps requesting a menu choice until a valid one is entered
             //Ask for their previous username and password
             System.out.println("Welcome to the Game\nPlease choose a menu option below");
             System.out.println("1) New Game");
@@ -56,7 +54,7 @@ public class Game {
             System.out.print("Please enter an option (1-3): ");
             try {
                 menuChoice = scanner.nextInt();
-            } catch (java.lang.Exception e) {
+            } catch (java.lang.Exception e) { //Catches any invalid input such as strings
                 System.out.println("Invalid menu choice");
             }finally{
                 scanner.nextLine();
@@ -64,7 +62,7 @@ public class Game {
 
             if(menuChoice == 3){
                 System.out.println("Quitting game");
-                return;
+                return; //End the program without ever entering the start() function
             }
 
             if(menuChoice == 2){ //Ask about previous data and load it
@@ -98,7 +96,7 @@ public class Game {
         }
 
         try{
-            gameState = gameStateFileParser.parse("data/" + fileName);
+            gameState = gameStateFileParser.parse("data/" + fileName); //Load the game data, be it from a previously saved file or from default new one
             gameState.getPlayer().setName(username);
             if(!fileName.equals("newDefaultGame.txt")){
                 gameState.savedFilename = fileName;
@@ -143,10 +141,10 @@ public class Game {
     public static void turn(Command command){
         //Processes a single turn based on the provided commmand
         //Run the execute() method of the command
-        if(command.commandType == CommandType.QUIT){
+        if(command.commandType == CommandType.QUIT){ //If quit command, then save the game and quit (using the endGame() method)
             System.out.println("Exiting the game...");
             endGame();
-        }else{
+        }else{ //All other commands, execute as normal
             String output = command.execute(gameState);
             System.out.println(output);
         }
@@ -155,7 +153,7 @@ public class Game {
     public static void endGame(){
         //Save user data to their own file maybe?
         gameEnded = true;
-        GameStateFileSaver gameStateFileSaver = new GameStateFileSaver();
+        GameStateFileSaver gameStateFileSaver = new GameStateFileSaver(); //Custom class used to convert the GameObjects back into YAML ready for text storage
         gameStateFileSaver.saveGameState(gameState);
     }
 

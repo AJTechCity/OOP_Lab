@@ -31,13 +31,13 @@ public class GameStateFileSaver {
         Player player = gameState.getPlayer();
 
         System.out.println("Dropping all of player's inventory in current room...");
-        for(GameObject obj : player.getAll()){
+        for(GameObject obj : player.getAll()){ //Get's all game objects that belong to player and then drops it in the current room so the data isn't lost
             //Drop all player objects in current room
             Drop dropCommand = new Drop(obj.getName());
-            System.out.println(dropCommand.execute(gameState));
+            System.out.println(dropCommand.execute(gameState)); //Drop item + Alert user that the item is dropped in current room
         }
 
-        savedData.append("player:" + player.toYAML()); //Save player name data
+        savedData.append("player:" + player.toYAML()); //Save player name data - toYAML() function is custom and gets the required GameObejct data into the required YAML format (e.g. id,name,description,hidden...)
         savedData.append("\n");
 
         //Save Map Room ID
@@ -66,7 +66,6 @@ public class GameStateFileSaver {
         //Finally, we can save the score
         savedData.append("score:" + player.getScore().getScore());
 
-//        System.out.println(savedData.toString());
 
         try{
             String pw;
@@ -102,7 +101,7 @@ public class GameStateFileSaver {
                 path,
                 content,
                 StandardOpenOption.CREATE,
-                StandardOpenOption.TRUNCATE_EXISTING
+                StandardOpenOption.TRUNCATE_EXISTING //Overwrite any existing data in the player's file
         );
     }
 }

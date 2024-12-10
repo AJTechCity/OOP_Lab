@@ -33,6 +33,8 @@ public class GameStateFileParser {
             while((line = reader.readLine()) != null){
                 line = line.trim();
 
+                //For each line, check what it starts with and then create Objects as required with the loaded data
+
                 if(line.startsWith("player:")){
                     String playerName = line.split(":")[1].trim();
                     player = new Player(playerName);
