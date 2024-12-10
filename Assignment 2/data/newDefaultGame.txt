@@ -13,7 +13,7 @@ map:r1
 	room:r3,The Aztec Ruins,An ancient ruin where it is said treasures lie...,false
 	    exit:e4,south,A two-way magic portal that leads back to the south where the forest is,r2,false
 	    exit:e5,west,A boat leads towards the west where you see a glistening lake,r4,false
-	    equipment:eq3,hammer,A strong hammer that can be used to smash open glass containers,false,open,c2,i3,You smash the glass container with the strong hammer.\nYou see something silver in the rubble...
+	    equipment:eq3,hammer,A strong hammer that can be used to smash open glass containers,false,open,c2,i3,You smash the glass container with the strong hammer.You see something silver in the rubble...
 	room:r4,The Crystal Lake,A calm and shimmering lake surrounded by delicate crystals,false
 	    exit:e6,east,A boat leads towards the east where you see the Aztec Ruins,r3,false
 	    exit:e7,west,A pegasus awaits you to fly west towards the dragons den,r5,true
@@ -24,7 +24,7 @@ map:r1
 	room:r5,The Dragon Den,A tall castle where a ferocious dragon guards a precious item. The dragon can only be defeated by a sword,false
 	    exit:e8,east,A pegasus awaits you to fly east towards the crystal lake,r4,false
 	    exit:e9,north,A one-way portal leads towards the north. You cannot return from this exit...,r6,false
-	    equipment:eq6,torch,A torch that can be used to shine light in dark areas,true,reveal,r7,e11,You use the torch to light up the cave and see some items
+	    equipment:eq6,torch,A torch that can be used to shine light in dark areas,true,reveal,r7,e11,You use the torch to light up the cave and see an exit...
 	    container:c3,dragon,A large dragon guards a precious piece of equipment,false
 	room:r6,The Cave Entrance,The entrance to The Cave,false
 	    exit:e10,east,A steep slide leads towards the east where you will enter the cave,r7,false

@@ -57,8 +57,9 @@ public class Score{
         this.updateScoreVariables();
         int returnScore=0;
 
-        returnScore += containersOpened + (2*itemsInInventory) + unUsedEquipmentInInventory - usedEquipmentInInventory;
-        returnScore += startingScore - visitedRooms;
+        returnScore += containersOpened + itemsInInventory + unUsedEquipmentInInventory;
+        returnScore *= 5;
+        returnScore += startingScore - visitedRooms - usedEquipmentInInventory;;
 
         return returnScore;
     }
