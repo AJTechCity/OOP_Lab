@@ -1,0 +1,48 @@
+player:arun
+map:r10
+	room:r1,home,This is your starting point,false
+		exit:e1,east,An old wooden door leads to the east,r2,false
+	room:r2,The Forest,A quiet clearing surrounded by trees,true
+		equipment:eq2,key,An old rusty key that can open chests,false,open,c1,eq1,You use the key to open the chest. Something shiny falls to the floor,true
+		equipment:eq1,gemstone,A shiny and mysterious gemstone that can reveal exits,false,reveal,r2,e3,You use the mysterious gemstone to reveal an exit,true
+		container:c1,chest,A weathered wooden chest,true
+		exit:e2,west,An old wooden door leads back to the west,r1,false
+		exit:e3,north,A two-way magic portal that leads towards the north,r3,false
+	room:r3,The Aztec Ruins,An ancient ruin where it is said treasures lie...,false
+		exit:e4,south,A two-way magic portal that leads back to the south where the forest is,r2,false
+		exit:e5,west,A boat leads towards the west where you see a glistening lake,r4,false
+	room:r4,The Crystal Lake,A calm and shimmering lake surrounded by delicate crystals,true
+		equipment:eq3,hammer,A strong hammer that can be used to smash open glass containers,false,open,c2,i3,You smash the glass container with the strong hammer.\nYou see something silver in the rubble...,true
+		container:c2,glass,A small glass container covers an item,true
+		exit:e6,east,A boat leads towards the east where you see the Aztec Ruins,r3,false
+		exit:e7,west,A pegasus awaits you to fly west towards the dragons den,r5,false
+	room:r5,The Dragon Den,A tall castle where a ferocious dragon guards a precious item. The dragon can only be defeated by a sword,false
+		equipment:eq4,sword,A sharp metal sword that can deliver a fatal blow to any enemy,false,open,c3,eq6,You use the sword and kill the dragon. Something remains...,true
+		container:c3,dragon,A large dragon guards a precious piece of equipment,true
+		exit:e8,east,A pegasus awaits you to fly east towards the crystal lake,r4,false
+		exit:e9,north,A one-way portal leads towards the north. You cannot return from this exit...,r6,false
+	room:r6,The Cave Entrance,The entrance to The Cave,false
+		exit:e10,east,A steep slide leads towards the east where you will enter the cave,r7,false
+	room:r7,The Cave, A dark cave that stretches on. A torch would be very useful here,true
+		equipment:eq6,torch,A torch that can be used to shine light in dark areas,false,reveal,r7,e11,You use the torch to light up the cave and see some items,true
+		container:c4,cave,A dark cave that must be lit up,true
+		exit:e11,north,A car awaits to drive you north towards the abandoned house,r8,false
+	room:r8,The Abandoned House,An abandoned wooden house with broken windows. You may need to use shoes to discover further...,true
+		equipment:eq7,shoes,A pair of shoes that will help you explore where it is usually unsafe to,false,reveal,r8,e13,You use your shoes to explore the abandoned house and discover something...,true
+		exit:e12,south,A car awaits to drive you south towards the cave,r7,false
+		exit:e13,east,A mysterious pathway leads towards the east,r9,false
+	room:r9,The Lava Pit,An ominous glowing lava pit with molten rocks and a fire monster. Don't forget that water beats fire...,true
+		equipment:eq8,water,A bucket of water that can be used to combat fires,false,open,c5,eq9,You use the bucket of water to defeat the fire monster. You can now retrieve the lockpick,true
+		equipment:eq9,lockpick,A lockpick that can be used to get into the victory lounge,false,reveal,r9,e15,You use the lockpick on the doors and discover a staircase,true
+		container:c5,monster,A fire monster that guards the lockpick giving you victory!,true
+		exit:e14,west,A mysterious pathway leads south towards the abandoned house,r8,false
+		exit:e15,south,A golden staircase leads south,r10,false
+	room:r10,The Victory Lounge,This room is for you to celebrate your victory of defeating all the enemies,false
+		item:i1,diamond,An exquisite diamond,false
+		item:i4,emerald,A lush green emerald. A rare and highly valued gemstone,false
+		item:i5,glass,A shiny transparent glass shard,false
+		item:i6,medal,A golden medal that shows game completion,false
+        item:i7,coins,Some coins to express thank for defeating the dragon,false
+		equipment:eq5,crystal,A glistening crystal that can reveal an exit,false,reveal,r4,e7,You use the crystal's magical powers to unveil a pegasus,true
+		exit:e16,north,A golden staircase leads north,r9,false
+score:-9

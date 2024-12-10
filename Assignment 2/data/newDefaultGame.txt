@@ -33,16 +33,18 @@ map:r1
 	    item:i4,emerald,A lush green emerald. A rare and highly valued gemstone,false
 	    equipment:eq7,shoes,A pair of shoes that will help you explore where it is usually unsafe to,false,reveal,r8,e13,You use your shoes to explore the abandoned house and discover something...
 	    container:c4,cave,A dark cave that must be lit up,true
-	room:r8,The Abandoned House,An abandoned wooden house with broken windows,false
+	room:r8,The Abandoned House,An abandoned wooden house with broken windows. You may need to use shoes to discover further...,false
 	    exit:e12,south,A car awaits to drive you south towards the cave,r7,false
 	    exit:e13,east,A mysterious pathway leads towards the east,r9,true
 	    item:i5,glass,A shiny transparent glass shard,false
 	room:r9,The Lava Pit,An ominous glowing lava pit with molten rocks and a fire monster. Don't forget that water beats fire...,false
 	    exit:e14,west,A mysterious pathway leads south towards the abandoned house,r8,false
-	    exit:e15,south,A golden staircase leads south,r10,false
+	    exit:e15,south,A golden staircase leads south,r10,true
 	    equipment:eq9,lockpick,A lockpick that can be used to get into the victory lounge,true,reveal,r9,e15,You use the lockpick on the doors and discover a staircase
 	    container:c5,monster,A fire monster that guards the lockpick giving you victory!,false
 	room:r10,The Victory Lounge,This room is for you to celebrate your victory of defeating all the enemies,false
 	    exit:e16,north,A golden staircase leads north,r9,false
+	    item:i6,medal,A golden medal that shows game completion,false
+	    item:i7,coins,Some coins to express thank for defeating the dragon,false
 combination:wood,metal,eq4,sword,A sharp metal sword that can deliver a fatal blow to any enemy,false,open,c3,eq6,You use the sword and kill the dragon. Something remains...
 score:0
