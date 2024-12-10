@@ -21,8 +21,6 @@ public class Help extends Command {
     }
 
    public String execute(GameState gameState){
-        //TO DO
-       System.out.println(topic);
        if(this.topic == null){
            return "Welcome to the game!\n"+
                    "- MOVE\n" + this.moveHelp() + "\n" +
